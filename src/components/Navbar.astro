@@ -1,0 +1,24 @@
+<nav class="flex justify-between items-center py-4 sticky top-0">
+ <div class="font-bold text-lg">
+  Internet Drew
+ </div>
+ <div class="relative">
+  <div id="menu" class="absolute text-sm bg-slate-50 invisible top-7 right-0 min-w-28 border rounded-md flex flex-col overflow-hidden sm:text-base sm:static sm:flex-row sm:border-0 sm:gap-4 sm:bg-transparent sm:visible">
+    <a href="/about" class="border-b p-2 sm:border-b-0 sm:bg-none hover:bg-pink-600 hover:text-slate-50 sm:hover:bg-transparent sm:hover:text-inherit">
+     About
+    </a>
+    <a href="/blog" class="p-2 hover:bg-pink-600 hover:text-slate-50 sm:hover:bg-transparent sm:hover:text-inherit">Blog</a>
+  </div>
+  <div id="menu-btn" class="font-medium cursor-pointer sm:hidden">Menu</div>
+ </div>
+</nav>
+
+<script>
+ const menuBtn = document.getElementById('menu-btn')
+ const menu = document.getElementById('menu')
+
+ menuBtn?.addEventListener('click', () => {
+  menu?.classList.toggle('invisible')
+  menuBtn?.classList.toggle('text-pink-600')
+ })
+</script>
