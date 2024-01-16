@@ -9,13 +9,13 @@ import blackCatat from "../icons/right-carat-black.svg";
   >
     <a
       href="/about"
-      class="border-b p-2 sm:border-b-0 sm:bg-none hover:bg-pink-600 hover:text-slate-50 sm:hover:bg-transparent sm:hover:text-inherit"
+      class="border-b p-2 underline-offset-2 sm:border-b-0 sm:bg-none hover:bg-pink-600 hover:text-slate-50 sm:hover:bg-transparent sm:hover:text-inherit sm:hover:underline"
     >
       About
     </a>
     <a
       href="/blog"
-      class="p-2 hover:bg-pink-600 hover:text-slate-50 sm:hover:bg-transparent sm:hover:text-inherit"
+      class="p-2 underline-offset-2 hover:bg-pink-600 hover:text-slate-50 sm:hover:bg-transparent sm:hover:text-inherit sm:hover:underline"
     >
       Blog
     </a>
@@ -36,7 +36,7 @@ import blackCatat from "../icons/right-carat-black.svg";
   const menu = document.getElementById("menu");
   const rightCarat = document.getElementById("carat-icon");
 
-  menuBtn?.addEventListener("click", () => {
+  function showMenu() {
     menu?.classList.toggle("invisible");
 
     if (menu?.classList.contains("opacity-0")) {
@@ -45,5 +45,7 @@ import blackCatat from "../icons/right-carat-black.svg";
     }
 
     rightCarat?.classList.toggle("rotate-90");
-  });
+  }
+
+  menuBtn?.addEventListener("click", showMenu);
 </script>
