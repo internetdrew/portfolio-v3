@@ -1,13 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Intro from '../components/Intro.astro';
-
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Intro from "../components/Intro.astro";
 ---
 
 <Layout title="Andrew Rowley, Software Developer">
-	<main class="max-w-screen-md mx-auto px-4 font-mono">
-		<Navbar/>
-		<Intro/>
-	</main>
+  <main class="max-w-screen-md mx-auto px-4 font-mono text-slate-800">
+    <Navbar />
+    <Intro />
+  </main>
 </Layout>
+
+<style>
+  div {
+    color: rgb(30 41 59);
+  }
+</style>

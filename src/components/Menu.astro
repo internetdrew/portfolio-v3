@@ -5,7 +5,7 @@ import blackCatat from "../icons/right-carat-black.svg";
 <div class="relative">
   <div
     id="menu"
-    class="absolute bg-slate-50 invisible top-7 right-0 min-w-32 border rounded-md flex flex-col overflow-hidden sm:text-base sm:static sm:flex-row sm:border-0 sm:gap-4 sm:bg-transparent sm:visible"
+    class="absolute bg-slate-50 invisible opacity-0 transition-opacity duration-150 top-7 right-0 min-w-32 border rounded-md flex flex-col overflow-hidden sm:text-base sm:static sm:flex-row sm:border-0 sm:gap-4 sm:bg-transparent sm:visible sm:opacity-100"
   >
     <a
       href="/about"
@@ -26,7 +26,7 @@ import blackCatat from "../icons/right-carat-black.svg";
       id="carat-icon"
       src={blackCatat.src}
       alt="right carat icon"
-      class="transition duration-150"
+      class="transition duration-75"
     />
   </div>
 </div>
@@ -38,6 +38,12 @@ import blackCatat from "../icons/right-carat-black.svg";
 
   menuBtn?.addEventListener("click", () => {
     menu?.classList.toggle("invisible");
+
+    if (menu?.classList.contains("opacity-0")) {
+      menu?.classList.remove("opacity-0");
+      menu?.classList.add("opacity-100");
+    }
+
     rightCarat?.classList.toggle("rotate-90");
   });
 </script>
