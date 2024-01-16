@@ -1,0 +1,43 @@
+---
+import blackCatat from "../icons/right-carat-black.svg";
+---
+
+<div class="relative">
+  <div
+    id="menu"
+    class="absolute bg-slate-50 invisible top-7 right-0 min-w-32 border rounded-md flex flex-col overflow-hidden sm:text-base sm:static sm:flex-row sm:border-0 sm:gap-4 sm:bg-transparent sm:visible"
+  >
+    <a
+      href="/about"
+      class="border-b p-2 sm:border-b-0 sm:bg-none hover:bg-pink-600 hover:text-slate-50 sm:hover:bg-transparent sm:hover:text-inherit"
+    >
+      About
+    </a>
+    <a
+      href="/blog"
+      class="p-2 hover:bg-pink-600 hover:text-slate-50 sm:hover:bg-transparent sm:hover:text-inherit"
+    >
+      Blog
+    </a>
+  </div>
+  <div id="menu-btn" class="flex cursor-pointer sm:hidden">
+    <p>Menu</p>
+    <img
+      id="carat-icon"
+      src={blackCatat.src}
+      alt="right carat icon"
+      class="transition duration-150"
+    />
+  </div>
+</div>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+  const rightCarat = document.getElementById("carat-icon");
+
+  menuBtn?.addEventListener("click", () => {
+    menu?.classList.toggle("invisible");
+    rightCarat?.classList.toggle("rotate-90");
+  });
+</script>
