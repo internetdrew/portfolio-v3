@@ -1,19 +1,34 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
 
-interface Project {
-  title: string;
-}
-
-const projects: Project[] = [
-  { title: "NYC Crash Radar" },
-  { title: "Gather Social" },
+const projects = [
+  {
+    title: "NYC Crash Radar",
+    description: "See all reported vehicle collisions in New York City.",
+    githubUrl: "https://github.com/internetdrew/nyc-crash-radar",
+    siteUrl: "https://nyc-crash-radar.vercel.app/",
+  },
+  {
+    title: "Gather Social",
+    description: "Create private timelines for your special events.",
+    githubUrl: "private",
+    siteUrl: "https://gather-social.vercel.app/",
+  },
 ];
 ---
 
 <section class="mt-10">
   <h3 class="font-semibold text-lg">Projects</h3>
-  <ul class="mt-5 grid grid-cols-2 gap-4">
-    {projects.map((project) => <ProjectCard title={project.title} />)}
+  <ul class="mt-2 grid gap-4 sm:grid-cols-2">
+    {
+      projects.map((project) => (
+        <ProjectCard
+          title={project.title}
+          description={project.description}
+          githubUrl={project.githubUrl}
+          siteUrl={project.siteUrl}
+        />
+      ))
+    }
   </ul>
 </section>

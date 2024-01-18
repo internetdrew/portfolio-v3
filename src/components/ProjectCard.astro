@@ -1,13 +1,55 @@
 ---
-interface ProjectCardProps {
+interface Props {
   title: string;
+  screenshotUrl?: string;
+  description: string;
+  githubUrl: string | "private";
+  siteUrl: string;
+  technologies?: string[];
 }
 
-const { title } = Astro.props;
+const { title, screenshotUrl, description, githubUrl, siteUrl, technologies } =
+  Astro.props;
 ---
 
-<li class="list-none border p-2 border-slate-800 rounded-md">
-  <h4 class="font-semibold">
+<li class="list-none border p-2 border-slate-800 rounded-md text-sm">
+  <h4 class="font-semibold text-base">
     {title}
   </h4>
+  <p class="text-sm text-slate-600">{description}</p>
+  <div class="flex items-center justify-end gap-2 mt-8">
+    {
+      githubUrl === "private" ? (
+        <p class="px-3 py-1 cursor-not-allowed rounded-md border border-slate-800 select-none hover:bg-pink-600 hover:text-white">
+          Private Repo
+        </p>
+      ) : (
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="px-3 py-1 cursor-pointer rounded-md border border-slate-800 hover:bg-pink-600 hover:text-white"
+        >
+          Source Code
+        </a>
+      )
+    }
+    <a
+      href={siteUrl}
+      target="_blank"
+      rel="noreferrer"
+      class="px-3 py-1 cursor-pointer rounded-md border border-slate-800 hover:bg-pink-600 hover:text-white"
+      >Visit</a
+    >
+  </div>
+  {
+    technologies && (
+      <div class="mt-4">
+        <h5>Technologies</h5>
+        {technologies.map((tech) => (
+          <span>{tech}</span>
+        ))}
+      </div>
+    )
+  }
 </li>
