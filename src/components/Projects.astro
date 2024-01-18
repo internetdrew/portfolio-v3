@@ -1,0 +1,19 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+interface Project {
+  title: string;
+}
+
+const projects: Project[] = [
+  { title: "NYC Crash Radar" },
+  { title: "Gather Social" },
+];
+---
+
+<section class="mt-10">
+  <h3 class="font-semibold text-lg">Projects</h3>
+  <ul class="mt-5 grid grid-cols-2 gap-4">
+    {projects.map((project) => <ProjectCard title={project.title} />)}
+  </ul>
+</section>

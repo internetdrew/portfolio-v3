@@ -1,0 +1,13 @@
+---
+interface ProjectCardProps {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<li class="list-none border p-2 border-slate-800 rounded-md">
+  <h4 class="font-semibold">
+    {title}
+  </h4>
+</li>
