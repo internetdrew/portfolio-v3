@@ -12,18 +12,18 @@ const { companyName, contract, position, startDate, endDate, description } =
   Astro.props;
 ---
 
-<article class="mt-2 border border-slate-800 p-2 rounded-lg">
+<article class="mt-2 border border-slate-800 p-2 rounded-lg text-sm">
   <header class="flex items-center justify-between">
     <div>
-      <h4 class="font-semibold inline-block">{companyName}</h4>
-      {contract && <span class="text-sm">{`(Contract)`}</span>}
+      <h4 class="font-semibold inline-block text-base">{companyName}</h4>
+      {contract && <span>{`(Contract)`}</span>}
     </div>
-    <time datetime="2023-09-01" class="text-sm"
+    <time datetime="2023-09-01" class="hidden sm:inline-block"
       >{startDate} - {endDate ?? "Present"}</time
     >
   </header>
   <h5>{position}</h5>
-  <p class="mt-2 text-slate-600">
+  <p class="mt-1 text-slate-600">
     {description}
   </p>
 </article>
