@@ -1,0 +1,29 @@
+---
+interface Props {
+  companyName: string;
+  position: string;
+  contract: boolean;
+  startDate: string;
+  endDate: string | null;
+  description: string;
+}
+
+const { companyName, contract, position, startDate, endDate, description } =
+  Astro.props;
+---
+
+<article class="mt-2 border border-slate-800 p-2 rounded-lg">
+  <header class="flex items-center justify-between">
+    <div>
+      <h4 class="font-semibold inline-block">{companyName}</h4>
+      {contract && <span class="text-sm">{`(Contract)`}</span>}
+    </div>
+    <time datetime="2023-09-01" class="text-sm"
+      >{startDate} - {endDate ?? "Present"}</time
+    >
+  </header>
+  <h5>{position}</h5>
+  <p class="mt-2 text-slate-600">
+    {description}
+  </p>
+</article>

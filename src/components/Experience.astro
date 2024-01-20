@@ -1,3 +1,18 @@
+---
+import ExperienceCard from "./ExperienceCard.astro";
+const workExperience = [
+  {
+    companyName: "Repool (YC S21)",
+    position: "Software Engineer",
+    contract: true,
+    startDate: "Sept. 2023",
+    endDate: null,
+    description: "Here is the description for Repool.",
+  },
+];
+---
+
 <section class="mt-10">
   <h3 class="font-semibold text-lg">Experience</h3>
+  {workExperience.map((exp) => <ExperienceCard {...exp} />)}
 </section>
