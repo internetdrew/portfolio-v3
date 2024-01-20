@@ -21,7 +21,7 @@ const { title, screenshotUrl, description, githubUrl, siteUrl, technologies } =
   <p class="text-sm text-slate-600 mb-8">{description}</p>
   <div class="flex items-center justify-end gap-2 mt-auto">
     {
-      githubUrl ? (
+      githubUrl && (
         <a
           href={githubUrl}
           target="_blank"
@@ -30,10 +30,6 @@ const { title, screenshotUrl, description, githubUrl, siteUrl, technologies } =
         >
           Source Code
         </a>
-      ) : (
-        <p class="px-3 py-1 cursor-not-allowed rounded-md border border-slate-800 select-none hover:bg-pink-600 hover:text-white">
-          Private Repo
-        </p>
       )
     }
     <a
