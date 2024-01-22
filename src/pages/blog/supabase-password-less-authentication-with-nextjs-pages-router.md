@@ -10,6 +10,8 @@ image:
 tags: ["supabase", "next.js", "authentication"]
 ---
 
+## Table of Contents
+
 ## What You'll Learn
 
 You'll learn how to set up password-less signup and login flows. We’ll set things up so that:
