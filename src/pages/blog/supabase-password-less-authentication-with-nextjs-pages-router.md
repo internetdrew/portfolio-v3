@@ -14,7 +14,7 @@ tags: ["supabase", "next.js", "authentication"]
 
 You'll learn how to set up password-less signup and login flows. We’ll set things up so that:
 
-- Users can signup for accounts with other necessary profile creation data (username, etc.) for your profiles table.
+- Users can `signup` for accounts with other necessary `profile` creation data (username, etc.) for your profiles table.
 - Users can login with just their email address.
 - Users cannot sign up at login.
 - We automate a new user signup to create a new profile for us to access in our database in the public schema.
