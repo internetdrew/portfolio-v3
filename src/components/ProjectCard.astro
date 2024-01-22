@@ -13,20 +13,22 @@ const { title, screenshotUrl, description, githubUrl, siteUrl, technologies } =
 ---
 
 <li
-  class="flex flex-col list-none border p-2 border-slate-800 rounded-md text-sm"
+  class="flex flex-col list-none border p-4 border-slate-800 rounded-md text-sm"
 >
   <h4 class="font-semibold text-base">
     {title}
   </h4>
   <p class="text-sm text-slate-600 mb-8">{description}</p>
-  <div class="flex items-center justify-end gap-2 mt-auto">
+  <div
+    class="flex items-center justify-end gap-2 mt-auto transition duration-300"
+  >
     {
       githubUrl && (
         <a
           href={githubUrl}
           target="_blank"
           rel="noreferrer"
-          class="px-3 py-1 cursor-pointer rounded-md border border-slate-800 hover:bg-pink-600 hover:text-white"
+          class="px-3 py-1 cursor-pointer rounded-md border border-slate-800 bg-pink-600 text-white hover:shadow-lg"
         >
           Source Code
         </a>
@@ -36,7 +38,7 @@ const { title, screenshotUrl, description, githubUrl, siteUrl, technologies } =
       href={siteUrl}
       target="_blank"
       rel="noreferrer"
-      class="px-3 py-1 cursor-pointer rounded-md border border-slate-800 hover:bg-pink-600 hover:text-white"
+      class="px-3 py-1 cursor-pointer rounded-md border border-slate-800 bg-pink-600 text-white hover:shadow-lg"
       >Visit</a
     >
   </div>
