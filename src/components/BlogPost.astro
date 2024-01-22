@@ -10,12 +10,16 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
   href={post.url}
   class="group border border-slate-800 p-4 text-sm rounded-lg duration-150 hover:shadow-xl hover:bg-pink-600 hover:text-slate-50"
 >
-  <article>
+  <article class="flex flex-col h-full">
     <h2 class="font-bold text-base">{post.frontmatter.title}</h2>
-    <p class="mt-2 mb-8 text-sm text-slate-600 group-hover:text-slate-200">
+    <p
+      class="mt-2 flex-1 mb-8 text-sm text-slate-600 group-hover:text-slate-200"
+    >
       {post.frontmatter.description}
     </p>
-    <p>By {post.frontmatter.author}</p>
-    <p>Written {formattedDate}</p>
+    <div class="mt-auto">
+      <p>By {post.frontmatter.author}</p>
+      <p>Written {formattedDate}</p>
+    </div>
   </article>
 </a>
