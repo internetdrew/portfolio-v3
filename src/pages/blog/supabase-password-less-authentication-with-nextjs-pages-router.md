@@ -1,8 +1,8 @@
 ---
 layout: "../../layouts/BlogLayout.astro"
-title: "Supabase Password-less Authentication with Next.js Pages Router"
+title: "Supabase Password-less Authentication with the Next.js Pages Router"
 pubDate: 2024-01-21
-description: "Leveraging Magic Link authentication and get you up and running using the Pages router."
+description: "How to leverage Supabase's Magic Link authentication using Next.js' Pages router."
 author: "Andrew Rowley"
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"
@@ -10,9 +10,9 @@ image:
 tags: ["supabase", "next.js", "authentication"]
 ---
 
-## What Happens Here
+## What You'll Learn
 
-We will set up password-less signup and login flows. We’ll set things up so that:
+You'll learn how to set up password-less signup and login flows. We’ll set things up so that:
 
 - Users can signup for accounts with other necessary profile creation data (username, etc.) for your profiles table.
 - Users can login with just their email address.

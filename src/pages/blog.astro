@@ -1,7 +1,26 @@
 ---
 import Layout from "../layouts/MainLayout.astro";
+import BlogPost from "../components/BlogPost.astro";
+const blogPosts = await Astro.glob("./blog/*.md");
 ---
 
-<Layout title="Andrew's Blog">
+<Layout title="Andrew Rowley's Software Engineering Blog">
   <h1>I am the blog</h1>
+  <div class="mt-10 grid sm:grid-cols-2">
+    {
+      blogPosts?.map((post) => {
+        return (
+          <article class="border group border-slate-800 p-4 text-sm rounded-lg duration-300">
+            <h2 class="font-bold text-base">{post?.frontmatter.title}</h2>
+            <p class="mt-1 text-sm">{post.frontmatter.description}</p>
+            <div class="flex mt-10">
+              <button class="ml-auto px-3 py-1 rounded-md border border-slate-800 duration-150  hover:bg-pink-600 hover:text-slate-50">
+                Check it out
+              </button>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
 </Layout>
