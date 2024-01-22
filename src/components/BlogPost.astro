@@ -1,13 +1,21 @@
 ---
 const { post } = Astro.props;
+const date = new Date(post.frontmatter.pubDate);
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  dateStyle: "medium",
+}).format(date);
 ---
 
 <a
   href={post.url}
-  class="border border-slate-800 p-4 text-sm rounded-lg duration-300 hover:shadow-xl hover:bg-pink-600 hover:text-slate-50"
+  class="group border border-slate-800 p-4 text-sm rounded-lg duration-300 hover:shadow-xl hover:bg-pink-600 hover:text-slate-50"
 >
   <article>
     <h2 class="font-bold text-base">{post.frontmatter.title}</h2>
-    <p class="mt-2 text-sm">{post.frontmatter.description}</p>
+    <p class="mt-2 mb-8 text-sm text-slate-600 group-hover:text-slate-200">
+      {post.frontmatter.description}
+    </p>
+    <p>By {post.frontmatter.author}</p>
+    <p>Written {formattedDate}</p>
   </article>
 </a>
