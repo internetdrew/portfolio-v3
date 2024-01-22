@@ -6,10 +6,10 @@ const { frontmatter } = Astro.props;
 <MainLayout title={frontmatter.title}>
   <section class="mt-10">
     <header class="text-center">
-      <h1 class="text-2xl font-semibold">{frontmatter.title}</h1>
-      <h2 class="max-w-lg mx-auto">{frontmatter.description}</h2>
+      <h1 class="text-2xl sm:text-3xl font-semibold">{frontmatter.title}</h1>
+      <h2 class="max-w-lg mx-auto sm:text-lg">{frontmatter.description}</h2>
     </header>
-    <div class="mt-10 prose">
+    <div class="mt-10 prose prose-sm sm:prose-base">
       <slot />
     </div>
   </section>

@@ -10,9 +10,9 @@ image:
 tags: ["supabase", "next.js", "authentication"]
 ---
 
-## What This Will Help You Accomplish
+## What Happens Here
 
-In this article, we will set up password-less signup and login flows. We’ll set things up so that:
+We will set up password-less signup and login flows. We’ll set things up so that:
 
 - Users can signup for accounts with other necessary profile creation data (username, etc.) for your profiles table.
 - Users can login with just their email address.
