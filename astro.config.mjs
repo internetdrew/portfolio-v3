@@ -9,5 +9,8 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   markdown: {
     remarkPlugins: [remarkToc],
+    shikiConfig: {
+      wrap: true,
+    },
   },
 });
