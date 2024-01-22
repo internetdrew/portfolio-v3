@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 const { post } = Astro.props;
 const date = new Date(post.frontmatter.pubDate);
 const formattedDate = new Intl.DateTimeFormat("en-US", {

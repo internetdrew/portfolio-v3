@@ -5,8 +5,8 @@ pubDate: 2023-05-17
 description: "A simple approach to sending files from user input for upload to your cloud service without exposing your cloud service API."
 author: "Andrew Rowley"
 image:
-  url: "https://docs.astro.build/assets/full-logo-light.png"
-  alt: "The full Astro logo."
+  url: "src/images/supabase-passwordless-auth-banner.jpg"
+  alt: "blog post banner image"
 tags: ["supabase", "next.js", "authentication"]
 ---
 

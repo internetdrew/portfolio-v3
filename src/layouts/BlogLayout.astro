@@ -1,5 +1,6 @@
 ---
 import MainLayout from "./MainLayout.astro";
+
 const { frontmatter } = Astro.props;
 ---
 
@@ -11,7 +12,7 @@ const { frontmatter } = Astro.props;
       <h1 class="text-2xl sm:text-3xl font-semibold">{frontmatter.title}</h1>
       <h2 class="max-w-lg mx-auto sm:text-lg">{frontmatter.description}</h2>
     </header>
-    <div class="mt-10 prose prose-sm sm:prose-base">
+    <div class="mt-10 prose">
       <slot />
     </div>
   </section>
