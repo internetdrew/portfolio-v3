@@ -88,3 +88,65 @@ IF NEW.last_sign_in_at IS NOT NULL AND OLD.last_sign_in_at IS NULL THEN
   return new;
 end;
 ```
+
+```sql
+create trigger on_confirmed_auth
+after
+update on auth.users for each row
+execute function public.handle_new_user ();
+```
+Now, once our authentication process is successful, a new user will be added to `auth.users`, which will trigger the function to create a new row in the profiles table for our new user, but only when their `last_sign_in_at` is no longer `null`, which happens on a successful signup.
+
+## Generating the Database Interface
+Without this piece, I believe the very last step of verification failed repeatedly. So, I guess we can say this is necessary in some situations.
+
+First, create a `types` directory at the root of the project directory and create a `supabase.ts` file. Next, run these in your CLI:
+
+```
+npm i supabase@">=1.8.1" --save-dev
+```
+```
+npx supabase login
+```
+```
+npx supabase gen types typescript --project-id "$PROJECT_REF" --schema public > types/supabase.ts
+```
+
+Here, replace that `$PROJECT_REF` with your actual project ID (no need for quotes around it). To find it, open your project **dashboard**, head to **Settings**, look for **General Settings**, and find your **Reference ID**.
+
+Once you run the commands, you should see the interface for your database in the file. And it’s an exported interface, which we will need when we create the server client.
+
+## Setting Up User Signup
+When we sign up a user, we want them to be able to include other information in their profile. That might look like this in our database:
+
+```javascript
+import { createBrowserClient } from '@supabase/ssr';
+import { Database } from '../../types/supabase.ts';
+
+const signUpNewUser = async (signUpData) => {
+          const supabaseClient = createBrowserClient<Database>(
+	       process.env.NEXT_PUBLIC_SUPABASE_URL!,
+	       process.env.NEXT_PUBLIC_SUPABASE_KEY!
+	);
+
+  const { data, error } = await supabase.auth.signInWithOtp({
+      email: signUpData.email,
+      options: {
+        data: {
+          email: signUpData.email,
+          username: signUpData.username,
+          display_name: signUpData.displayName,
+        },
+	// Wherever you want the user to go once they click the link.
+	// You can add this url at 
+	// dashboard -> authentication -> URL configuration under 
+	// Redirect URLs.
+        emailRedirectTo: 'http://localhost:3000/login',
+      },
+    if(error){
+       // Logic to handle it...
+      };
+  };
+```
+
+So, while avatar urls are optional, everything else is required to create a profile in the profiles table.
