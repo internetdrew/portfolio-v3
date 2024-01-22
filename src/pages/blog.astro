@@ -5,8 +5,11 @@ const blogPosts = await Astro.glob("./blog/*.md");
 ---
 
 <Layout title="Andrew Rowley's Software Engineering Blog">
-  <h1>I am the blog</h1>
-  <div class="mt-10 grid sm:grid-cols-2">
+  <header class="my-10 text-center">
+    <h1 class="text-3xl font-bold">The Blog</h1>
+    <p>Read my thoughts. No telepathy required.</p>
+  </header>
+  <div class="grid sm:grid-cols-2">
     {
       blogPosts?.map((post) => {
         return <BlogPost post={post} />;

@@ -2,17 +2,12 @@
 const { post } = Astro.props;
 ---
 
-<article
-  class="border group border-slate-800 p-4 text-sm rounded-lg duration-300"
+<a
+  href={post.url}
+  class="border border-slate-800 p-4 text-sm rounded-lg duration-300 hover:shadow-xl hover:bg-pink-600 hover:text-slate-50"
 >
-  <h2 class="font-bold text-base">{post.frontmatter.title}</h2>
-  <p class="mt-1 text-sm">{post.frontmatter.description}</p>
-  <div class="flex mt-10">
-    <a
-      href={post.url}
-      class="ml-auto px-3 py-1 rounded-md border border-slate-800 duration-150 hover:bg-pink-600 hover:text-slate-50"
-    >
-      Check it out
-    </a>
-  </div>
-</article>
+  <article>
+    <h2 class="font-bold text-base">{post.frontmatter.title}</h2>
+    <p class="mt-2 text-sm">{post.frontmatter.description}</p>
+  </article>
+</a>
