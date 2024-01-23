@@ -16,8 +16,6 @@ tags: ["supabase", "next.js", "authentication"]
 
 A simple and easy way to handle click events outside of an element without needing any external libraries/packages.
 
-
-
 ## Why Use the getBoundingClientRect() Method?
 
 You want to find the clicks that happen outside of an element. Using `getBoundingClientRect()` will give you rectangular coordinates for your element on the client.
