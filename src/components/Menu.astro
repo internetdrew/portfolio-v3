@@ -64,12 +64,13 @@ import caratIcon from "../icons/right-carat.svg";
     const clickX = e.clientX;
     const clickY = e.clientY;
 
-    if (
+    const outsideClick =
       clickX < menuControlRect?.left ||
       clickX > menuControlRect?.right ||
       clickY < menuControlRect?.top ||
-      clickY > menuControlRect?.bottom
-    ) {
+      clickY > menuControlRect?.bottom;
+
+    if (outsideClick) {
       if (menu?.classList.contains("opacity-100")) {
         menu.classList.remove("opacity-100");
         menu.classList.add("invisible");

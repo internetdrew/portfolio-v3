@@ -20,7 +20,27 @@ A simple and easy way to handle click events outside of an element without needi
 
 You want to find the clicks that happen outside of an element. Using `getBoundingClientRect()` will give you rectangular coordinates for your element on the client.
 
-If you have the coordinates that tell you where the "walls" of your element are, you can easily measure whether an event happens within or outside of those walls.
+This solution works on both server and client-side event APIs. Though they are similar, they are different:
+- [Node Event API](https://nodejs.org/api/events.html)
+- [MouseEvent -> UIEvent -> Event](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent)
+
+And there is also a matter of typing that creates conflict.
+
+For example, if you're using Astro's `<script>` to execute this in a `.astro` file, you'll find that suggestions like below do not work because of a mismatch of `e.target` being an `EventTarget` while the `contains` method expects a `Node`.
+
+```javascript
+window.addEventListener('click', function(e){   
+  if (document.getElementById('clickbox').contains(e.target)){
+    // Clicked in box
+  } else{
+    // Clicked outside the box
+  }
+});
+```
+
+If you have the coordinates that tell you where the boundaries of your element are, you can easily measure whether an event happens within or outside of those boundaries.
+
+You can [learn more about the getBoundingClientRect here](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect).
 
 ## How to Use getBoundingClientRect() to Detect Outside Clicks
 ```javascript
@@ -32,29 +52,22 @@ If you have the coordinates that tell you where the "walls" of your element are,
     const clickX = e.clientX;
     const clickY = e.clientY;
 
-    if (
+    const outsideClick =
       clickX < menuControlRect?.left ||
       clickX > menuControlRect?.right ||
       clickY < menuControlRect?.top ||
-      clickY > menuControlRect?.bottom
-    ) {
-      if (menu?.classList.contains("opacity-100")) {
-        menu.classList.remove("opacity-100");
-        menu.classList.add("invisible");
-        menu.classList.add("opacity-0");
-        rightCarat?.classList.remove("rotate-90");
-        return;
-      }
+      clickY > menuControlRect?.bottom;
+
+    if (outsideClick) {
+      someFunction()
     }
   });
 ```
-In the above code, we are isolating everything that the menu action consists of. That means, if you have a drop down menu, this should be the element that is the entire containing element you need to detect an outside click from.
+In the above code, we are isolating everything that the menu element consists of. In my use case, that includes not only the menu itself but also the menu button I tap to open and close the menu. This is important because without including that button in the rect, it will detect those button presses as outside and close the menu immediately after opening it.
 
-Your click event will have coordinates attached to it. You will be able to pinpoint the X and Y coordinates on the client.
+The click event will have X and Y coordinates attached to it.
 
-Your return value from getBoundingClientRect() will contain the coordinates of the top, right, bottom, and left sides of the element you want to identify outside clicks from.
-
-X coordinates are numberical values measured from left to right, while Y coordinates are measured from top to bottom. 
+Your return value from getBoundingClientRect() will contain the coordinates of the top, right, bottom, and left bounds of the element you want to identify clicks outside of.
 
 Our `if` statement contains conditions that determine if the click event occurs:
 - to the left or right of the element's boundaries or 
