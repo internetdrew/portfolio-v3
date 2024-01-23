@@ -22,7 +22,7 @@ You want to find the clicks that happen outside of an element. Using `getBoundin
 
 If you have the coordinates that tell you where the boundaries of your element are, you can easily measure whether an event happens within or outside of those boundaries.
 
-You can [learn more about the getBoundingClientRect here](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect).
+You can [learn more about the getBoundingClientRect method here](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect).
 
 ## How to Use getBoundingClientRect() to Detect Outside Clicks
 ```javascript
