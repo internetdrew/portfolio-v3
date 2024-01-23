@@ -2,7 +2,7 @@
 layout: "../../layouts/BlogLayout.astro"
 title: "Detecting Outside Click Events with JavaScript"
 pubDate: 2024-01-23
-description: "Leveraging X and Y client coordinates via the getBoundingClientRect() method."
+description: "Leveraging X and Y client coordinates and the getBoundingClientRect() method."
 author: "Andrew Rowley"
 image:
   url: "src/images/supabase-passwordless-auth-banner.jpg"
@@ -15,6 +15,8 @@ tags: ["supabase", "next.js", "authentication"]
 ## What You'll Learn
 
 A simple and easy way to handle click events outside of an element without needing any external libraries/packages.
+
+
 
 ## Why Use the getBoundingClientRect() Method?
 
