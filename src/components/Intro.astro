@@ -1,7 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import linkedInIcon from "../icons/linkedin-logo.svg";
 import githubIcon from "../icons/github-logo.svg";
-import { Image } from "astro:assets";
+import Me from "../images/me.webp";
 ---
 
 <header
@@ -45,7 +46,12 @@ import { Image } from "astro:assets";
       </a>
     </div>
   </div>
-  <div class="rounded-full w-14 h-14 self-start bg-red-300 sm:w-36 sm:h-36">
-    <img src="" alt="" />
+  <div
+    class="rounded-full w-16 h-16 self-start overflow-hidden bg-gradient-to-b from-pink-600 to bg-pink-500 to sm:w-36 sm:h-36"
+  >
+    <Image
+      src={Me}
+      alt="a photo of andrew rowley with a pink gradient background"
+    />
   </div>
 </header>
