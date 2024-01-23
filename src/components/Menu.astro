@@ -1,5 +1,6 @@
 ---
-import blackCatat from "../../public/right-carat-black.svg";
+import { Image } from "astro:assets";
+import caratIcon from "../icons/right-carat.svg";
 ---
 
 <div class="relative">
@@ -22,9 +23,9 @@ import blackCatat from "../../public/right-carat-black.svg";
   </div>
   <div id="menu-btn" class="flex cursor-pointer sm:hidden">
     <p>Menu</p>
-    <img
+    <Image
       id="carat-icon"
-      src={blackCatat.src}
+      src={caratIcon}
       alt="right carat icon"
       class="transition duration-75"
     />

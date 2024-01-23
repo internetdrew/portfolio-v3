@@ -1,6 +1,7 @@
 ---
-import linkedInIcon from "../../public/linkedin-logo.svg";
-import githubIcon from "../../public/github-logo.svg";
+import linkedInIcon from "../icons/linkedin-logo.svg";
+import githubIcon from "../icons/github-logo.svg";
+import { Image } from "astro:assets";
 ---
 
 <header
@@ -27,7 +28,7 @@ import githubIcon from "../../public/github-logo.svg";
           id="linkedInIcon"
           src={linkedInIcon.src}
           alt="LinkedIn icon"
-          class="rounded-lg transition duration-300 border-2 border-slate-800 hover:bg-pink-600 hover:shadow-lg"
+          class="rounded-lg transition duration-300 p-0.5 border border-slate-800 bg-pink-600 hover:bg-pink-500 hover:shadow-lg"
         />
       </a>
       <a
@@ -39,7 +40,7 @@ import githubIcon from "../../public/github-logo.svg";
           id="githubIcon"
           src={githubIcon.src}
           alt="Github icon"
-          class="rounded-lg transition duration-300 border-2 border-slate-800 hover:bg-pink-600 hover:shadow-lg"
+          class="rounded-lg transition duration-300 border p-0.5 border-slate-800 bg-pink-600 hover:bg-pink-500 hover:shadow-lg"
         />
       </a>
     </div>
