@@ -5,6 +5,16 @@ const { frontmatter } = Astro.props;
 ---
 
 <MainLayout title={frontmatter.title}>
+  <head>
+    <meta property="og:title" content={frontmatter.title} />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content={`/${frontmatter.image.url}`} />
+    <meta
+      property="og:url"
+      content="http://euro-travel-example.com/index.htm"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
   <section class="my-10">
     <header
       class="text-center border border-slate-800 p-4 bg-pink-600 text-slate-50 rounded-lg"

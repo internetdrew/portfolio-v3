@@ -5,7 +5,7 @@ pubDate: 2024-01-23
 description: "Leveraging X and Y client coordinates and the getBoundingClientRect() method."
 author: "Andrew Rowley"
 image:
-  url: "src/images/supabase-passwordless-auth-banner.jpg"
+  url: "/public/supabase-passwordless-banner.jpg"
   alt: "blog post banner image"
 tags: ["supabase", "next.js", "authentication"]
 ---
