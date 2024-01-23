@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import caratIcon from "../icons/right-carat.svg";
 ---
 
-<div class="relative">
+<div id="menu-control" class="relative">
   <div
     id="menu"
     class="absolute bg-slate-50 invisible opacity-0 transition-opacity duration-150 top-7 right-0 min-w-32 border border-slate-800 rounded-md flex flex-col overflow-hidden sm:text-base sm:static sm:flex-row sm:border-0 sm:gap-4 sm:bg-transparent sm:visible sm:opacity-100"
@@ -36,6 +36,7 @@ import caratIcon from "../icons/right-carat.svg";
   const menuBtn = document.getElementById("menu-btn");
   const menu = document.querySelector("#menu");
   const rightCarat = document.getElementById("carat-icon");
+  const menuControl = document.getElementById("menu-control");
 
   function handleMenu() {
     if (menu?.classList.contains("invisible")) {
@@ -56,4 +57,26 @@ import caratIcon from "../icons/right-carat.svg";
   }
 
   menuBtn?.addEventListener("click", handleMenu);
+
+  document.addEventListener("click", (e) => {
+    const menuControlRect = menuControl?.getBoundingClientRect()!;
+
+    const clickX = e.clientX;
+    const clickY = e.clientY;
+
+    if (
+      clickX < menuControlRect?.left ||
+      clickX > menuControlRect?.right ||
+      clickY < menuControlRect?.top ||
+      clickY > menuControlRect?.bottom
+    ) {
+      if (menu?.classList.contains("opacity-100")) {
+        menu.classList.remove("opacity-100");
+        menu.classList.add("invisible");
+        menu.classList.add("opacity-0");
+        rightCarat?.classList.remove("rotate-90");
+        return;
+      }
+    }
+  });
 </script>
