@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/MainLayout.astro";
-import BlogPost from "../components/BlogPost.astro";
+import BlogPostCard from "../components/BlogPostCard.astro";
 const blogPosts = await Astro.glob("./blog/*.md");
 const sortedPosts = [...blogPosts].sort((a, b) => {
   const pubDateA = a.frontmatter.pubDate;
@@ -22,7 +22,7 @@ const sortedPosts = [...blogPosts].sort((a, b) => {
   <div class="grid gap-4 sm:grid-cols-2">
     {
       sortedPosts.map((post) => {
-        return <BlogPost post={post} />;
+        return <BlogPostCard post={post} />;
       })
     }
   </div>
