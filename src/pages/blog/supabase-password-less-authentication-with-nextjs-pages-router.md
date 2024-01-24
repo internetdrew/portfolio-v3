@@ -5,7 +5,7 @@ pubDate: 2024-01-21
 description: "How to leverage Supabase's Magic Link authentication using Next.js' Pages router."
 author: "Andrew Rowley"
 image:
-  url: "public/supabase-passwordless-auth-banner.jpg"
+  url: "supabase-passwordless-auth-banner.jpg"
   alt: "Supabase Password-less Authentication with the Next.js Pages Router"
 tags: ["supabase", "next.js", "authentication"]
 ---
@@ -40,6 +40,7 @@ In this tutorial, I’m using [the recommended supabase/ssr package instead of A
 In order to make this work properly, you need to already have your database set up. This matters because in order to verify the user, the server client relies on the typing of your database. I am not sure if this matters as much if you you’re using JS instead of TS. This is just how I got it to work after much trial and error.
 
 ## Setting Up the Database
+
 Let’s say our profiles table looks something like this in our database:
 
 ```javascript
@@ -73,6 +74,7 @@ create table
 ```
 
 ## Triggering New Profile Creation from `auth.users`
+
 Supabase’s auth table is read-only. You will want to manage app-relevant user data in your own tables. To make that process easy, we will create a trigger connected to auth.
 
 This is a trigger and function combination I wrote (feel free to break away from this) so that a new profile row is only created when the row in auth.users updates it’s default null value for last_sign_in_at (signifying an un-verified user) to a value that is not null (successful verification).
@@ -95,9 +97,11 @@ after
 update on auth.users for each row
 execute function public.handle_new_user ();
 ```
+
 Now, once our authentication process is successful, a new user will be added to `auth.users`, which will trigger the function to create a new row in the profiles table for our new user, but only when their `last_sign_in_at` is no longer `null`, which happens on a successful signup.
 
 ## Generating the Database Interface
+
 Without this piece, I believe the very last step of verification failed repeatedly. So, I guess we can say this is necessary in some situations.
 
 First, create a `types` directory at the root of the project directory and create a `supabase.ts` file. Next, run these in your CLI:
@@ -105,9 +109,11 @@ First, create a `types` directory at the root of the project directory and creat
 ```
 npm i supabase@">=1.8.1" --save-dev
 ```
+
 ```
 npx supabase login
 ```
+
 ```
 npx supabase gen types typescript --project-id "$PROJECT_REF" --schema public > types/supabase.ts
 ```
@@ -117,6 +123,7 @@ Here, replace that `$PROJECT_REF` with your actual project ID (no need for quote
 Once you run the commands, you should see the interface for your database in the file. And it’s an exported interface, which we will need when we create the server client.
 
 ## Setting Up User Signup
+
 When we sign up a user, we want them to be able to include other information in their profile. That might look like this in our database:
 
 ```javascript
@@ -138,8 +145,8 @@ const signUpNewUser = async (signUpData) => {
           display_name: signUpData.displayName,
         },
 	// Wherever you want the user to go once they click the link.
-	// You can add this url at 
-	// dashboard -> authentication -> URL configuration under 
+	// You can add this url at
+	// dashboard -> authentication -> URL configuration under
 	// Redirect URLs.
         emailRedirectTo: 'http://localhost:3000/login',
       },
