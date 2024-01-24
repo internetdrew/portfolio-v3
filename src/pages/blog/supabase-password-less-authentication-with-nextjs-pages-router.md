@@ -5,7 +5,7 @@ pubDate: 2024-01-21
 description: "How to leverage Supabase's Magic Link authentication using Next.js' Pages router."
 author: "Andrew Rowley"
 image:
-  url: "supabase-passwordless-auth-banner.jpg"
+  url: "supabase-passwordless-banner.jpg"
   alt: "Supabase Password-less Authentication with the Next.js Pages Router"
 tags: ["supabase", "next.js", "authentication"]
 ---
