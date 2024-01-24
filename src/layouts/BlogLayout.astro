@@ -8,11 +8,11 @@ const { frontmatter } = Astro.props;
   <head>
     <meta property="og:title" content={frontmatter.title} />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content={`/${frontmatter.image.url}`} />
     <meta
-      property="og:url"
-      content="http://euro-travel-example.com/index.htm"
+      property="og:image"
+      content={`https://internetdrew.com/${frontmatter.image.url}`}
     />
+    <meta property="og:url" content="https://internetdrew.com" />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <section class="my-10">
