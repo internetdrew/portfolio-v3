@@ -1,32 +1,67 @@
 ---
+import Navbar from "../components/Navbar.astro";
 import MainLayout from "./MainLayout.astro";
 
 const { frontmatter } = Astro.props;
+console.log(frontmatter);
 ---
 
-<MainLayout title={frontmatter.title}>
+<!doctype html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <meta property="og:title" content={frontmatter.title} />
     <meta property="og:type" content="article" />
     <meta
       property="og:image"
-      content={`https://www.internetdrew.com/${frontmatter.image.url}`}
+      content={`https://internetdrew.com/${frontmatter.image.url}`}
     />
-    <meta property="og:url" content="https://www.internetdrew.com" />
+    <meta
+      property="og:image:secure_url"
+      content={`https://internetdrew.com/${frontmatter.image.url}`}
+    />
+    <meta
+      property="og:url"
+      content={`https://internetdrew.com/${frontmatter.url}`}
+    />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:description" content={frontmatter.description} />
+    <meta property="og:site_name" content="Internet Drew" />
+    <meta name="twitter:image:alt" content={frontmatter.title} />
+    <meta
+      name="twitter:image"
+      content={`https://internetdrew.com/${frontmatter.image.url}`}
+    />
+
+    <meta name="description" content={frontmatter.description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <title>{frontmatter.title}</title>
   </head>
-  <section class="my-10">
-    <header
-      class="text-center border border-slate-800 p-4 bg-pink-600 text-slate-50 rounded-lg"
-    >
-      <h1 class="text-2xl sm:text-3xl font-semibold">{frontmatter.title}</h1>
-      <h2 class="max-w-lg mx-auto sm:text-lg">{frontmatter.description}</h2>
-    </header>
-    <div class="mt-10 prose">
-      <slot />
-    </div>
-  </section>
-</MainLayout>
+  <body class="bg-slate-50">
+    <main class="max-w-screen-sm mx-auto px-4 font-mono text-slate-800">
+      <Navbar />
+      <section class="my-10">
+        <header
+          class="text-center border border-slate-800 p-4 bg-pink-600 text-slate-50 rounded-lg"
+        >
+          <h1 class="text-2xl sm:text-3xl font-semibold">
+            {frontmatter.title}
+          </h1>
+          <h2 class="max-w-lg mx-auto sm:text-lg">{frontmatter.description}</h2>
+        </header>
+        <div class="mt-10 prose">
+          <slot />
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
 
 <style>
   html {
