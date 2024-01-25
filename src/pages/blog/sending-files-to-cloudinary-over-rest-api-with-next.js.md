@@ -5,8 +5,8 @@ pubDate: 2023-05-17
 description: "A simple approach to sending files from user input for upload to your cloud service without exposing your cloud service API."
 author: "Andrew Rowley"
 image:
-  url: "src/images/supabase-passwordless-auth-banner.jpg"
-  alt: "blog post banner image"
+  url: "cloudinary-rest-banner.png"
+  alt: "Sending Files to Cloudinary Over Rest API with Next.js"
 tags: ["supabase", "next.js", "authentication"]
 ---
 
@@ -102,6 +102,7 @@ FFileList {0: File, length: 1}
        [[Prototype]]: File
       length: 1
 ```
+
 What you'll see when you `console.log(file)` is a `FileList`. At index `0` will be our `file`.
 
 Now that we have our file, we can push it over to our API where we want to safely post to Cloudinary.
@@ -116,13 +117,15 @@ You could use the Fetch API for this, but I found there were issues with headers
 const onSubmit = async (data) => {
   const { file } = data;
 
-  const res = await axios.post('/api/upload', file);
-  console.log(res)
+  const res = await axios.post("/api/upload", file);
+  console.log(res);
 };
 ```
+
 With the `POST` method, we push our file over to the other side, which is most likely where you started wanting to rip your hair out in confusion if you've attempted this before.
 
 ## Accessing the File Object on the Server
+
 Depending on how you started your Next app, you'll either want to go to `/src/pages/api` or `/pages/api`. Next.js API Routes allow you to build your own API using Next.js, so there's no need to bring in Express (unless you just want to). You can [learn more about Next.js API Routes here](https://nextjs.org/docs/pages/building-your-application/routing/api-routes).
 
 Within the API directory, you can see a `hello.js` file. You can take a look at that to see how things work and change the endpoint, but it's pretty straight-forward, so also feel free to just rename that or create a new `upload.js` file. That's what enables us to send that `POST` request over to `/api/upload`.
@@ -132,7 +135,7 @@ In `upload.js`, we need to export the handler function.
 ```javascript
 export default async function handler(req, res) {
   console.log(req.body);
-  return res.status(200).json('you made it.');
+  return res.status(200).json("you made it.");
 }
 ```
 
@@ -141,12 +144,13 @@ If you look at the request body, you'll see the string `'[object FileList]'`. Bu
 ```javascript
 npm install formidable
 ```
+
 To use Formidable, we'll use a `Promise` as an efficient way to actually get the file .
 
 Since we want Formidable to do all of the handling of the request, we'll want to stop automatic body parsing or we won't be able to access the file. So be sure to include the config export in the server so it turns off automatic request body parsing.
 
 ```javascript
-import formidable from 'formidable';
+import formidable from "formidable";
 
 export const config = {
   api: {
@@ -157,17 +161,17 @@ export const config = {
 export default async function handler(req, res) {
   const file = await new Promise((resolve, reject) => {
     const form = formidable();
-    
+
     form.parse(req, (err, fields, files) => {
       if (err) return reject(err);
     });
-    form.on('file', (formName, file) => {
+    form.on("file", (formName, file) => {
       resolve(file);
     });
   });
 
   console.log(file);
-  return res.status(200).json('you have the file.');
+  return res.status(200).json("you have the file.");
 }
 ```
 
@@ -178,6 +182,7 @@ The first thing formidable will do is parse the request, and with a callback fun
 With `form.on`, however, we can tell formidable what we want to do when it detects a file. Here, we're telling formidable that when it does detect a file, we want it to resolve the promise with that file. We now have access to the `file` object we sent over from the front end! You should now see it logged as a `PersistentFile`.
 
 ## Uploading Your File to Cloudinary
+
 While you can use the API endpoint directly, I used the SDK for a little simplicity (and easy clues on how to use it).
 
 ```
@@ -187,7 +192,7 @@ npm i cloudinary
 And in `/api/upload`:
 
 ```javascript
-import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -205,14 +210,14 @@ Now, with access to our file object, we can call on Cloudinary's uploader for `u
 
 ```javascript
 try {
-    const data = await cloudinary.uploader.unsigned_upload(
-      file.filepath,
-      'preset-name'
-    );
-    return res.status(200).json(data.secure_url);
-  } catch (error) {
-    console.error(error);
-  }
+  const data = await cloudinary.uploader.unsigned_upload(
+    file.filepath,
+    "preset-name",
+  );
+  return res.status(200).json(data.secure_url);
+} catch (error) {
+  console.error(error);
+}
 ```
 
 Once you do that, you can come back to the front end where your API call will now be met with the response from Cloudinary. I made the API call to just get back the `secure_url` for the uploaded file, which is why I sent back `data.secure_url`.

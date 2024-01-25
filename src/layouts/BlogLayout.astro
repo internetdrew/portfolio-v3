@@ -24,15 +24,17 @@ const { frontmatter } = Astro.props;
     />
     <meta property="og:image:type" content="image/jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:description" content={frontmatter.description} />
     <meta property="og:site_name" content="Internet Drew" />
     <meta name="twitter:image:alt" content={frontmatter.title} />
     <meta
       name="twitter:image"
       content={`https://internetdrew.com/${frontmatter.image.url}`}
     />
-
-    <meta name="description" content={frontmatter.description} />
+    <meta
+      name="description"
+      property="og:description"
+      content={frontmatter.description}
+    />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="author" content={frontmatter.author} />
