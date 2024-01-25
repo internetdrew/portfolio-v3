@@ -1,8 +1,70 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-const pageTitle = "About Me";
+import Me from "../images/me.webp";
+import { Image } from "astro:assets";
+const pageTitle = "About Andrew Rowley";
 ---
 
 <MainLayout title={pageTitle}>
-  <h1>{pageTitle}</h1>
+  <section
+    class="flex flex-col-reverse justify-between gap-10 my-10 sm:flex-row"
+  >
+    <div class="flex-1">
+      <h1 class="text-3xl font-bold">{pageTitle}</h1>
+      <p class="mt-4">
+        I love solving problems with creative solutions. It's been the thing
+        that has made me such a valued contributor in many of the companies I
+        have worked for.
+      </p>
+      <br />
+      <p>
+        At the end of 2020, I decided that I want to be able to learn how to
+        take an idea and build it into a product. So I picked up my first
+        programming book (<a
+          href="https://nostarch.com/python-crash-course-3rd-edition  target="
+          _blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-2"
+          ">Python Crash Course</a
+        >) and taught myself how to program.
+      </p>
+      <br />
+      <p>
+        As someone who is nostalgic of the old days of the internet (<a
+          href="https://www.youtube.com/watch?v=D1UY7eDRXrs"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-2"
+          >love the sound of AOL dial-up
+        </a>), I decided that I wanted to build cool, valuable things on the
+        internet. This led me from Python over to JavaScript.
+      </p>
+      <br />
+      <p>
+        Since then, I have enjoyed building products from my own ideas,
+        expanding my knowledge of the modern internet and building quality
+        software, as well as contributing to a few projects at YC-backed
+        startup, <a
+          href="https://repool.com/ target="
+          _blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-2"
+          ">Repool (YC S21)</a
+        >.
+      </p>
+      <br />
+      <p>
+        I'm always on the hunt for new adventure. If you'd like to chat, let's
+        connect!
+      </p>
+    </div>
+    <div
+      class="relative mx-auto rounded-full w-48 h-48 self-start overflow-hidden bg-gradient-to-b from-pink-600 to bg-pink-500 to sm:w-48 sm:h-48 sm:sticky sm:top-28"
+    >
+      <Image
+        src={Me}
+        alt="Photo of Andrew Rowley with pink gradient background."
+      />
+    </div>
+  </section>
 </MainLayout>
