@@ -1,25 +1,36 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
 
-const projects = [
+export interface Project {
+  title: string;
+  description: string;
+  githubUrl: string | null;
+  siteUrl: string;
+  status: "work-in-progress" | "live";
+}
+
+const projects: Project[] = [
   {
     title: "Let's Share Recipes",
     description:
       "A plaform where you can easily share your best recipes with friends and family.",
     githubUrl: null,
-    siteUrl: "https://lets-share-recipes.vercel.app/",
+    siteUrl: "https://share-rec-2.vercel.app/",
+    status: "work-in-progress",
   },
   {
     title: "NYC Crash Radar",
     description: "See all reported vehicle collisions in New York City.",
     githubUrl: "https://github.com/internetdrew/nyc-crash-radar",
     siteUrl: "https://nyc-crash-radar.vercel.app/",
+    status: "live",
   },
   {
     title: "Gather Social",
     description: "Create private timelines for your special events.",
     githubUrl: null,
     siteUrl: "https://gather-social.vercel.app/",
+    status: "live",
   },
   {
     title: "Lesson Collab",
@@ -27,6 +38,7 @@ const projects = [
       "A social network for educators to share and get feedback on lesson plans.",
     githubUrl: "https://github.com/internetdrew/lesson-feed",
     siteUrl: "https://www.lessoncollab.com/",
+    status: "live",
   },
 ];
 ---
