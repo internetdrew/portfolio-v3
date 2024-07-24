@@ -2,15 +2,11 @@
 import Layout from "../layouts/MainLayout.astro";
 import BlogPostCard from "../components/BlogPostCard.astro";
 const blogPosts = await Astro.glob("./blog/*.md");
-const sortedPosts = [...blogPosts].sort((a, b) => {
-  const pubDateA = a.frontmatter.pubDate;
-  const pubDateB = b.frontmatter.pubDate;
-
-  if (pubDateA > pubDateB) {
-    return -1;
-  }
-  return 1;
-});
+const sortedPosts = [...blogPosts].sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).getTime() -
+    new Date(a.frontmatter.pubDate).getTime(),
+);
 ---
 
 <Layout title="Andrew Rowley's Software Engineering Blog">
