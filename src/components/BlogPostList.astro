@@ -1,0 +1,25 @@
+---
+const blogPosts = await Astro.glob("../pages/blog/*.md");
+const sortedPosts = [...blogPosts]
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.pubDate).getTime() -
+      new Date(a.frontmatter.pubDate).getTime(),
+  )
+  .slice(0, 10);
+---
+
+<section class="my-14">
+  <h3 class="font-semibold text-lg">Recent Blog Posts</h3>
+  <ul class="mt-4 flex flex-col gap-4">
+    {
+      sortedPosts.map((post) => (
+        <li class="border border-slate-800 rounded-md duration-150 hover:bg-pink-600 hover:text-slate-50">
+          <a href={post.url} class="block p-4">
+            {post.frontmatter.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://internetdre.com/sitemap-index.xml
+Sitemap: https://internetdrew.com/sitemap-index.xml

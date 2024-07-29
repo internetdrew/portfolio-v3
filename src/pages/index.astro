@@ -2,12 +2,14 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Intro from "../components/Intro.astro";
 import Projects from "../components/Projects.astro";
-import Contact from "../components/Contact.astro";
+import Contact from "../components/Contact";
 import Experience from "../components/Experience.astro";
+import BlogPostList from "../components/BlogPostList.astro";
 ---
 
-<MainLayout title="Andrew Rowley, Software Developer">
+<MainLayout title="Andrew Rowley, Software Engineer">
   <Intro />
   <Projects />
-  <Contact />
+  <BlogPostList />
+  <Contact client:visible />
 </MainLayout>

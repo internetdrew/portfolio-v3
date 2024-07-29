@@ -1,4 +1,5 @@
 ---
+import { Toaster } from "react-hot-toast";
 import Navbar from "../components/Navbar.astro";
 
 interface Props {
@@ -17,7 +18,7 @@ const currentPath = Astro.url.pathname;
       name="description"
       content="Andrew Rowley's software engineering portfolio."
     />
-    <meta property="og:title" content="Andrew Rowley, Software Engineer" />
+    <meta property="og:title" content={title} />
 
     <meta
       property="og:image"
@@ -49,5 +50,6 @@ const currentPath = Astro.url.pathname;
       <Navbar />
       <slot />
     </main>
+    <Toaster client:idle />
   </body>
 </html>
