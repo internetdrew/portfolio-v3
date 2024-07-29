@@ -14,13 +14,11 @@ type Inputs = {
 
 const ContactFormSchema = z
   .object({
-    name: z.string().min(2, { message: "But... who are you?" }),
-    email: z
-      .string()
-      .email({ message: "If you give me yours, I'll reply from mine." }),
-    message: z
-      .string()
-      .min(2, { message: "Can't send a message without a... message." }),
+    name: z.string().min(2, { message: "But... how will I know who you are?" }),
+    email: z.string().email({ message: "I'll need this to reply to you." }),
+    message: z.string().min(2, {
+      message: "Can you really send a message without... a message?",
+    }),
   })
   .required();
 
