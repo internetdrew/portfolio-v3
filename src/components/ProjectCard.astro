@@ -9,15 +9,8 @@ interface Props {
   technologies?: string[];
 }
 
-const {
-  title,
-  screenshotUrl,
-  description,
-  githubUrl,
-  status,
-  siteUrl,
-  technologies,
-} = Astro.props;
+const { title, description, githubUrl, status, siteUrl, technologies } =
+  Astro.props;
 ---
 
 <li
