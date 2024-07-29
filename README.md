@@ -1,8 +1,12 @@
 # Welcome to My Portfolio
 
-Hi. I'm Andrew. This is my portfolio. I built this with [Astro](https://astro.build/), my favorite web framework for building fast, light, performant websites.
+Hi. I'm Andrew. This is my portfolio. I built this to be fast, light, and performant. I went for a very minimalistic approach here as I attempt the find the balance for my own aesthetics.
 
-I went for a very minimalistic approach here.
+## Table of Contents
+
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [Usage](#usage)
 
 ## Screenshots
 
@@ -34,7 +38,7 @@ npm run dev
 
 4. Open your browser to [`http://localhost:4321/`](http://localhost:4321/)
 
-## Using This as a Template
+## Usage
 
 If you would like to use this as a template to get you started, there are a few places you will want to focus on changing things:
 
