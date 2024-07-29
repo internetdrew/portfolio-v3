@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 import { z } from "zod";
 
 import "./styles.css";
@@ -12,11 +14,13 @@ type Inputs = {
 
 const ContactFormSchema = z
   .object({
-    name: z
+    name: z.string().min(2, { message: "But... who are you?" }),
+    email: z
       .string()
-      .min(2, { message: "Please enter a name to send your message." }),
-    email: z.string().email({ message: "Please enter a valid email address." }),
-    message: z.string().min(2, { message: "Please add a message to send." }),
+      .email({ message: "If you give me yours, I'll reply from mine." }),
+    message: z
+      .string()
+      .min(2, { message: "Can't send a message without a... message." }),
   })
   .required();
 
@@ -24,41 +28,35 @@ const Contact = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitSuccessful },
   } = useForm<Inputs>({
     resolver: zodResolver(ContactFormSchema),
   });
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const { name, email, message } = data;
-    const emailData = {
-      service_id: import.meta.env.EMAIL_SERVICE_ID,
-      template_id: import.meta.env.EMAIL_TEMPLATE_ID,
-      user_id: import.meta.env.EMAIL_USER_ID,
-      template_params: {
-        email,
-        name,
-        message,
-      },
-    };
-
-    try {
-      const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        body: JSON.stringify(emailData),
-      });
-      const data = await res.json();
-    } catch (error) {}
-
-    console.log(data);
+    const test = await fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    const res = await test.json();
+    res.success
+      ? toast.success("Your message has been sent. Thank you!")
+      : toast.error("Oops. Something went wrong. I'm so embarrased!");
   };
+
+  useEffect(() => {
+    reset();
+  }, [isSubmitSuccessful]);
 
   return (
     <section className="my-10">
-      <h3 className="font-semibold text-lg">Let's Connect!</h3>
+      <h3 id="lets-connect" className="font-semibold text-lg">
+        Let's Connect!
+      </h3>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mt-4 border border-slate-800 rounded-lg p-4 mx-auto lg:max-w-md"
+        className="my-4 border border-slate-800 rounded-lg p-4 mx-auto lg:max-w-md"
       >
         <h4 className="text-center">Contact Me</h4>
         <div className="my-4 flex flex-col gap-1">

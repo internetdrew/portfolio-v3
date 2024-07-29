@@ -9,13 +9,15 @@ const sortedPosts = [...blogPosts]
   .slice(0, 10);
 ---
 
-<section class="my-10">
+<section class="my-14">
   <h3 class="font-semibold text-lg">Recent Blog Posts</h3>
-  <ul class="mt-2 flex flex-col gap-3">
+  <ul class="mt-4 flex flex-col gap-4">
     {
       sortedPosts.map((post) => (
-        <li class="hover:underline">
-          <a href={post.url}>{post.frontmatter.title}</a>
+        <li class="border border-slate-800 rounded-md duration-150 hover:bg-pink-600 hover:text-slate-50">
+          <a href={post.url} class="block p-4">
+            {post.frontmatter.title}
+          </a>
         </li>
       ))
     }
