@@ -35,12 +35,12 @@ const Contact = () => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const test = await fetch("/api/contact", {
+    const res = await fetch("/api/contact.json", {
       method: "POST",
       body: JSON.stringify(data),
     });
-    const res = await test.json();
-    res.success
+    const dataSend = await res.json();
+    dataSend.success
       ? toast.success("Your message has been sent. Thank you!")
       : toast.error("Oops. Something went wrong. I'm so embarrased!");
   };
