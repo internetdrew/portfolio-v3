@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
@@ -25,6 +25,7 @@ const ContactFormSchema = z
   .required();
 
 const Contact = () => {
+  const [messageSuccessfullySent, setMessageSuccessfullySent] = useState(false);
   const {
     register,
     handleSubmit,
@@ -34,6 +35,11 @@ const Contact = () => {
     resolver: zodResolver(ContactFormSchema),
   });
 
+  const showSuccessStatus = () => {
+    toast.success("Your message has been sent. Thank you!");
+    setMessageSuccessfullySent(true);
+  };
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const res = await fetch("/api/contact.json", {
       method: "POST",
@@ -41,12 +47,12 @@ const Contact = () => {
     });
     const dataSend = await res.json();
     dataSend.success
-      ? toast.success("Your message has been sent. Thank you!")
+      ? showSuccessStatus()
       : toast.error("Oops. Something went wrong. I'm so embarrased!");
   };
 
   useEffect(() => {
-    reset();
+    messageSuccessfullySent && reset();
   }, [isSubmitSuccessful]);
 
   return (
