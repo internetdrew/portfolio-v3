@@ -32,6 +32,8 @@ npm i
 npm run dev
 ```
 
+4. Open your browser to [`http://localhost:4321/`](http://localhost:4321/)
+
 ## Using This as a Template
 
 If you would like to use this as a template to get you started, there are a few places you will want to focus on changing things:
@@ -40,3 +42,11 @@ If you would like to use this as a template to get you started, there are a few 
   - these assets exist for things I have created (blog posts, etc.)
 - `/src/layouts/`
   - The `Head` element contains pertinent information that you will want to point to you and your site. You absolutely want to change these to point to your assets.
+- `.env`
+  - In `/.env.example` you will see the values you need to add to your `.env` file. Create via GUI or from the terminal using the touch command at the root of the directory:
+    ```sh
+    touch .env
+    ```
+  - To find the values you need, head on over to [EmailJS](https://www.emailjs.com/) and create a free account to get your credentials.
+- `/astro.config.mjs`
+  - This is currently set to be deployed via Vercel. If you plan to deploy elsewhere, you may need to change your `adapter`, a necessary piece for successful usage of the API route that handles form submission.
