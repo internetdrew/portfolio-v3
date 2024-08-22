@@ -2,7 +2,7 @@
 layout: "../../layouts/BlogLayout.astro"
 title: "Building and Testing an OTP UI Component with React and TypeScript"
 pubDate: 2024-08-20
-description: "Learning how to validate and test using React Hook Form, Zod, and Jest."
+description: "Composing, validating, and testing using React Hook Form, Zod, and Jest."
 author: "Andrew Rowley"
 image:
   url: "detecting-outside-clicks-banner.jpg"
@@ -471,4 +471,137 @@ And with that you've now:
 - Handled error messaging with ease
 - Protected your API from submissions with incomplete data
 
-When you're working on a production team, you will likely need to also test your components. The testing libraries I am most familiar with are Jest and React Testing Library. So the next step is to add some tests for this component.
+## Integration Testing for the OTP Component
+
+When working on a production team, it's essential to test your components. Integration testing is my primary focus, as it allows for rapid development while maintaining reliability and preventing unintended side effects.
+
+Since this React app was built with [Vite](https://vitejs.dev/), we will be leveraging Vitest for testing along with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro). In the event that you've built this and are more familiar with Jest and want to use it instead of Vitest, I would urge you to [reconsider that decision based on the headache of integration isues and redundancies between Vite and Jest](https://vitest.dev/guide/why.html).
+
+This will likely make your life considerably easier for the rest of this post.
+
+### Setting Up the Testing Environment
+
+Let's start by installing Vitest, React Testing Library, and supporting types since we're using TypeScript:
+
+```sh
+npm install -D vitest @testing-library/react @testing-library/dom @testing-library/jest-dom jsdom @types/react @types/react-dom
+```
+
+And adding our test script in our package.json file:
+
+```json
+"test": "vitest"
+```
+
+At the root of the app, create a `vitest.setup.ts` file:
+
+```sh
+touch vitest.setup.ts
+```
+
+Update `vitest.setup.ts` to cleanup after each test is run:
+
+```typescript
+import "@testing-library/jest-dom/vitest";
+import { cleanup } from "@testing-library/react";
+import { afterEach } from "vitest";
+
+afterEach(() => {
+  cleanup();
+});
+```
+
+Then update `vite.config.ts` to reference these changes:
+
+```typescript
+/// <reference types="vitest" />
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./vitest.setup.ts"],
+  },
+  plugins: [react()],
+});
+```
+
+And include it in `tsconfig.app.json`:
+
+```json
+"include": ["src", "./vitest.setup.ts"]
+```
+
+This should be all we need to get our initial test going. Now we can create our test file:
+
+```sh
+touch src/App.test.tsx
+```
+
+### Testing for Successful Integration
+
+And in the test file, we import our `<App />` component to test our integration of the `<OneTimePasswordForm />` in it:
+
+```typescript
+import { expect, describe, it } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+describe('App', () => {
+  it('Renders our OTP component in our app', () => {
+    render(<App />);
+    expect(screen.getByText('Verify your email address')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Please enter the 6-digit code we sent to your email address.'
+      )
+    ).toBeInTheDocument();
+    const inputs = screen.getAllByRole('textbox');
+    expect(inputs.length).toBe(6);
+    expect(screen.getByRole('button', { name: /confirm/i }));
+  });
+});
+```
+
+Now we can run our test with `npm run test` and we should see a pass!
+
+If you're unsure what's in here, I would suggest you [go through the docs on queries](https://testing-library.com/docs/queries/about).
+
+### Testing User Interactivity
+
+Now let's test for some user interactivity. The first thing we will test is what happens when the user tries to submit the form with incomplete inputs.
+
+Let's install [user-event](https://testing-library.com/docs/user-event/intro):
+
+```sh
+npm i @testing-library/user-event
+```
+
+Then import it at the top of our test file:
+
+```typescript
+import userEvent from "@testing-library/user-event";
+```
+
+We need to do a few things for successful user interactivity testing:
+
+1. Ensure that the callback for this test is an async function and
+2. Setup the user variable above the render
+
+```typescript
+  it('Renders an error message when inputs are incomplete', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(
+      screen.queryByText('All fields are required for submission.')
+    ).not.toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /confirm/i }));
+    screen.debug();
+    expect(
+      screen.getByText('All fields are required for submission.')
+    ).toBeInTheDocument();
+  });
+```
