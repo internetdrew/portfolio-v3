@@ -1,12 +1,12 @@
 ---
 layout: "../../layouts/BlogLayout.astro"
 title: "Building and Testing an OTP UI Component with React and TypeScript"
-pubDate: 2024-08-20
+pubDate: 2024-08-22
 description: "Composing, validating, and testing using React Hook Form, Zod, and Jest."
 author: "Andrew Rowley"
 image:
   url: "detecting-outside-clicks-banner.jpg"
-  alt: "Detecting Outside Click Events with JavaScript"
+  alt: "Building and Testing an OTP UI Component with React and TypeScript"
 tags: ["supabase", "next.js", "authentication"]
 ---
 
