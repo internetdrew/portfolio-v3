@@ -1,38 +1,32 @@
 ---
 layout: "../../layouts/BlogLayout.astro"
 title: "Building and Testing an OTP UI Component with React and TypeScript"
-pubDate: 2024-08-22
-description: "Composing, validating, and testing using React Hook Form, Zod, and Jest."
+pubDate: 2024-08-23
+description: "Composing, validating, and testing using React Hook Form, Zod, and Vitest."
 author: "Andrew Rowley"
 image:
-  url: "detecting-outside-clicks-banner.jpg"
+  url: "building-testing-otp-ui-component-react-typescript.png"
   alt: "Building and Testing an OTP UI Component with React and TypeScript"
-tags: ["supabase", "next.js", "authentication"]
+tags: ["react", "testing", "typescript", "mocking"]
 ---
 
 ## Table of Contents
 
 ## What You'll Learn
 
-In this post, you'll learn how to build a One-Time Password UI component with [TailwindCSS](https://tailwindcss.com/), how to validate user input with [React Hook Form](https://react-hook-form.com/) and [Zod](https://zod.dev/), and how to test user interactivity with your component using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
+In this post, we'll build a One-Time Password UI component with [TailwindCSS](https://tailwindcss.com/), validate user input with [React Hook Form](https://react-hook-form.com/) and [Zod](https://zod.dev/), and test user interactivity with your component using [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
-I will try to be as in-depth as possible regarding the challenging bits of bringing this together (input validation, testing, mocking functions, etc.), but I won't be focusing on things like styling. If you're building something like this, I feel it safe to make a few assumptions. These assumptions are listed below.
+I will try to be as in-depth as possible regarding the challenging bits of bringing this together (input validation, testing, mocking functions, etc.), but I won't be focusing on things like styling and component composition. If you're building something like this, I think styles are irrelevant.
 
-## Assumptions I've Made
-
-- You are not exactly a beginner.
-- You are familiar with React.
-- You have a basic understanding of TypeScript.
-- You may not have written a test before or are very new to testing.
-- My styles are irrelevant because you may need completely different styles.
+The overall structure will be visible and, if you're not using Tailwind, you can also refer to the docs to figure out what classes do or just inspect the elements in your browser.
 
 ## Getting Started
 
-Because of the aforementioned assumptions, we'll start with the OTP component assembled and styled. You can find the code to start with in [this GitHub repository](https://github.com/internetdrew/otp-react-ts-jest). If you'd like to fully follow and code-along, be sure to visit the **starter** branch. If you want to just see the final product, you can visit the **final** branch. Instructions for how to access each are in the repo's `README.md`.
+We'll start with the OTP component composed and styled. You can find the code to start with in [this GitHub repository](https://github.com/internetdrew/otp-react-ts-vitest). If you'd like to fully follow and code-along, be sure to visit the **starter** branch. If you want to just see the final product, you can visit the **final** branch. Instructions for how to access each are in the repo's `README.md`.
 
 In the starter branch, you can see we have our `<OneTimePasswordForm />` component. It contains a title, subtitle, 6 inputs, and a submit button.
 
-We have everything we need to take care of our first task: managing input focus.
+We have everything we need to take care of our first task: **managing input focus**.
 
 ## Managing Input Focus
 
@@ -57,7 +51,7 @@ And reference each element to create the array of refs:
 ref={el => (inputRefs.current[index] = el!)}
 ```
 
-By referencing each input, we can directly control behaviors for each. Now that we have the refs, we can use a the `useEffect` hook with an empty dependency array to focus on the first input when the component is mounted:
+By referencing each input, we can directly control behaviors for each. Now that we have the refs, we can use the `useEffect` hook with an empty dependency array to focus on the first input when the component is mounted:
 
 ```typescript
 useEffect(() => {
@@ -69,9 +63,9 @@ Click outside of that first input and reload the page and now, when a user lands
 
 ### Handling User Input and Progressing Input Focus
 
-Next, we want to do a few things when it comes to user input. Although we are sending a numeric code, we should never assume that the user will always abide by this constaint.
+Next, we want to do a few things when it comes to user input. Although we are sending a numeric code, we should never assume that the user will always abide by this constraint.
 
-To protect against input that is not a number, we can leverage an onInput callback function:
+To protect against input that is not a number, we can leverage an `onInput` callback function:
 
 ```typescript
 const handleInput = (e: React.FormEvent<HTMLInputElement>, index: number) => {
@@ -93,8 +87,8 @@ const handleInput = (e: React.FormEvent<HTMLInputElement>, index: number) => {
 In the callback, we cover a few cases:
 
 - In the event that the input value is not a number, we disregard it and keep the value of the input as an empty string.
-- If the value is pushed to be greater than 1 digit in length (perhaps someone goes back and accidentially types a second digit or tries to break the form), the value is then truncated to the first digit and all subsequent attempts are ignored.
-- If there is 1 digit in the input and the index of that input is less than the length of the input - 1 (any input except the last one, at index 5), trigger focus on the input element at the following index.
+- If the value is pushed to be greater than 1 digit in length (perhaps someone goes back and accidentially types a second digit or tries to intentionally enter a 2-digit number), the value is then truncated to the first digit and all subsequent attempts are ignored.
+- If there is 1 digit in the input and the index of that input is less than the length of the input - 1 (any input except the last one), trigger focus on the next input element.
 
 By implementing this functionality, we ensure that inputs are numbers and not letters or special characters and also help the user get to the next input without needing to use their mouse or tab over to the next input element, offering a seamless user experience.
 
@@ -157,7 +151,7 @@ const OneTimePasswordForm = () => {
 export default OneTimePasswordForm;
 ```
 
-While the current implementation provides a solid foundation, it lacks robust input validation beyond individual digit checks. To ensure API integrity and prevent misuse, we need to implement additional safeguards. For instance, we should verify that the user inputs all six digits before submission.
+While the current implementation provides a solid foundation, it lacks robust input validation, particularly regarding the completeness of the 6-digit code. To maintain API integrity, prevent misuse, and provide clear feedback to users, we should implement additional safeguards. This includes verifying that all six digits are entered before submission.
 
 ## Handling Overall Input Validation
 
@@ -167,7 +161,7 @@ To handle overall input validation in this form, we will install React Hook Form
 npm i react-hook-form zod @hookform/resolvers
 ```
 
-At the top of the file, under the imports, we create a type for the input:
+At the top of `OneTimePasswordForm.tsx`, under the imports, we create a type for the input:
 
 ```typescript
 type OtpFormInputs = {
@@ -216,7 +210,7 @@ This hook allows us to:
 
 ### Sharing Input Ref Usage
 
-Because React Hook Form encompasses all input properties, but remember we are already referencing the refs for each input. React Hook Form also needs those refs, so we need to share the refs to keep our focus functionality and allow React Hook Form to leverage the refs.
+We are already using our input refs but React Hook Form also needs them. We need to share the ref of each input to keep our focusing functionality and allow React Hook Form to also leverage them.
 
 ```typescript
 const { ref, ...rest } = register(`otp.${index}` as const);
@@ -224,7 +218,7 @@ const { ref, ...rest } = register(`otp.${index}` as const);
 
 We're doing two things here:
 
-1. We destructure the reference to the input element to into the `ref` variable and capture any additional properties returned by the register function into the `rest` variable using the rest operator.
+1. We destructure the from the register function and [use spread syntax to pass everything else into the `rest` variable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax).
 
 2. We use `as const` so that TypeScript knows that `otp.${index}` is one of the specific literals ('otp.0', 'otp.1', 'otp.2'), so it matches the expected type.
 
@@ -346,17 +340,18 @@ For starters, we create a simple function just to see the data we get back on su
 
 ```typescript
 const onSubmit: SubmitHandler<OtpFormInputs> = (data) => {
-  console.log(data.otp);
+  const code = data.otp.join("");
+  console.log(code);
 };
 ```
 
-And we add this functionality to the form element's onSubmit property:
+And we add this functionality to the form element's `onSubmit` property:
 
 ```typescript
 onSubmit={handleSubmit(onSubmit)}
 ```
 
-To render a message for our overall form, we can leverage a Logical AND Operator so that when React Hook Form receives an error from a form submission attempt with incomplete data, it will halt the submission and add a UI element to notify the user.
+To render a message for our overall form, we can leverage a [Logical AND](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) so that when React Hook Form receives an error from a form submission attempt with incomplete data, it will halt the submission and add a UI element to notify the user.
 
 ```typescript
 {errors.otp && (
@@ -366,7 +361,7 @@ To render a message for our overall form, we can leverage a Logical AND Operator
 )}
 ```
 
-With this, you will notice that if the input is incomplete in any way, React Hook Form will trigger the error and your submit function never fires. Only when the input is correct will React Hook Form allow the function to run.
+With this, you will notice that if the input is incomplete in any way and the user attempts to submit the form, React Hook Form will receive the error, the UI element will now be displayed, and the submit function never fires. Only when the input is correct will React Hook Form allow the function to run.
 
 And because you have errors indexed, you could even control more granular pieces by changing the border or outline color of any incomplete inputs, but that is a bit beyond the scope of this post.
 
@@ -411,10 +406,9 @@ const OneTimePasswordForm = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<OtpFormInputs> = data => {
-    console.log(data);
+  const onSubmit: SubmitHandler<OtpFormInputs> = (data) => {
     const code = data.otp.join('');
-    console.log('Send this code to your API: ', code);
+    console.log(code);
   };
 
   useEffect(() => {
@@ -464,18 +458,80 @@ const OneTimePasswordForm = () => {
 export default OneTimePasswordForm;
 ```
 
-And with that you've now:
+And with that we've now:
 
 - Created an OTP UI component
-- Protected your component from invalid input
+- Protected the component from invalid input
 - Handled error messaging with ease
-- Protected your API from submissions with incomplete data
+- Protected the API (you're sending this data somewhere, right?) from submissions with incomplete data
+
+## Adding a Success Toast and Resetting the Form
+
+Let's add one of my favorite libraries for toast notifications — [React Hot Toast](https://react-hot-toast.com/).
+
+Let's install it:
+
+```sh
+npm install react-hot-toast
+```
+
+In App.tsx, let's import and add our Toaster:
+
+```typescript
+import OneTimePasswordForm from './components/OneTimePasswordForm';
+import { Toaster } from 'react-hot-toast';
+
+function App() {
+  return (
+    <div className='h-screen flex items-center justify-center bg-neutral-950'>
+      <OneTimePasswordForm />
+      <Toaster />
+    </div>
+  );
+}
+
+export default App;
+```
+
+Then in our `<OneTimePasswordForm />`, we can add a success toast when our `onSubmit` function successfully fires:
+
+```typescript
+import toast from "react-hot-toast";
+
+const onSubmit: SubmitHandler<OtpFormInputs> = (data) => {
+  const code = data.otp.join("");
+  toast.success(`Entered code: ${code}`);
+};
+```
+
+I added this because it also forces us to dive into another aspect of testing called mocking. In order to test for success, we will need to mock the implementation of the `<Toaster />` component and spy on the functionality of the `toast` itself for different statuses (in this case, only success).
+
+We'll also add one more thing for good UX — we need the form to reset on successful submission. To do that, we need both `reset` and `isSubmitSuccessful` from React Hook Form:
+
+```typescript
+const {
+  register,
+  handleSubmit,
+  reset,
+  formState: { errors, isSubmitSuccessful },
+} = useForm<OtpFormInputs>({
+  resolver: zodResolver(schema),
+});
+```
+
+And we create a `useEffect` so that when a send is successful, the form resets to its initial state:
+
+```typescript
+useEffect(() => {
+  reset();
+}, [reset, isSubmitSuccessful]);
+```
 
 ## Integration Testing for the OTP Component
 
 When working on a production team, it's essential to test your components. Integration testing is my primary focus, as it allows for rapid development while maintaining reliability and preventing unintended side effects.
 
-Since this React app was built with [Vite](https://vitejs.dev/), we will be leveraging Vitest for testing along with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro). In the event that you've built this and are more familiar with Jest and want to use it instead of Vitest, I would urge you to [reconsider that decision based on the headache of integration isues and redundancies between Vite and Jest](https://vitest.dev/guide/why.html).
+Since this React app was built with [Vite](https://vitejs.dev/), we will be leveraging [Vitest](https://vitest.dev/) for testing, as well as [React Testing Library](https://testing-library.com/docs/react-testing-library/intro). In the event that you're more familiar with Jest and want to use that instead of Vitest, I would urge you to [reconsider that decision based on the headache of integration isues and redundancies between Vite and Jest](https://vitest.dev/guide/why.html).
 
 This will likely make your life considerably easier for the rest of this post.
 
@@ -487,7 +543,7 @@ Let's start by installing Vitest, React Testing Library, and supporting types si
 npm install -D vitest @testing-library/react @testing-library/dom @testing-library/jest-dom jsdom @types/react @types/react-dom
 ```
 
-And adding our test script in our package.json file:
+And adding our test script in our `package.json` file in the `scripts` object:
 
 ```json
 "test": "vitest"
@@ -499,7 +555,7 @@ At the root of the app, create a `vitest.setup.ts` file:
 touch vitest.setup.ts
 ```
 
-Update `vitest.setup.ts` to cleanup after each test is run:
+Update `vitest.setup.ts` to cleanup after each test is run and give us access to jest-dom:
 
 ```typescript
 import "@testing-library/jest-dom/vitest";
@@ -511,7 +567,7 @@ afterEach(() => {
 });
 ```
 
-Then update `vite.config.ts` to reference these changes:
+Then update `vite.config.ts` to reference these changes. Note that the first line's _reference_ is **necessary** for access to test. Without it, your IDE will likely throw warnings your way on the test object:
 
 ```typescript
 /// <reference types="vitest" />
@@ -528,7 +584,7 @@ export default defineConfig({
 });
 ```
 
-And include it in `tsconfig.app.json`:
+Now include the setup file in `tsconfig.app.json`:
 
 ```json
 "include": ["src", "./vitest.setup.ts"]
@@ -542,7 +598,7 @@ touch src/App.test.tsx
 
 ### Testing for Successful Integration
 
-And in the test file, we import our `<App />` component to test our integration of the `<OneTimePasswordForm />` in it:
+In the test file, we import our `<App />` component to test our integration of the `<OneTimePasswordForm />` in it:
 
 ```typescript
 import { expect, describe, it } from 'vitest';
@@ -604,4 +660,160 @@ We need to do a few things for successful user interactivity testing:
       screen.getByText('All fields are required for submission.')
     ).toBeInTheDocument();
   });
+```
+
+### Our Final Integration Tests
+
+With these, we should have a great user-experience and enough context to build out good tests.
+
+Earlier, I mentioned that we would have to mock some implementation and functionality from React Hot Toast. To get a better understanding of my approach to mocking the toast implementation and functionality, you can [see the Vitest docs on mocking](https://vitest.dev/guide/mocking.html).
+
+```typescript
+import userEvent from '@testing-library/user-event';
+import { expect, describe, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import App from './App';
+import toast from 'react-hot-toast';
+
+type ToastType = typeof import('react-hot-toast');
+
+vi.mock('react-hot-toast', async importOriginal => {
+  const actual: ToastType = await importOriginal();
+  return {
+    ...actual,
+    Toaster: vi.fn().mockImplementation(() => {
+      return <div>Mocked Toaster</div>;
+    }),
+  };
+});
+const toastSuccess = vi.spyOn(toast, 'success');
+
+describe('App', () => {
+  it('Renders our OTP component in our app', () => {
+    render(<App />);
+    expect(screen.getByText('Verify your email address')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Please enter the 6-digit code we sent to your email address.'
+      )
+    ).toBeInTheDocument();
+    const inputs = screen.getAllByRole('textbox');
+    expect(inputs.length).toBe(6);
+    expect(screen.getByRole('button', { name: /confirm/i }));
+    expect(toastSuccess).not.toHaveBeenCalled();
+  });
+
+  it('Renders an error message when no inputs have been filled', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(
+      screen.queryByText('All fields are required for submission.')
+    ).not.toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /confirm/i }));
+    expect(
+      screen.getByText('All fields are required for submission.')
+    ).toBeInTheDocument();
+    expect(toastSuccess).not.toHaveBeenCalled();
+  });
+
+  it('Disregards inputs that are not numbers', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    const inputs = screen.getAllByRole('textbox');
+    await user.type(inputs[0], 'e');
+    await user.type(inputs[1], '#');
+    await user.type(inputs[2], 'g');
+    expect(inputs[0]).toBeEmptyDOMElement();
+    expect(inputs[1]).toBeEmptyDOMElement();
+    expect(inputs[2]).toBeEmptyDOMElement();
+    await user.type(inputs[0], '9');
+    expect(inputs[0]).toHaveValue('9');
+  });
+
+  it('Renders an error message when inputs are only partially filled', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(
+      screen.queryByText('All fields are required for submission.')
+    ).not.toBeInTheDocument();
+    const inputs = screen.getAllByRole('textbox');
+    await user.type(inputs[0], '3');
+    await user.type(inputs[1], '6');
+    await user.type(inputs[2], '9');
+    expect(inputs[0]).toHaveValue('3');
+    expect(inputs[1]).toHaveValue('6');
+    expect(inputs[2]).toHaveValue('9');
+    await user.click(screen.getByRole('button', { name: /confirm/i }));
+    expect(
+      screen.getByText('All fields are required for submission.')
+    ).toBeInTheDocument();
+    expect(toastSuccess).not.toHaveBeenCalled();
+  });
+
+  it('Automatically resolves the error message when the inputs are completely filled', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(
+      screen.queryByText('All fields are required for submission.')
+    ).not.toBeInTheDocument();
+    const inputs = screen.getAllByRole('textbox');
+    await user.type(inputs[0], '3');
+    await user.type(inputs[1], '6');
+    await user.type(inputs[2], '9');
+    expect(inputs[0]).toHaveValue('3');
+    expect(inputs[1]).toHaveValue('6');
+    expect(inputs[2]).toHaveValue('9');
+    await user.click(screen.getByRole('button', { name: /confirm/i }));
+    expect(
+      screen.getByText('All fields are required for submission.')
+    ).toBeInTheDocument();
+    await user.type(inputs[3], '2');
+    await user.type(inputs[4], '4');
+    await user.type(inputs[5], '6');
+    expect(inputs[3]).toHaveValue('2');
+    expect(inputs[4]).toHaveValue('4');
+    expect(inputs[5]).toHaveValue('6');
+    expect(
+      screen.queryByText('All fields are required for submission.')
+    ).not.toBeInTheDocument();
+  });
+  it('Successfully triggers onSubmit function with valid input', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(
+      screen.queryByText('All fields are required for submission.')
+    ).not.toBeInTheDocument();
+    const inputs = screen.getAllByRole('textbox');
+
+    await user.type(inputs[0], '3');
+    await user.type(inputs[1], '6');
+    await user.type(inputs[2], '9');
+    await user.type(inputs[3], '2');
+    await user.type(inputs[4], '4');
+    await user.type(inputs[5], '6');
+    expect(inputs[0]).toHaveValue('3');
+    expect(inputs[1]).toHaveValue('6');
+    expect(inputs[2]).toHaveValue('9');
+    expect(inputs[3]).toHaveValue('2');
+    expect(inputs[4]).toHaveValue('4');
+    expect(inputs[5]).toHaveValue('6');
+
+    await user.click(screen.getByRole('button', { name: /confirm/i }));
+    expect(
+      screen.queryByText('All fields are required for submission.')
+    ).not.toBeInTheDocument();
+    expect(toastSuccess).toBeCalledWith('Entered code: 369246');
+    expect(inputs[0]).toBeEmptyDOMElement();
+    expect(inputs[1]).toBeEmptyDOMElement();
+    expect(inputs[2]).toBeEmptyDOMElement();
+    expect(inputs[3]).toBeEmptyDOMElement();
+    expect(inputs[4]).toBeEmptyDOMElement();
+    expect(inputs[5]).toBeEmptyDOMElement();
+  });
+});
 ```
