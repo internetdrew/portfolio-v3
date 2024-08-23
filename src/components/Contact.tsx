@@ -54,9 +54,9 @@ const Contact = () => {
   }, [isSubmitSuccessful]);
 
   return (
-    <section className="my-10">
+    <section id="connect" className="my-10">
       <h3 id="lets-connect" className="font-semibold text-lg">
-        Let's Connect!
+        <a href="#connect">Let's Connect!</a>
       </h3>
       <form
         onSubmit={handleSubmit(onSubmit)}
