@@ -9,8 +9,10 @@ const sortedPosts = [...blogPosts]
   .slice(0, 10);
 ---
 
-<section class="my-14">
-  <h3 class="font-semibold text-lg">Recent Blog Posts</h3>
+<section id="recent-posts" class="my-14">
+  <h3 class="font-semibold text-lg">
+    <a href="#recent-posts">Recent Blog Posts</a>
+  </h3>
   <ul class="mt-4 flex flex-col gap-4">
     {
       sortedPosts.map((post) => (
