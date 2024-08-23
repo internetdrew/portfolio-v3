@@ -668,6 +668,8 @@ With these, we should have a great user-experience and enough context to build o
 
 Earlier, I mentioned that we would have to mock some implementation and functionality from React Hot Toast. To get a better understanding of my approach to mocking the toast implementation and functionality, you can [see the Vitest docs on mocking](https://vitest.dev/guide/mocking.html).
 
+To not drag you through each test, I just added them all here to give you a good idea of ways in which you can test the integration:
+
 ```typescript
 import userEvent from '@testing-library/user-event';
 import { expect, describe, it, vi } from 'vitest';
@@ -817,3 +819,5 @@ describe('App', () => {
   });
 });
 ```
+
+If you made it this far, thank you for reading! I hope you learned a lot and are excited to build and test more! If you want to chat, you can always [find me on Twitter](https://x.com/_internetdrew), [connect with me on LinkedIn](https://www.linkedin.com/in/internetdrew/), or just [send me a message](/#connect).
