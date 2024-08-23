@@ -14,8 +14,6 @@ tags: ["react", "testing", "typescript", "mocking"]
 
 ## What We're Building
 
-![otp-screnshot](/src/images/otp-screenshot.png)
-
 In this post, we'll build a One-Time Password UI component with [TailwindCSS](https://tailwindcss.com/), validate user input with [React Hook Form](https://react-hook-form.com/) and [Zod](https://zod.dev/), and test user interactivity with your component using [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
 I will try to be as in-depth as possible regarding the challenging bits of bringing this together (input validation, testing, mocking functions, etc.), but I won't be focusing on things like styling and component composition. If you're building something like this, I think styles are irrelevant.
