@@ -7,7 +7,7 @@ import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.internetdrew.com/",
+  site: "https://www.internetdrew.com",
   integrations: [tailwind(), react(), sitemap()],
   markdown: {
     remarkPlugins: [remarkToc],
@@ -15,6 +15,6 @@ export default defineConfig({
       wrap: true,
     },
   },
-  output: "server",
+  output: "hybrid",
   adapter: vercel(),
 });
