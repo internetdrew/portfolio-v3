@@ -39,14 +39,16 @@ const Contact = () => {
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const res = await fetch("/api/contact.json", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    const dataSend = await res.json();
-    dataSend.success
-      ? showSuccessStatus()
-      : toast.error("Oops. Something went wrong. I'm so embarrased!");
+    try {
+      const res = await fetch("/api/contact.json", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      const dataSend = await res.json();
+      dataSend.success && showSuccessStatus();
+    } catch (error) {
+      toast.error("Oops. Something went wrong. I'm so embarrased!");
+    }
   };
 
   useEffect(() => {
