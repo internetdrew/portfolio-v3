@@ -14,12 +14,12 @@ const { title, description, githubUrl, status, siteUrl, technologies } =
 ---
 
 <li
-  class="flex flex-col list-none border p-4 border-slate-800 rounded-md text-sm"
+  class="flex flex-col list-none border p-4 border-neutral-800 rounded-md text-sm"
 >
   <h4 class="font-semibold text-base">
     {title}
   </h4>
-  <p class="text-sm text-slate-600 mb-8">{description}</p>
+  <p class="text-sm text-neutral-600 mb-8">{description}</p>
   {
     status === "work-in-progress" ? (
       <p class="text-right mt-auto">Work in progress</p>
@@ -30,7 +30,7 @@ const { title, description, githubUrl, status, siteUrl, technologies } =
             href={githubUrl}
             target="_blank"
             rel="noreferrer"
-            class="px-3 py-1 cursor-pointer rounded-md border border-slate-800 bg-slate-700 text-slate-50 transition-shadow duration-150 hover:bg-slate-800"
+            class="px-3 py-1 cursor-pointer rounded-md border border-neutral-800 bg-neutral-800 text-neutral-50 transition-shadow duration-150 hover:bg-neutral-950"
           >
             Source Code
           </a>
@@ -39,7 +39,7 @@ const { title, description, githubUrl, status, siteUrl, technologies } =
           href={siteUrl}
           target="_blank"
           rel="noreferrer"
-          class="cursor-pointer px-3 py-1 rounded-md border border-slate-800 bg-slate-700 text-slate-50 hover:bg-slate-800"
+          class="cursor-pointer px-3 py-1 rounded-md border border-neutral-800 bg-neutral-800 text-neutral-50 hover:bg-neutral-950"
         >
           Visit
         </a>

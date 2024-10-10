@@ -122,7 +122,7 @@ const OneTimePasswordForm = () => {
   }, []);
 
   return (
-    <form className='max-w-md bg-slate-200 flex flex-col gap-4 p-6 rounded-md'>
+    <form className='max-w-md bg-neutral-200 flex flex-col gap-4 p-6 rounded-md'>
       <div>
         <h1 className='font-semibold text-xl'>Verify your email address</h1>
         <p>Please enter the 6-digit code we sent to your email address.</p>
@@ -134,14 +134,14 @@ const OneTimePasswordForm = () => {
               key={`otp.${index}`}
               inputMode='numeric'
               maxLength={1}
-              className='p-2 flex-1 w-1/6 rounded-md no-spinner text-slate-900 text-center text-xl'
+              className='p-2 flex-1 w-1/6 rounded-md no-spinner text-neutral-900 text-center text-xl'
               ref={el => (inputRefs.current[index] = el!)}
               onInput={e => handleInput(e, index)}
             />
           );
         })}
       </div>
-      <button className='bg-neutral-950 w-full p-2 rounded-md font-semibold text-slate-50'>
+      <button className='bg-neutral-950 w-full p-2 rounded-md font-semibold text-neutral-50'>
         Confirm
       </button>
     </form>
@@ -229,7 +229,7 @@ Now, we just need to pass the element to the ref callback and pass the rest of t
   key={`otp.${index}`}
   inputMode='numeric'
   maxLength={1}
-  className='p-2 flex-1 w-1/6 rounded-md no-spinner text-slate-900 text-center text-xl'
+  className='p-2 flex-1 w-1/6 rounded-md no-spinner text-neutral-900 text-center text-xl'
   onInput={e => handleInput(e, index)}
   onKeyDown={inspectInputValidity}
   ref={el => {
@@ -288,7 +288,7 @@ const OneTimePasswordForm = () => {
   }, []);
 
   return (
-    <form className='max-w-md bg-slate-200 flex flex-col gap-4 p-6 rounded-md'>
+    <form className='max-w-md bg-neutral-200 flex flex-col gap-4 p-6 rounded-md'>
       <div>
         <h1 className='font-semibold text-xl'>Verify your email address</h1>
         <p>Please enter the 6-digit code we sent to your email address.</p>
@@ -301,7 +301,7 @@ const OneTimePasswordForm = () => {
               key={`otp.${index}`}
               inputMode='numeric'
               maxLength={1}
-              className='p-2 flex-1 w-1/6 rounded-md no-spinner text-slate-900 text-center text-xl'
+              className='p-2 flex-1 w-1/6 rounded-md no-spinner text-neutral-900 text-center text-xl'
               ref={el => {
                 ref(el);
                 inputRefs.current[index] = el!;
@@ -312,7 +312,7 @@ const OneTimePasswordForm = () => {
           );
         })}
       </div>
-      <button className='bg-neutral-950 w-full p-2 rounded-md font-semibold text-slate-50'>
+      <button className='bg-neutral-950 w-full p-2 rounded-md font-semibold text-neutral-50'>
         Confirm
       </button>
     </form>
@@ -417,7 +417,7 @@ const OneTimePasswordForm = () => {
 
   return (
     <form
-      className='max-w-md bg-slate-200 flex flex-col gap-4 p-6 rounded-md'
+      className='max-w-md bg-neutral-200 flex flex-col gap-4 p-6 rounded-md'
       onSubmit={handleSubmit(onSubmit)}
     >
       <div>
@@ -432,7 +432,7 @@ const OneTimePasswordForm = () => {
               key={`otp.${index}`}
               inputMode='numeric'
               maxLength={1}
-              className='p-2 flex-1 w-1/6 rounded-md no-spinner text-slate-900 text-center text-xl'
+              className='p-2 flex-1 w-1/6 rounded-md no-spinner text-neutral-900 text-center text-xl'
               ref={el => {
                 ref(el);
                 inputRefs.current[index] = el!;
@@ -448,7 +448,7 @@ const OneTimePasswordForm = () => {
           All fields are required for submission.
         </span>
       )}
-      <button className='bg-neutral-950 w-full p-2 rounded-md font-semibold text-slate-50'>
+      <button className='bg-neutral-950 w-full p-2 rounded-md font-semibold text-neutral-50'>
         Confirm
       </button>
     </form>

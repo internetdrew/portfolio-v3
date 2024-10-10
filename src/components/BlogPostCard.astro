@@ -3,16 +3,16 @@ const { post } = Astro.props;
 ---
 
 <article
-  class="border border-slate-800 p-4 flex flex-col duration-150 h-full rounded-lg text-sm"
+  class="border border-neutral-800 p-4 flex flex-col duration-150 h-full rounded-lg text-sm"
 >
   <h2 class="font-bold text-base">{post.frontmatter.title}</h2>
-  <p class="mt-2 flex-1 text-slate-600 group-hover:text-slate-200">
+  <p class="mt-2 flex-1 text-neutral-600 group-hover:text-neutral-200">
     {post.frontmatter.description}
   </p>
   <div class="flex justify-end mt-8">
     <a
       href={post.url}
-      class="border border-slate-800 px-3 py-1 rounded-md bg-slate-700 text-slate-50 hover:bg-slate-800"
+      class="border border-neutral-800 px-3 py-1 rounded-md bg-neutral-800 text-neutral-50 hover:bg-neutral-950"
     >
       Check it out
     </a>

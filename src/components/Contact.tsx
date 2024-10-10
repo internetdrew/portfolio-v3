@@ -62,7 +62,7 @@ const Contact = () => {
       </h3>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="my-4 border border-slate-800 rounded-lg p-4 mx-auto lg:max-w-md"
+        className="my-4 border border-neutral-800 rounded-lg p-4 mx-auto lg:max-w-md"
       >
         <h4 className="text-center">Contact Me</h4>
         <div className="my-4 flex flex-col gap-1">
@@ -70,7 +70,7 @@ const Contact = () => {
           <input
             id="name"
             type="text"
-            className="p-2 border border-slate-400 rounded-md"
+            className="p-2 border border-neutral-400 rounded-md"
             aria-invalid={errors.name ? "true" : "false"}
             {...register("name")}
           />
@@ -85,7 +85,7 @@ const Contact = () => {
           <input
             id="email"
             type="text"
-            className="p-2 border border-slate-400 rounded-md"
+            className="p-2 border border-neutral-400 rounded-md"
             aria-invalid={errors.email ? "true" : "false"}
             {...register("email")}
           />
@@ -99,7 +99,7 @@ const Contact = () => {
           <label htmlFor="message">Message</label>
           <textarea
             id="message"
-            className="p-2 border border-slate-400 rounded-md min-h-24"
+            className="p-2 border border-neutral-400 rounded-md min-h-24"
             aria-invalid={errors.message ? "true" : "false"}
             {...register("message")}
           />
@@ -109,7 +109,7 @@ const Contact = () => {
             </span>
           )}
         </div>
-        <button className="bg-slate-400 w-full p-2 rounded-md duration-300 hover:bg-slate-800 hover:text-slate-50">
+        <button className="bg-neutral-400 w-full p-2 rounded-md duration-300 hover:bg-neutral-950 hover:text-neutral-50">
           Send Message
         </button>
       </form>
