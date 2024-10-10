@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Me from "../images/me.webp";
 import { Image } from "astro:assets";
-const pageTitle = "About Andrew Rowley";
+const pageTitle = "About Me";
 ---
 
 <MainLayout title={pageTitle}>
@@ -10,52 +10,38 @@ const pageTitle = "About Andrew Rowley";
     class="flex flex-col-reverse justify-between gap-10 my-10 sm:flex-row"
   >
     <div class="flex-1">
-      <h1 class="text-3xl font-bold">{pageTitle}</h1>
-      <p class="mt-4">
-        I love solving problems with creative solutions. It's been the thing
-        that has made me such a valued contributor in many of the companies I
-        have worked for.
+      <h1 class="text-2xl font-bold">{pageTitle}</h1>
+      <br />
+      <p>
+        Hi! I'm Andrew. I'm a Software Engineer recently moved to the Boston
+        area from New York City.
       </p>
       <br />
       <p>
-        At the end of 2020, I decided that I want to be able to learn how to
-        take an idea and build it into a product. So I picked up my first
-        programming book (<a
-          href="https://nostarch.com/python-crash-course-3rd-edition  target="
-          _blank"
-          rel="noopener noreferrer"
-          class="underline underline-offset-2"
-          ">Python Crash Course</a
-        >) and taught myself how to program.
+        My first true cool computer adventure was creating macros to play
+        time-based games while I was away from my computer. This was in the
+        early 2000s, when the internet felt like a much more magical place.
+      </p>
+      <br />
+      <p>It was the last tech adventure I'd have for a long time.</p>
+      <br />
+      <p>
+        When I began learning how to program at the end of 2020, I was
+        immediately hooked! It was like the internet was a whole new world
+        waiting to be explored again.
       </p>
       <br />
       <p>
-        As someone who is nostalgic of the old days of the internet (<a
-          href="https://www.youtube.com/watch?v=D1UY7eDRXrs"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline underline-offset-2">love the sound of AOL dial-up</a
-        >), I decided that I wanted to build cool, valuable things on the
-        internet. This led me from Python over to JavaScript.
+        Nowadays, I enjoy building products people love, expanding my knowledge
+        of the vast world of software engineering, and collaborating with teams
+        to bring new ideas to life and revitalizing existing ones to deliver
+        fresh, exciting experiences.
       </p>
       <br />
       <p>
-        Since then, I have enjoyed building products from my own ideas,
-        expanding my knowledge of the modern internet and building quality
-        software, as well as contributing to a few projects at YC-backed
-        startup, <a
-          href="https://repool.com/ target="
-          _blank"
-          rel="noopener noreferrer"
-          class="underline underline-offset-2"
-          ">Repool (YC S21)</a
-        >.
-      </p>
-      <br />
-      <p>
-        I'm always on the hunt for new adventure. If you'd like to chat, <a
+        I'm always on the hunt for new adventure and challenges. Want to chat? <a
           href="/#lets-connect"
-          class="underline underline-offset-2">let's connect</a
+          class="underline underline-offset-2">Let's connect</a
         >!
       </p>
     </div>
@@ -64,7 +50,8 @@ const pageTitle = "About Andrew Rowley";
     >
       <Image
         src={Me}
-        alt="Photo of Andrew Rowley with pink gradient background."
+        alt="Andrew Rowley with pink gradient background."
+        loading="eager"
       />
     </div>
   </section>
