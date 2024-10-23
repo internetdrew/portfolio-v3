@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogLayout.astro"
 title: "Supabase Password-less Authentication with the Next.js Pages Router"
 pubDate: 2024-01-21
 description: "How to leverage Supabase's Magic Link authentication using Next.js' Pages router."

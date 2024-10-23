@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogLayout.astro"
 title: "Sending Files to Cloudinary Over Rest API with Next.js"
 pubDate: 2023-05-17
 description: "A simple approach to sending files from user input for upload to your cloud service without exposing your cloud service API."

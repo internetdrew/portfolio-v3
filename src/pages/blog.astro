@@ -1,11 +1,12 @@
 ---
 import Layout from "../layouts/MainLayout.astro";
 import BlogPostCard from "../components/BlogPostCard.astro";
-const blogPosts = await Astro.glob("./blog/*.md");
+import { getCollection } from "astro:content";
+
+const blogPosts = await getCollection("blog");
 const sortedPosts = [...blogPosts].sort(
   (a, b) =>
-    new Date(b.frontmatter.pubDate).getTime() -
-    new Date(a.frontmatter.pubDate).getTime(),
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
 );
 ---
 

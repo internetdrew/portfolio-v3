@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogLayout.astro"
 title: "Building Flexible React Components with TypeScript: Conditional Props in Action"
 pubDate: 2024-03-20
 description: "Creating conditional props in TypeScript for versatile React components."
