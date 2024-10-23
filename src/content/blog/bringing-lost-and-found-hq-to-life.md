@@ -42,7 +42,7 @@ I want to use this space as a pseudo-changelog. I'm sure I'll run into some head
 
 ## Mission Log
 
-### Initial Setup and UI
+### 2024-10-22: Initial Setup and UI
 
 - Starting work on the home page.
 - Building with [Vite-based React](https://vite.dev/), leveraging [shadcn for UI components](https://ui.shadcn.com/).
