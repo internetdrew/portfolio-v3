@@ -4,9 +4,9 @@ pubDate: 2024-10-22
 description: "That Time I Lost My Wallet and Built an App Around the Experience"
 author: "Andrew Rowley"
 image:
-  url: "building-testing-otp-ui-component-react-typescript.png"
-  alt: "Building and Testing an OTP UI Component with React and TypeScript"
-tags: ["react", "testing", "typescript", "mocking"]
+  url: "lost-and-found.png"
+  alt: "Bringing Lost & Found HQ to Life"
+tags: ["react", "typescript"]
 ---
 
 ## Table of Contents
