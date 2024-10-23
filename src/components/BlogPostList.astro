@@ -1,12 +1,14 @@
 ---
-const blogPosts = await Astro.glob("../pages/blog/*.md");
+import { getCollection } from "astro:content";
+
+const blogPosts = await getCollection("blog");
+
 const sortedPosts = [...blogPosts]
   .sort(
     (a, b) =>
-      new Date(b.frontmatter.pubDate).getTime() -
-      new Date(a.frontmatter.pubDate).getTime(),
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
   )
-  .slice(0, 10);
+  .slice(0, 5);
 ---
 
 <section id="recent-posts" class="my-14">
@@ -17,8 +19,8 @@ const sortedPosts = [...blogPosts]
     {
       sortedPosts.map((post) => (
         <li class="border border-neutral-800 rounded-md duration-150 hover:bg-pink-600 active:text-neutral-50 hover:text-neutral-50">
-          <a href={post.url} class="block p-4">
-            {post.frontmatter.title}
+          <a href={`/blog/${post.slug}`} class="block p-4">
+            {post.data.title}
           </a>
         </li>
       ))
