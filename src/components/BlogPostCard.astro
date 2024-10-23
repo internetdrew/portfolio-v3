@@ -1,4 +1,9 @@
 ---
+import type { CollectionEntry } from "astro:content";
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
 const { post } = Astro.props;
 ---
 
