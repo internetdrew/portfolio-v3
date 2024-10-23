@@ -20,7 +20,8 @@ const sortedPosts = [...blogPosts]
       sortedPosts.map((post) => (
         <li class="border border-neutral-800 rounded-md duration-150 hover:bg-pink-600 active:text-neutral-50 hover:text-neutral-50">
           <a href={`/blog/${post.slug}`} class="block p-4">
-            {post.data.title}
+            <h4 class="font-semibold">{post.data.title}</h4>
+            <p class="text-sm">{post.data.description}</p>
           </a>
         </li>
       ))

@@ -1,7 +1,7 @@
 ---
 title: "Bringing Lost & Found HQ to Life"
 pubDate: 2024-10-22
-description: "That Time I Lost My Wallet and Built an App Around the Experience"
+description: "That time I lost my wallet and built an app to help others recover their lost items."
 author: "Andrew Rowley"
 image:
   url: "lost-and-found.png"
@@ -42,7 +42,7 @@ I want to use this space as a pseudo-changelog. I'm sure I'll run into some head
 
 ## Mission Log
 
-### 2024-10-22: Initial Setup and UI
+### Initial Setup and UI
 
 - Starting work on the home page.
 - Building with [Vite-based React](https://vite.dev/), leveraging [shadcn for UI components](https://ui.shadcn.com/).
