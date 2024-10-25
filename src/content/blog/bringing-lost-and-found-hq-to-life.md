@@ -23,15 +23,14 @@ What if I could make this process easier?
 
 ## Enter Lost & Found HQ
 
-The goal of [**Lost & Found HQ**](https://www.lostandfoundhq.com/) is to help businesses reconnect people with their lost belongings with as little phone tag as possible.
+The goal of [**Lost & Found HQ**](https://www.lostandfoundhq.com/) is to help businesses reunite their customers with their lost belongings with ease.
 
 It would be great if when an item is lost within a business:
 
-- Staff could log the item and allow customers to see what's been lost via a public portal for the business.
+- Staff could log the item and allow customers to see what's been lost via a public portal for the location.
 - Customers can search for their lost items on the public-facing portal.
-- They can filter by business, location, date, and item type.
 - To claim an item, customers fill out a form describing the lost item in detail.
-- Staff review claims and can approve or request more information.
+- Staff can review claims and approve them or request more information.
 - When a claim is approved, the system generates a unique code for the customer.
 - The customer presents this code when picking up the item.
 - Staff can easily mark items as returned in the system.
@@ -40,12 +39,22 @@ It would be great if when an item is lost within a business:
 
 I want to use this space as a pseudo-changelog. I'm sure I'll run into some headaches along the way, but here's where you can visit and see what aspect of this I am currently working on and challenges faced along the way.
 
+## Source Code and Live App
+
+You can find the source code for Lost & Found HQ on [GitHub](https://github.com/internetdrew/lost-and-found-hq). The live application is available at [lostandfoundhq.com](https://www.lostandfoundhq.com/).
+
 ## Mission Log
 
-### 2024-10-22: Initial Setup and UI
+### Oct. 22, 2024: Initial Setup and UI
 
 - Starting work on the home page.
 - Building with [Vite-based React](https://vite.dev/), leveraging [shadcn for UI components](https://ui.shadcn.com/).
 - Add initial front-end validation for login/signup flows using [Zod](https://zod.dev/).
 - Render a special message for users on successful criteria.
 <div style="position: relative; padding-bottom: 53.78486055776893%; height: 0;"><iframe src="https://www.loom.com/embed/1104fbe532a246e0883b094788bade69?sid=4f45018b-b222-4b57-9f57-d30bce000242" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+### Oct. 23, 2024: Integrate Initial Express Server
+
+- Added the Express-based server to the repo.
+- Added server proxy to connect the frontend and backend ports for seamless integration.
+- Created a [Vite, Express, Vercel starter kit to help other developers save time attempting a similar setup](https://github.com/internetdrew/vite-express-vercel).
