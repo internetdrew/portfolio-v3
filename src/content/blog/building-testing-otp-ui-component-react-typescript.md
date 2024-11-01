@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogLayout.astro"
 title: "Building and Testing an OTP UI Component with React and TypeScript"
 pubDate: 2024-08-23
 description: "Composing, validating, and testing using React Hook Form, Zod, and Vitest."

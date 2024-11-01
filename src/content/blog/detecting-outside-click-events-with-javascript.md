@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/BlogLayout.astro"
 title: "Detecting Outside Click Events with JavaScript"
 pubDate: 2024-01-23
 description: "Leveraging X and Y client coordinates and the getBoundingClientRect() method."
