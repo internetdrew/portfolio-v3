@@ -58,3 +58,26 @@ You can find the source code for Lost & Found HQ on [GitHub](https://github.com/
 - Added the Express-based server to the repo.
 - Added server proxy to connect the frontend and backend ports for seamless integration.
 - Created a [Vite, Express, Vercel starter kit to help other developers save time attempting a similar setup](https://github.com/internetdrew/vite-express-vercel).
+
+### Oct. 27, 2024: Implement Authentication Flows and Added Functionality for Adding Items
+
+- Added full functionality for signup, login, and logout leveraging [Supabase for auth](https://supabase.com/auth).
+- When logged in, users are re-routed to the dashboard from the home page to avoid interaction with the then-unnecessary signup and login forms.
+- I protected the dashboard page, sent non-authenticated visits to the home page, and replaced the route so they couldn't backtrack.
+- Adds a new modal-based form to add new items to the list.
+- Adds front-end validation of form inputs.
+- Improves notifying users of auth errors via [React Hot Toast](https://react-hot-toast.com/).
+
+### Oct. 31, 2024: Fixing Protected and Guest-Only Reroutes - From Client to Server
+
+- Added a dynamic wrapper to discern between guest-only public and user-only authenticated routes.
+  - This helps move authed users back to the dashboard (no need for them to see sign-in/login forms) and redirects unauthenticated guests back to those forms if they attempt to access the dashboard.
+  - This also eliminated the flicker issue when re-directing users.
+- Adds middleware to add the user object to requests to protect authenticated API endpoints.
+- Added versioning to the API for better maintainability.
+- Improved API error handling and user feedback via toast notifications.
+- Adds the ability for users to create a new location, which enables them to add new items for that location.
+- Adds new endpoints for data handling and CRUD operations.
+- Disables the add item button when the user has no locations.
+- Adds a tooltip to hint towards location creation before creating new item tickets.
+<div style="position: relative; padding-bottom: 53.94605394605395%; height: 0;"><iframe src="https://www.loom.com/embed/1c864e0a47e64755842f793359da8058?sid=04c9a743-e34b-4694-91d0-cf5d604ff2a1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
