@@ -1,12 +1,17 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
 
+export enum ProjectStatus {
+  InProgress = "in-progress",
+  Live = "live",
+}
+
 export interface Project {
   title: string;
   description: string;
   githubUrl: string | null;
   siteUrl: string;
-  status: "work-in-progress" | "live";
+  status: ProjectStatus;
 }
 
 const projects: Project[] = [
@@ -45,7 +50,7 @@ const projects: Project[] = [
     description: "Helping businesses reunite customers with their lost items.",
     githubUrl: "https://github.com/internetdrew/lost-and-found-hq",
     siteUrl: "https://www.lostandfoundhq.com/",
-    status: "work-in-progress",
+    status: ProjectStatus.InProgress,
   },
 ];
 ---
