@@ -81,3 +81,10 @@ You can find the source code for Lost & Found HQ on [GitHub](https://github.com/
 - Disables the add item button when the user has no locations.
 - Adds a tooltip to hint towards location creation before creating new item tickets.
 <div style="position: relative; padding-bottom: 53.94605394605395%; height: 0;"><iframe src="https://www.loom.com/embed/1c864e0a47e64755842f793359da8058?sid=04c9a743-e34b-4694-91d0-cf5d604ff2a1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+### Nov 19, 2024: Take Lost & Found HQ For a Test Drive
+
+- Users now have access to a test user account via Test Drive
+- Users can now create, update, and delete items on the dashboard
+- Visitors can now sign up to get future updates on launch status
+<div style="position: relative; padding-bottom: 53.89221556886228%; height: 0;"><iframe src="https://www.loom.com/embed/46da7fb882e34378a05d7cf7442b5aed?sid=846ab969-cee0-40cf-894c-8dc7c7f34516" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
