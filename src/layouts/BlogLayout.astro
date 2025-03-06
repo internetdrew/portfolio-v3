@@ -47,8 +47,8 @@ const { frontmatter } = Astro.props;
     <title>{frontmatter.title}</title>
   </head>
   <body class='bg-neutral-900 text-neutral-100 pb-10'>
-    <main class='max-w-screen-sm mx-auto px-4 font-mono'>
-      <Navbar />
+    <Navbar />
+    <main class='max-w-screen-sm mx-auto px-4 sm:px-0'>
       <section class='my-10'>
         <header
           class='text-center border border-neutral-800 p-4 bg-pink-600 text-neutral-900 rounded-lg'
