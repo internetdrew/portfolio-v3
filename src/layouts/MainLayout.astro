@@ -1,6 +1,8 @@
 ---
-import { Toaster } from "react-hot-toast";
-import Navbar from "../components/Navbar.astro";
+import { Toaster } from 'react-hot-toast';
+import Navbar from '../components/Navbar.astro';
+// Supports weights 100-900
+import '@fontsource-variable/geist-mono';
 
 interface Props {
   title: string;
@@ -11,45 +13,51 @@ const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset='UTF-8' />
     <meta
-      name="description"
+      name='description'
       content="Andrew Rowley's software development portfolio."
     />
-    <meta property="og:title" content={title} />
+    <meta property='og:title' content={title} />
 
     <meta
-      property="og:image"
-      content="https://internetdrew.com/andrew-rowley-software-engineer-banner.png"
+      property='og:image'
+      content='https://internetdrew.com/andrew-rowley-software-engineer-banner.png'
     />
     <meta
-      property="og:image:secure_url"
-      content="https://internetdrew.com/andrew-rowley-software-engineer-banner.png"
+      property='og:image:secure_url'
+      content='https://internetdrew.com/andrew-rowley-software-engineer-banner.png'
     />
     <meta
-      property="og:url"
+      property='og:url'
       content={`https://internetdrew.com${currentPath}`}
     />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:site_name" content="Internet Drew" />
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta property='og:site_name' content='Internet Drew' />
     <meta
-      name="twitter:image"
-      content="https://internetdrew.com/andrew-rowley-software-engineer-banner.png"
+      name='twitter:image'
+      content='https://internetdrew.com/andrew-rowley-software-engineer-banner.png'
     />
 
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/webp" href="/me.webp" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/webp' href='/me.webp' />
+    <link rel='sitemap' href='/sitemap-index.xml' />
+    <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-neutral-50 pb-10">
-    <main class="max-w-screen-sm mx-auto px-4 font-mono text-neutral-800">
-      <Navbar />
+  <body class='bg-neutral-900 text-neutral-100 pb-10'>
+    <Navbar />
+    <main class='max-w-screen-sm mx-auto px-4 sm:px-0'>
       <slot />
     </main>
     <Toaster client:idle />
   </body>
 </html>
+
+<style>
+  body {
+    font-family: 'Geist Mono Variable', monospace;
+  }
+</style>
