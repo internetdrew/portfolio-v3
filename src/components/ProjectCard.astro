@@ -1,5 +1,5 @@
 ---
-import type { ProjectStatus } from "./Projects.astro";
+import { ProjectStatus } from './Projects.astro';
 
 interface Props {
   title: string;
@@ -8,43 +8,45 @@ interface Props {
   githubUrl: string | null;
   siteUrl: string;
   status: ProjectStatus;
-  technologies?: string[];
 }
 
-const { title, description, githubUrl, status, siteUrl, technologies } =
-  Astro.props;
+const { title, description, githubUrl, status, siteUrl } = Astro.props;
 ---
 
 <li
-  class="flex flex-col list-none border p-4 border-neutral-800 rounded-md text-sm"
+  class='flex flex-col list-none border p-4 border-neutral-800 rounded-md text-sm'
 >
-  <h4 class="font-semibold text-base">
+  <h4 class='font-semibold text-base'>
     {title}
   </h4>
-  <p class="text-sm text-neutral-600 mb-8">{description}</p>
+  <p class='text-sm text-neutral-500 mb-8'>{description}</p>
 
-  <div class="mt-auto transition duration-300">
-    <div class="flex gap-2 items-center justify-end">
-      <small class="text-xs text-neutral-600 mr-auto">{status}</small>
+  <div class='mt-auto transition duration-300'>
+    <div class='flex gap-2 items-center justify-end'>
+      {
+        status === ProjectStatus.InProgress && (
+          <small class='text-xs text-neutral-500 mr-auto'>{status}</small>
+        )
+      }
       {
         githubUrl && (
           <a
             href={githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            class="px-3 py-1 cursor-pointer rounded-md border border-neutral-800 bg-neutral-800 text-neutral-50 transition-shadow duration-150 hover:bg-neutral-950"
+            target='_blank'
+            rel='noreferrer'
+            class='px-3 py-1 cursor-pointer rounded-md border border-neutral-800 transition-shadow duration-150 hover:bg-neutral-800'
           >
             Source Code
           </a>
         )
       }
       {
-        status === "live" && (
+        status === ProjectStatus.Live && (
           <a
             href={siteUrl}
-            target="_blank"
-            rel="noreferrer"
-            class="cursor-pointer px-3 py-1 rounded-md border border-neutral-800 bg-neutral-800 text-neutral-50 hover:bg-neutral-950"
+            target='_blank'
+            rel='noreferrer'
+            class='cursor-pointer px-3 py-1 rounded-md border border-neutral-800 hover:bg-neutral-800'
           >
             Visit
           </a>
@@ -52,18 +54,4 @@ const { title, description, githubUrl, status, siteUrl, technologies } =
       }
     </div>
   </div>
-
-  {
-    technologies && (
-      <div class="mt-4">
-        <h5>Technologies</h5>
-        {technologies.map((tech) => (
-          <p>
-            <span>#</span>
-            {tech}
-          </p>
-        ))}
-      </div>
-    )
-  }
 </li>
