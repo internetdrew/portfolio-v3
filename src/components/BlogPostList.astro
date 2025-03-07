@@ -8,10 +8,8 @@ const sortedPosts = [...blogPosts].sort(
 );
 ---
 
-<section id='recent-posts' class='my-14'>
-  <h3 class='font-semibold'>
-    <a href='#recent-posts'>Things I've Written</a>
-  </h3>
+<section class='my-14'>
+  <h2 class='font-semibold'>Blog Posts</h2>
   <ul class='mt-4 flex flex-col gap-4'>
     {
       sortedPosts.map(post => (
