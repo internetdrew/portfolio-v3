@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.internetdrew.com",
+  site: "https://www.internetdrew.com/",
   integrations: [tailwind(), react(), sitemap()],
   markdown: {
     remarkPlugins: [remarkToc],
