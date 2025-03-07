@@ -1,37 +1,27 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content';
+const blogPosts = await getCollection('blog');
 
-const blogPosts = await getCollection("blog");
-
-const sortedPosts = [...blogPosts]
-  .sort(
-    (a, b) =>
-      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
-  )
-  .slice(0, 5);
+const sortedPosts = [...blogPosts].sort(
+  (a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
 ---
 
-<section id="recent-posts" class="my-14">
-  <h3 class="font-semibold text-lg">
-    <a href="#recent-posts">Recent Blog Posts</a>
+<section id='recent-posts' class='my-14'>
+  <h3 class='font-semibold'>
+    <a href='#recent-posts'>Things I've Written</a>
   </h3>
-  <ul class="mt-4 flex flex-col gap-4">
+  <ul class='mt-4 flex flex-col gap-4'>
     {
-      sortedPosts.map((post) => (
-        <li class="border border-neutral-800 rounded-md duration-150 hover:bg-pink-600 active:text-neutral-50 hover:text-neutral-50">
-          <a href={`/blog/${post.slug}`} class="block p-4">
-            <h4 class="font-semibold">{post.data.title}</h4>
-            <p class="text-sm">{post.data.description}</p>
+      sortedPosts.map(post => (
+        <li class='border border-neutral-800 rounded-md duration-150 hover:bg-neutral-800'>
+          <a href={`/blog/${post.slug}`} class='block p-4'>
+            <h4 class='font-semibold'>{post.data.title}</h4>
+            <p class='text-sm text-neutral-500'>{post.data.description}</p>
           </a>
         </li>
       ))
     }
   </ul>
-  <div class="mt-4 flex justify-end">
-    <a
-      href="/blog"
-      class="cursor-pointer px-3 py-1 rounded-md border border-neutral-800 bg-neutral-800 text-neutral-50 hover:bg-neutral-950"
-      >View all posts</a
-    >
-  </div>
 </section>

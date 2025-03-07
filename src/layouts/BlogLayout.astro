@@ -1,63 +1,66 @@
 ---
-import Navbar from "../components/Navbar.astro";
-
+import Navbar from '../components/Navbar.astro';
+// Supports weights 100-900
+import '@fontsource-variable/geist-mono';
 const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta property="og:title" content={frontmatter.title} />
-    <meta property="og:type" content="article" />
+    <meta charset='UTF-8' />
+    <meta property='og:title' content={frontmatter.title} />
+    <meta property='og:type' content='article' />
     <meta
-      property="og:image"
+      property='og:image'
       content={`https://internetdrew.com/${frontmatter.image.url}`}
     />
     <meta
-      property="og:image:secure_url"
+      property='og:image:secure_url'
       content={`https://internetdrew.com/${frontmatter.image.url}`}
     />
     <meta
-      property="og:url"
+      property='og:url'
       content={`https://internetdrew.com/${frontmatter.url}`}
     />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:site_name" content="Internet Drew" />
-    <meta name="twitter:image:alt" content={frontmatter.title} />
+    <meta property='og:image:type' content='image/jpeg' />
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta property='og:site_name' content='Internet Drew' />
+    <meta name='twitter:image:alt' content={frontmatter.title} />
     <meta
-      name="twitter:image"
+      name='twitter:image'
       content={`https://internetdrew.com/${frontmatter.image.url}`}
     />
     <meta
-      name="description"
-      property="og:description"
+      name='description'
+      property='og:description'
       content={frontmatter.description}
     />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="author" content={frontmatter.author} />
-    <meta name="article:published_time" content={frontmatter.pubDate} />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='generator' content={Astro.generator} />
+    <meta name='author' content={frontmatter.author} />
+    <meta name='article:published_time' content={frontmatter.pubDate} />
 
-    <link rel="icon" type="image/webp" href="/me.webp" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel='icon' type='image/webp' href='/me.webp' />
+    <link rel='sitemap' href='/sitemap-index.xml' />
 
     <title>{frontmatter.title}</title>
   </head>
-  <body class="bg-neutral-50">
-    <main class="max-w-screen-sm mx-auto px-4 font-mono text-neutral-800">
-      <Navbar />
-      <section class="my-10">
+  <body class='bg-neutral-900 text-neutral-300 pb-10'>
+    <Navbar />
+    <main class='max-w-screen-sm mx-auto px-4 sm:px-0'>
+      <section class='my-10'>
         <header
-          class="text-center border border-neutral-800 p-4 bg-pink-600 text-neutral-50 rounded-lg"
+          class='text-center border border-neutral-800 p-4 bg-pink-600 text-neutral-900 rounded-lg'
         >
-          <h1 class="text-2xl sm:text-3xl font-semibold">
+          <h1 class='text-2xl sm:text-3xl font-semibold'>
             {frontmatter.title}
           </h1>
-          <h2 class="max-w-lg mx-auto sm:text-lg">{frontmatter.description}</h2>
+          <h2 class='max-w-lg mx-auto sm:text-lg'>{frontmatter.description}</h2>
         </header>
-        <div class="mt-10 prose">
+        <div
+          class='mt-10 prose prose-invert prose-headings:text-neutral-300 prose-a:text-pink-600'
+        >
           <slot />
         </div>
       </section>
@@ -68,5 +71,9 @@ const { frontmatter } = Astro.props;
 <style>
   html {
     scroll-padding-top: 6rem;
+  }
+
+  body {
+    font-family: 'Geist Mono Variable', monospace;
   }
 </style>
