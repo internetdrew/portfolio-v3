@@ -1,5 +1,4 @@
 ---
-import { Toaster } from 'react-hot-toast';
 import Navbar from '../components/Navbar.astro';
 // Supports weights 100-900
 import '@fontsource-variable/geist-mono';
@@ -46,7 +45,6 @@ const currentPath = Astro.url.pathname;
     <main class='max-w-screen-sm mx-auto px-4 sm:px-0'>
       <slot />
     </main>
-    <Toaster client:idle />
   </body>
 </html>
 
