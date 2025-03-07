@@ -51,12 +51,14 @@ const { frontmatter } = Astro.props;
     <main class='max-w-screen-sm mx-auto px-4 sm:px-0'>
       <section class='my-10'>
         <header
-          class='text-center border border-neutral-800 p-4 bg-pink-600 text-neutral-900 rounded-lg'
+          class='text-center border border-neutral-800 p-6 text-neutral-900 rounded-lg'
         >
-          <h1 class='text-2xl sm:text-3xl font-semibold'>
+          <h1 class='text-2xl font-semibold text-neutral-300'>
             {frontmatter.title}
           </h1>
-          <h2 class='max-w-lg mx-auto sm:text-lg'>{frontmatter.description}</h2>
+          <h2 class='max-w-lg mx-auto mt-4 text-neutral-400 sm:text-lg'>
+            {frontmatter.description}
+          </h2>
         </header>
         <div
           class='mt-10 prose prose-invert prose-headings:text-neutral-300 prose-a:text-pink-600'
