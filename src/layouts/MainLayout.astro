@@ -22,7 +22,10 @@ const currentPath = Astro.url.pathname;
     />
 
     <meta property='og:title' content={title} />
-
+    <meta
+      property='og:description'
+      content='Software Developer & Content Strategist'
+    />
     <meta property='og:image' content='https://internetdrew.com/og-3.png' />
     <meta
       property='og:image:secure_url'
@@ -32,8 +35,14 @@ const currentPath = Astro.url.pathname;
       property='og:url'
       content={`https://internetdrew.com${currentPath}`}
     />
+
+    <meta property='twitter:title' content='Andrew Rowley' />
+    <meta
+      property='twitter:description'
+      content='Software Developer & Content Strategist'
+    />
     <meta name='twitter:card' content='summary_large_image' />
-    <meta property='og:site_name' content='Internet Drew' />
+    <meta property='og:site_name' content='Andrew Rowley' />
     <meta name='twitter:image' content='https://internetdrew.com/og-3.png' />
 
     <meta name='viewport' content='width=device-width' />
