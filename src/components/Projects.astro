@@ -1,16 +1,10 @@
 ---
 import ProjectCard from './ProjectCard.astro';
 
-export enum ProjectStatus {
-  InProgress = 'in-progress',
-  Live = 'live',
-}
-
 export interface Project {
   title: string;
   description: string;
   siteUrl: string;
-  status: ProjectStatus;
 }
 
 const projects: Project[] = [
@@ -19,21 +13,24 @@ const projects: Project[] = [
     description:
       'A satirical landing page for an AI enterprise that takes automation way too far.',
     siteUrl: 'https://www.skynetsolutions.app/',
-    status: ProjectStatus.Live,
   },
   {
     title: "Where's the Garlic?!",
-    description:
-      'Easily keep track of your groceries and manage your favorite recipes in one place.',
+    description: 'A web-based kitchen manager for organized home cooks.',
     siteUrl: 'https://www.wheresthegarlic.com/',
-    status: ProjectStatus.Live,
   },
   {
     title: 'Vite-Express-Vercel Starter Kit',
     description:
       'Easily deploy a full-stack app with a Vite-based React frontend and an Express-based backend on Vercel.',
     siteUrl: 'https://github.com/internetdrew/vite-express-vercel',
-    status: ProjectStatus.Live,
+  },
+  {
+    title: 'The HYBRD Launch Video',
+    description:
+      'The launch video for YC-backed fitness startup, HYBRD, an app for hybrid athletes.',
+    siteUrl:
+      'https://www.linkedin.com/posts/hybrd-do-hard-things_today-is-the-day-hybrd-is-officially-live-activity-7320812769795072000-fvRV',
   },
 ];
 ---
