@@ -1,22 +1,28 @@
 ---
 import { getCollection } from 'astro:content';
 const blogPosts = await getCollection('blog');
-
-const sortedPosts = [...blogPosts].sort(
-  (a, b) =>
-    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-);
 ---
 
 <section class='my-14'>
   <h2 class='font-semibold'>Thoughts</h2>
-  <ul class='mt-4 flex flex-col gap-4'>
+  <ul class='mt-4 flex flex-col divide-y divide-neutral-800'>
     {
-      sortedPosts.map(post => (
-        <li class='border border-neutral-800 rounded-md duration-150 hover:bg-neutral-800'>
-          <a href={`/blog/${post.slug}`} class='block p-4'>
-            <h4 class='font-semibold'>{post.data.title}</h4>
-            <p class='text-sm text-neutral-500'>{post.data.description}</p>
+      blogPosts.map(post => (
+        <li class='rounded-md duration-150 relative group'>
+          <a
+            href={`/blog/${post.data.slug}`}
+            class='flex items-center justify-between py-4'
+          >
+            <h3 class='font-semibold text-sm group-hover:text-pink-600'>
+              {post.data.title}
+            </h3>
+            <p class='text-xs text-neutral-500 group-hover:text-pink-600'>
+              {post.data.pubDate.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+              })}
+            </p>
           </a>
         </li>
       ))
