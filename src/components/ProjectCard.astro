@@ -1,50 +1,35 @@
 ---
-import { ProjectStatus } from './Projects.astro';
+import { ProjectStatus, type Project } from './Projects.astro';
 
 interface Props {
-  title: string;
-  screenshotUrl?: string;
-  description: string;
-  githubUrl: string | null;
-  siteUrl: string;
-  status: ProjectStatus;
+  project: Project;
 }
 
-const { title, description, githubUrl, status, siteUrl } = Astro.props;
+const { project } = Astro.props;
 ---
 
 <li
   class='flex flex-col list-none border p-4 border-neutral-800 rounded-md text-sm'
 >
-  <h3 class='font-semibold text-base'>{title}</h3>
-  <p class='text-sm mb-8 text-neutral-400'>{description}</p>
+  <h3 class='font-semibold text-base'>{project.title}</h3>
+  <p class='text-sm mb-8 text-neutral-400'>{project.description}</p>
 
   <div class='mt-auto transition duration-300'>
     <div class='flex gap-2 items-center justify-end'>
       {
-        status === ProjectStatus.InProgress && (
-          <small class='text-xs text-neutral-500 mr-auto'>{status}</small>
+        project.status === ProjectStatus.InProgress && (
+          <small class='text-xs text-neutral-500 mr-auto'>
+            {project.status}
+          </small>
         )
       }
       {
-        githubUrl && (
+        project.status === ProjectStatus.Live && (
           <a
-            href={githubUrl}
+            href={project.siteUrl}
             target='_blank'
             rel='noreferrer'
-            class='px-3 py-1 cursor-pointer rounded-md border border-neutral-800 transition-shadow duration-150 hover:bg-neutral-800'
-          >
-            Source Code
-          </a>
-        )
-      }
-      {
-        status === ProjectStatus.Live && (
-          <a
-            href={siteUrl}
-            target='_blank'
-            rel='noreferrer'
-            class='cursor-pointer py-2 px-4 rounded-md border border-neutral-800 hover:bg-neutral-800'
+            class='cursor-pointer py-2 text-sm px-4 rounded-md border border-neutral-800 hover:bg-neutral-800'
           >
             Check it out
           </a>
