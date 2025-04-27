@@ -9,7 +9,6 @@ export enum ProjectStatus {
 export interface Project {
   title: string;
   description: string;
-  githubUrl: string | null;
   siteUrl: string;
   status: ProjectStatus;
 }
@@ -19,15 +18,13 @@ const projects: Project[] = [
     title: 'Skynet Solutions',
     description:
       'A satirical landing page for an AI enterprise that takes automation way too far.',
-    githubUrl: null,
     siteUrl: 'https://www.skynetsolutions.app/',
     status: ProjectStatus.Live,
   },
   {
     title: "Where's the Garlic?!",
     description:
-      'A home grocery inventory app designed to make managing your groceries a breeze.',
-    githubUrl: null,
+      'Easily keep track of your groceries and manage your favorite recipes in one place.',
     siteUrl: 'https://www.wheresthegarlic.com/',
     status: ProjectStatus.Live,
   },
@@ -35,7 +32,6 @@ const projects: Project[] = [
     title: 'Vite-Express-Vercel Starter Kit',
     description:
       'Easily deploy a full-stack app with a Vite-based React frontend and an Express-based backend on Vercel.',
-    githubUrl: null,
     siteUrl: 'https://github.com/internetdrew/vite-express-vercel',
     status: ProjectStatus.Live,
   },
@@ -45,6 +41,6 @@ const projects: Project[] = [
 <section class='my-14'>
   <h2 class='font-semibold'>Things</h2>
   <ul class='mt-2 grid gap-4 sm:grid-cols-2'>
-    {projects.map(project => <ProjectCard {...project} />)}
+    {projects.map(project => <ProjectCard project={project} />)}
   </ul>
 </section>
