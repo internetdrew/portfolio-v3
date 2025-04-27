@@ -1,5 +1,5 @@
 ---
-import { ProjectStatus, type Project } from './Projects.astro';
+import { type Project } from './Projects.astro';
 
 interface Props {
   project: Project;
@@ -16,25 +16,14 @@ const { project } = Astro.props;
 
   <div class='mt-auto transition duration-300'>
     <div class='flex gap-2 items-center justify-end'>
-      {
-        project.status === ProjectStatus.InProgress && (
-          <small class='text-xs text-neutral-500 mr-auto'>
-            {project.status}
-          </small>
-        )
-      }
-      {
-        project.status === ProjectStatus.Live && (
-          <a
-            href={project.siteUrl}
-            target='_blank'
-            rel='noreferrer'
-            class='cursor-pointer py-2 text-sm px-4 rounded-md border border-neutral-800 hover:bg-neutral-800'
-          >
-            Check it out
-          </a>
-        )
-      }
+      <a
+        href={project.siteUrl}
+        target='_blank'
+        rel='noreferrer'
+        class='py-2 text-sm px-4 rounded-md border border-neutral-800 hover:bg-neutral-800'
+      >
+        Check it out
+      </a>
     </div>
   </div>
 </li>
