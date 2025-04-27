@@ -1,2 +1,2 @@
 export const siteDescription =
-  "Shaping brands experiences through great software and content.";
+  "I help shape brand experiences through great software and content.";
