@@ -5,7 +5,7 @@ const blogPosts = await getCollection('blog');
 
 <section class='my-14'>
   <h2 class='font-semibold'>Thoughts</h2>
-  <ul class='mt-4 flex flex-col divide-y divide-neutral-800'>
+  <ul class='mt-2 flex flex-col divide-y divide-neutral-800'>
     {
       blogPosts.map(post => (
         <li class='rounded-md duration-150 relative group'>
