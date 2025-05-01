@@ -8,6 +8,10 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     slug: z.string(),
+    image: z.object({
+      url: z.string(),
+    }),
+    isDraft: z.boolean(),
   }),
 });
 
