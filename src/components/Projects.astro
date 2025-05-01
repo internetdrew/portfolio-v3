@@ -1,5 +1,5 @@
 ---
-import ProjectCard from './ProjectCard.astro';
+import ProjectCard from "./ProjectCard.astro";
 
 export interface Project {
   title: string;
@@ -11,34 +11,34 @@ const projects: Project[] = [
   {
     title: "Where's the Garlic?!",
     description:
-      'An operating system for your kitchen. Designed for organized, food-loving cohabitants.',
-    siteUrl: 'https://www.wheresthegarlic.com/',
+      "An operating system for your kitchen. Designed for organized, food-loving cohabitants.",
+    siteUrl: "https://www.wheresthegarlic.com/",
   },
   {
-    title: 'Vite-Express-Vercel Starter Kit',
+    title: "Vite-Express-Vercel Starter Kit",
     description:
-      'Easily deploy a full-stack app with a Vite-based React frontend and an Express-based backend on Vercel.',
-    siteUrl: 'https://github.com/internetdrew/vite-express-vercel',
+      "Easily deploy a full-stack app with a Vite-based React frontend and an Express-based backend on Vercel.",
+    siteUrl: "https://github.com/internetdrew/vite-express-vercel",
   },
   {
-    title: 'Skynet Solutions',
+    title: "Skynet Solutions",
     description:
-      'A satirical landing page for an AI enterprise that takes automation way too far.',
-    siteUrl: 'https://www.skynetsolutions.app/',
+      "A satirical landing page for an AI enterprise that takes automation way too far.",
+    siteUrl: "https://www.skynetsolutions.app/",
   },
   {
-    title: 'The HYBRD Launch Video',
+    title: "The HYBRD Launch Video",
     description:
-      'The launch video for YC-backed fitness startup, HYBRD, an app for hybrid athletes.',
+      "The launch video for YC-backed fitness startup, HYBRD, an app for hybrid athletes.",
     siteUrl:
-      'https://www.linkedin.com/posts/hybrd-do-hard-things_today-is-the-day-hybrd-is-officially-live-activity-7320812769795072000-fvRV',
+      "https://www.linkedin.com/posts/hybrd-do-hard-things_today-is-the-day-hybrd-is-officially-live-activity-7320812769795072000-fvRV",
   },
 ];
 ---
 
-<section class='my-14'>
-  <h2 class='font-semibold'>Things</h2>
-  <ul class='mt-2 grid gap-4 sm:grid-cols-2'>
-    {projects.map(project => <ProjectCard project={project} />)}
+<section class="my-14">
+  <h2 class="font-semibold">Things</h2>
+  <ul class="mt-2 grid gap-4 sm:grid-cols-2">
+    {projects.map((project) => <ProjectCard project={project} />)}
   </ul>
 </section>
