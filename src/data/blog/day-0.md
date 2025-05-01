@@ -72,7 +72,9 @@ I have a marketing problem.
 
 I've yet to work anywhere where I didn't immediately have an impact, make people feel better about the work, and help them become more productive. I did it as a dish washer at a restaurant. I did it as a marketer in both DTC and B2B.
 
-Nowadays, I have two spaces I really care about: building software and driving content initiatives. I'm going to use the spirit of the adages to dress for the job you want and to do the job to get the job, I'm going to market myself for the job I want by building something I actually care about, in public, and marketing it.
+Nowadays, I have two spaces I really care about: **building software and driving content initiatives**.
+
+I'm going to use the spirit of the adages to dress for the job you want and to do the job to get the job, to market myself for the job I want by building things I actually care about, in public.
 
 ## What Happens Now
 
