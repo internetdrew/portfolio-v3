@@ -1,34 +1,37 @@
 ---
-import { getCollection } from 'astro:content';
-const blogPosts = await getCollection('blog');
+import { getCollection } from "astro:content";
+const blogPosts = await getCollection("blog");
 ---
 
 {
   blogPosts.length > 0 && (
-    <section class='my-14'>
-      <h2 class='font-semibold'>Thoughts</h2>
-      <ul class='mt-2 flex flex-col divide-y divide-neutral-800'>
-        {blogPosts.map(post => (
-          <li class='rounded-md duration-150 relative group'>
-            <a
-              href={`/blog/${post.data.slug}`}
-              class='flex items-center justify-between py-4'
-            >
-              <h3 class='font-semibold text-sm group-hover:text-pink-600'>
-                {post.data.title}
+    <section class="my-14">
+      <h2 class="font-semibold">Thoughts</h2>
+      <div class="mt-2 flex flex-col divide-y divide-neutral-800">
+        {blogPosts.map((post) => (
+          <article class="relative group transition-all duration-300">
+            <div class="flex items-start justify-between">
+              <h3 class="font-semibold group-hover:text-pink-600">
+                <a href={`/blog/${post.data.slug}`}>
+                  <span class="absolute inset-0" />
+                  {post.data.title}
+                </a>
               </h3>
-              <p class='text-xs text-neutral-500 group-hover:text-pink-600'>
-                {new Date(post.data.pubDate).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric',
-                  timeZone: 'UTC',
+              <time class="text-xs text-neutral-500 group-hover:text-neutral-400">
+                {new Date(post.data.pubDate).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                  timeZone: "UTC",
                 })}
-              </p>
-            </a>
-          </li>
+              </time>
+            </div>
+            <p class="text-sm text-neutral-500 group-hover:text-neutral-400">
+              {post.data.description}
+            </p>
+          </article>
         ))}
-      </ul>
+      </div>
     </section>
   )
 }
