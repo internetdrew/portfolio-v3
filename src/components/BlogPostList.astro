@@ -11,7 +11,7 @@ const blogPosts = await getCollection("blog");
         {blogPosts.map((post) => (
           <article class="relative group transition-all duration-300">
             <div class="flex items-start justify-between">
-              <h3 class="font-semibold group-hover:text-pink-600">
+              <h3 class="font-semibold">
                 <a href={`/blog/${post.data.slug}`}>
                   <span class="absolute inset-0" />
                   {post.data.title}
