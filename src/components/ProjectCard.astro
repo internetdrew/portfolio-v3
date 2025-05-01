@@ -1,5 +1,5 @@
 ---
-import { type Project } from './Projects.astro';
+import { type Project } from "./Projects.astro";
 
 interface Props {
   project: Project;
@@ -9,18 +9,18 @@ const { project } = Astro.props;
 ---
 
 <li
-  class='flex flex-col list-none border p-4 border-neutral-800 rounded-md text-sm'
+  class="flex flex-col list-none border p-4 border-neutral-800 rounded-md text-sm"
 >
-  <h3 class='font-semibold text-base'>{project.title}</h3>
-  <p class='text-sm mb-8 text-neutral-400'>{project.description}</p>
+  <h3 class="font-semibold text-base">{project.title}</h3>
+  <p class="text-sm mb-8 text-neutral-500">{project.description}</p>
 
-  <div class='mt-auto transition duration-300'>
-    <div class='flex gap-2 items-center justify-end'>
+  <div class="mt-auto transition duration-300">
+    <div class="flex gap-2 items-center justify-end">
       <a
         href={project.siteUrl}
-        target='_blank'
-        rel='noreferrer'
-        class='py-2 text-sm px-4 rounded-md border border-neutral-800 hover:bg-neutral-800'
+        target="_blank"
+        rel="noreferrer"
+        class="py-2 text-sm px-4 rounded-md border border-neutral-800 hover:bg-neutral-800"
       >
         Check it out
       </a>
