@@ -1,71 +1,85 @@
 ---
-import Navbar from '../components/Navbar.astro';
+import Navbar from "../components/Navbar.astro";
 // Supports weights 100-900
-import '@fontsource-variable/geist-mono';
+import "@fontsource-variable/geist-mono";
 const { frontmatter } = Astro.props;
+console.log(frontmatter);
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta property='og:title' content={frontmatter.title} />
-    <meta property='og:type' content='article' />
+    <meta charset="UTF-8" />
     <meta
-      property='og:image'
+      property="og:title"
+      content={`${frontmatter.title} - Internet Drew`}
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:image"
       content={`https://internetdrew.com/${frontmatter.image.url}`}
     />
     <meta
-      property='og:image:secure_url'
+      property="og:image:secure_url"
       content={`https://internetdrew.com/${frontmatter.image.url}`}
     />
     <meta
-      property='og:url'
+      property="og:url"
       content={`https://internetdrew.com/${frontmatter.url}`}
     />
-    <meta property='og:image:type' content='image/jpeg' />
-    <meta name='twitter:card' content='summary_large_image' />
-    <meta property='og:site_name' content='Internet Drew' />
-    <meta name='twitter:image:alt' content={frontmatter.title} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:site_name" content="Internet Drew" />
+    <meta name="twitter:image:alt" content={frontmatter.title} />
     <meta
-      name='twitter:image'
+      name="twitter:image"
       content={`https://internetdrew.com/${frontmatter.image.url}`}
     />
     <meta
-      name='description'
-      property='og:description'
+      name="description"
+      property="og:description"
       content={frontmatter.description}
     />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
-    <meta name='author' content={frontmatter.author} />
-    <meta name='article:published_time' content={frontmatter.pubDate} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content={frontmatter.author} />
+    <meta name="article:published_time" content={frontmatter.pubDate} />
 
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <link rel='sitemap' href='/sitemap-index.xml' />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <title>{frontmatter.title}</title>
+    <title>{`${frontmatter.title} - Internet Drew`}</title>
   </head>
-  <body class='bg-neutral-900 text-neutral-300 pb-10'>
+  <body class="bg-neutral-900 text-neutral-300 pb-10">
     <Navbar />
-    <main class='max-w-screen-sm mx-auto px-4 sm:px-0'>
-      <section class='my-10'>
-        <header
-          class='text-center border border-neutral-800 p-4 text-neutral-900 rounded-lg'
-        >
-          <h1 class='text-2xl font-semibold text-neutral-300'>
-            {frontmatter.title}
-          </h1>
-          <h2 class='max-w-lg mx-auto mt-4 text-neutral-500 sm:text-lg'>
-            {frontmatter.description}
-          </h2>
-        </header>
-        <div
-          class='mt-10 prose prose-invert prose-headings:text-neutral-300 prose-a:text-pink-600'
-        >
-          <slot />
-        </div>
-      </section>
+    <main
+      class="max-w-screen-md mx-auto px-4 divide-y divide-neutral-800 sm:px-0"
+    >
+      <header class="mt-14 rounded-lg">
+        <h1 class="text-2xl font-semibold text-neutral-200">
+          {frontmatter.title}
+        </h1>
+        <p class="text-neutral-500 sm:text-lg">
+          {frontmatter.description}
+        </p>
+        <p class="mt-4 text-sm text-neutral-500">
+          Published on{" "}
+          {
+            new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              timeZone: "UTC",
+            })
+          }
+        </p>
+      </header>
+
+      <div
+        class="mt-10 pt-10 prose max-w-none prose-invert prose-headings:text-neutral-300 prose-a:text-pink-600"
+      >
+        <slot />
+      </div>
     </main>
   </body>
 </html>
@@ -76,6 +90,6 @@ const { frontmatter } = Astro.props;
   }
 
   body {
-    font-family: 'Geist Mono Variable', monospace;
+    font-family: "Geist Mono Variable", monospace;
   }
 </style>
