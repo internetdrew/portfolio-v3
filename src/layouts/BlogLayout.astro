@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar.astro";
 // Supports weights 100-900
 import "@fontsource-variable/geist-mono";
 const { frontmatter } = Astro.props;
-console.log(frontmatter);
 ---
 
 <!doctype html>
@@ -17,11 +16,11 @@ console.log(frontmatter);
     <meta property="og:type" content="article" />
     <meta
       property="og:image"
-      content={`https://internetdrew.com/${frontmatter.image.url}`}
+      content={`https://internetdrew.com/${frontmatter.ogImageSrc}`}
     />
     <meta
       property="og:image:secure_url"
-      content={`https://internetdrew.com/${frontmatter.image.url}`}
+      content={`https://internetdrew.com/${frontmatter.ogImageSrc}`}
     />
     <meta
       property="og:url"
@@ -33,7 +32,7 @@ console.log(frontmatter);
     <meta name="twitter:image:alt" content={frontmatter.title} />
     <meta
       name="twitter:image"
-      content={`https://internetdrew.com/${frontmatter.image.url}`}
+      content={`https://internetdrew.com/${frontmatter.ogImageSrc}`}
     />
     <meta
       name="description"
@@ -59,9 +58,6 @@ console.log(frontmatter);
         <h1 class="text-2xl font-semibold text-neutral-200">
           {frontmatter.title}
         </h1>
-        <p class="text-neutral-500 sm:text-lg">
-          {frontmatter.description}
-        </p>
         <p class="mt-4 text-sm text-neutral-500">
           Published on{" "}
           {
@@ -73,6 +69,19 @@ console.log(frontmatter);
             })
           }
         </p>
+        {
+          frontmatter.updatedDate && (
+            <p class="text-sm text-neutral-500">
+              Last updated on{" "}
+              {new Date(frontmatter.updatedDate).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                timeZone: "UTC",
+              })}
+            </p>
+          )
+        }
       </header>
 
       <div
