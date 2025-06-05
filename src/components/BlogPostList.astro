@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { slugify } from "../utils";
 const blogPosts = await getCollection("blog");
 ---
 
@@ -12,7 +13,7 @@ const blogPosts = await getCollection("blog");
           <article class="relative group transition-all duration-300">
             <div class="flex flex-col items-start justify-between gap-2 sm:flex-row">
               <h3 class="font-semibold max-w-lg group-hover:text-pink-600">
-                <a href={`/blog/${post.data.slug}`}>
+                <a href={`/blog/${slugify(post.data.title)}`}>
                   <span class="absolute inset-0" />
                   {post.data.title}
                 </a>
