@@ -12,6 +12,7 @@ export default defineConfig({
     remarkPlugins: [remarkToc],
     shikiConfig: {
       wrap: true,
+      langs: ["tsx", "typescript", "javascript", "json", "css", "html"],
     },
   },
 });
