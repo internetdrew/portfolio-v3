@@ -10,25 +10,26 @@ export interface Project {
 const projects: Project[] = [
   {
     title: "Where's the Garlic?!",
-    description: "The home kitchen management app for organized foodies.",
+    description:
+      "A home kitchen management app for people who live and cook together.",
     siteUrl: "https://www.wheresthegarlic.com/",
   },
   {
     title: "Vite-Express-Vercel Starter Kit",
     description:
-      "Easily deploy a full-stack app with a Vite-based React frontend and an Express-based backend on Vercel.",
+      "Quickly deploy a Vite-based React frontend and an Express backend on Vercel.",
     siteUrl: "https://github.com/internetdrew/vite-express-vercel",
   },
   {
-    title: "React, Express, and tRPC on Vercel Starter Kit",
+    title: "React, Express, tRPC, Vercel Starter Kit",
     description:
-      "Starter template to deploy React, Express, and tRPC on Vercel.",
+      "Quickly deploy a Vite-based React frontend, Express backend, and tRPC on Vercel.",
     siteUrl: "https://github.com/internetdrew/vite-react-express-trpc-vercel",
   },
   {
     title: "The HYBRD Launch Video",
     description:
-      "The launch video for YC-backed fitness startup, HYBRD, an app for hybrid athletes.",
+      "I filmed and edited the launch video for YC-backed fitness startup, HYBRD, an app for hybrid athletes.",
     siteUrl:
       "https://www.linkedin.com/posts/hybrd-do-hard-things_today-is-the-day-hybrd-is-officially-live-activity-7320812769795072000-fvRV",
   },
@@ -36,7 +37,7 @@ const projects: Project[] = [
 ---
 
 <section class="my-14">
-  <h2 class="font-semibold">Things</h2>
+  <h2 class="font-semibold">Things I've Made</h2>
   <ul class="mt-2 grid gap-4 sm:grid-cols-2">
     {projects.map((project) => <ProjectCard project={project} />)}
   </ul>

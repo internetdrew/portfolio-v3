@@ -1,23 +1,24 @@
 ---
 import { getCollection } from "astro:content";
+import { slugify } from "../utils";
 const blogPosts = await getCollection("blog");
 ---
 
 {
   blogPosts.length > 0 && (
     <section class="my-14">
-      <h2 class="font-semibold">Thoughts</h2>
+      <h2 class="font-semibold">Thoughts I've Shared</h2>
       <div class="mt-6 flex flex-col divide-y divide-neutral-800">
         {blogPosts.map((post) => (
           <article class="relative group transition-all duration-300">
             <div class="flex flex-col items-start justify-between gap-2 sm:flex-row">
-              <h3 class="font-semibold max-w-lg">
-                <a href={`/blog/${post.data.slug}`}>
+              <h3 class="font-semibold max-w-lg group-hover:text-pink-600">
+                <a href={`/blog/${slugify(post.data.title)}`}>
                   <span class="absolute inset-0" />
                   {post.data.title}
                 </a>
               </h3>
-              <time class="text-xs text-neutral-500 group-hover:text-pink-600">
+              <time class="text-xs text-neutral-500">
                 {new Date(post.data.pubDate).toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",

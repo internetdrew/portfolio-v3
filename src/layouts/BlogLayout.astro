@@ -1,8 +1,8 @@
 ---
 import Navbar from "../components/Navbar.astro";
-// Supports weights 100-900
 import "@fontsource-variable/geist-mono";
 const { frontmatter } = Astro.props;
+const url = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -19,11 +19,8 @@ const { frontmatter } = Astro.props;
       property="og:image:secure_url"
       content={`https://internetdrew.com/${frontmatter.ogImageSrc}`}
     />
-    <meta
-      property="og:url"
-      content={`https://internetdrew.com/${frontmatter.url}`}
-    />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:url" content={`https://internetdrew.com${url}`} />
+    <meta property="og:image:type" content="image/png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:site_name" content="Internet Drew" />
     <meta name="twitter:image:alt" content={frontmatter.title} />
@@ -96,6 +93,6 @@ const { frontmatter } = Astro.props;
   }
 
   body {
-    font-family: "Geist Mono Variable", monospace;
+    font-family: "Geist Variable", sans-serif;
   }
 </style>

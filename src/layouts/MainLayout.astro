@@ -1,7 +1,8 @@
 ---
-import Navbar from '../components/Navbar.astro';
+import Navbar from "../components/Navbar.astro";
 // Supports weights 100-900
-import '@fontsource-variable/geist-mono';
+import "@fontsource-variable/geist-mono";
+import "@fontsource-variable/geist";
 
 interface Props {
   title: string;
@@ -13,47 +14,47 @@ const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
+    <meta charset="UTF-8" />
     <title>{title}</title>
-    <meta name='description' content={description} />
+    <meta name="description" content={description} />
 
     <!-- Open Graph -->
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta
-      property='og:image'
-      content='https://internetdrew.com/open-graph.webp'
+      property="og:image"
+      content="https://internetdrew.com/open-graph.webp"
     />
     <meta
-      property='og:image:secure_url'
-      content='https://internetdrew.com/open-graph.webp'
+      property="og:image:secure_url"
+      content="https://internetdrew.com/open-graph.webp"
     />
     <meta
-      property='og:url'
+      property="og:url"
       content={`https://internetdrew.com${currentPath}`}
     />
-    <meta property='og:site_name' content={title} />
+    <meta property="og:site_name" content={title} />
 
     <!-- Twitter -->
-    <meta property='twitter:title' content={title} />
-    <meta property='twitter:description' content={description} />
-    <meta name='twitter:card' content='summary_large_image' />
-    <meta property='twitter:site' content='@_internetdrew' />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@_internetdrew" />
     <meta
-      name='twitter:image'
-      content='https://internetdrew.com/open-graph.webp'
+      name="twitter:image"
+      content="https://internetdrew.com/open-graph.webp"
     />
 
-    <meta name='viewport' content='width=device-width' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <link rel='sitemap' href='/sitemap-index.xml' />
-    <meta name='generator' content={Astro.generator} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
   </head>
-  <body class='bg-neutral-900 text-neutral-300 pb-10'>
+  <body class="bg-neutral-900 text-neutral-300 pb-10">
     <Navbar />
-    <main class='max-w-screen-md mx-auto px-4 sm:px-0'>
+    <main class="max-w-screen-md mx-auto px-4 sm:px-0">
       <slot />
     </main>
   </body>
@@ -61,6 +62,6 @@ const currentPath = Astro.url.pathname;
 
 <style>
   body {
-    font-family: 'Geist Mono Variable', monospace;
+    font-family: "Geist Variable", sans-serif;
   }
 </style>
