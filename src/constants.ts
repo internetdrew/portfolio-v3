@@ -1,2 +1,2 @@
 export const siteDescription =
-  "I build tools that make work less painful and run content that doesn't bore people to death.";
+  "I build tools that make managing the mess behind the work way easier.";
