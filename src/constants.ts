@@ -1,7 +1,5 @@
-export const siteDescription =
-  "I build software that brings structure and visibility to the chaos behind operations.";
-
-const otherOptions = [
+const options = [
+  "I build software that brings structure and visibility to the chaos behind operations.",
   "I make hard-to-manage systems feel intuitive.",
   "I translate tangled workflows into tools people actually enjoy using.",
   "I build software that brings structure and visibility to the mess behind the work.",
@@ -11,3 +9,5 @@ const otherOptions = [
   "I help creative agencies build systems that make their ops feel as clean as their final deliverables.",
   "I help content agencies streamline messy workflows—so their team can focus on creating, not chasing.",
 ];
+
+export const siteDescription = options[0];
