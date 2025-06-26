@@ -10,8 +10,7 @@ export interface Project {
 const projects: Project[] = [
   {
     title: "Where's the Garlic?!",
-    description:
-      "A home kitchen management app for people who live and cook together.",
+    description: "A home-friendly app for keeping your kitchen stocked.",
     siteUrl: "https://www.wheresthegarlic.com/",
   },
   {
@@ -37,7 +36,7 @@ const projects: Project[] = [
 ---
 
 <section class="my-14">
-  <h2 class="font-semibold">Things I've Made</h2>
+  <h2 class="font-semibold text-neutral-500">Things I've Made</h2>
   <ul class="mt-2 grid gap-4 sm:grid-cols-2">
     {projects.map((project) => <ProjectCard project={project} />)}
   </ul>

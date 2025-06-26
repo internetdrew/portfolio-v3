@@ -1,5 +1,5 @@
 const options = [
-  "I build software that brings structure and visibility to the chaos behind operations.",
+  "I build software that makes life simpler and help brands grow through content that actually connects.",
   "I make hard-to-manage systems feel intuitive.",
   "I translate tangled workflows into tools people actually enjoy using.",
   "I build software that brings structure and visibility to the mess behind the work.",

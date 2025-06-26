@@ -7,7 +7,7 @@ const blogPosts = await getCollection("blog");
 {
   blogPosts.length > 0 && (
     <section class="my-14">
-      <h2 class="font-semibold">Thoughts I've Shared</h2>
+      <h2 class="font-semibold text-neutral-500">Thoughts I've Shared</h2>
       <div class="mt-6 flex flex-col divide-y divide-neutral-800">
         {blogPosts.map((post) => (
           <article class="relative group transition-all duration-300">
