@@ -52,6 +52,9 @@ const url = Astro.url.pathname;
         <h1 class="text-2xl font-semibold text-neutral-200">
           {frontmatter.title}
         </h1>
+        <p class="mt-4 max-w-screen-sm text-neutral-500">
+          {frontmatter.description}
+        </p>
         {
           frontmatter.updatedDate ? (
             <p class="text-sm text-neutral-500">
