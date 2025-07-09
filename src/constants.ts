@@ -1,2 +1,2 @@
 export const siteDescription =
-  "I bridge engineering and marketing teams, building tools and content strategies that drive product adoption.";
+  "I create content that earns attention and build products that deliver value, bringing both marketing and engineering instincts to the table.";
