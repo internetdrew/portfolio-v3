@@ -1,2 +1,2 @@
 export const siteDescription =
-  "I create content that earns attention and build products that deliver value, bringing both marketing and engineering instincts to the table.";
+  "I tell stories that grab attention and build tools that actually help. Part marketer, part maker. Always focused on what people really need.";
