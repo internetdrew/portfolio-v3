@@ -6,6 +6,7 @@ import TwitterIcon from "../icons/twitter.astro";
 import EmailIcon from "../icons/email.astro";
 import Me from "../images/me.webp";
 import { siteDescription } from "../constants";
+import CustomTooltip from "./CustomTooltip";
 ---
 
 <header
@@ -21,42 +22,50 @@ import { siteDescription } from "../constants";
       <div
         class="relative flex items-center text-muted-foreground gap-1 group text-xs sm:text-sm"
       >
-        <a
-          href="https://www.linkedin.com/in/internetdrew/"
-          class="transition-colors duration-150 group-hover:text-pink-600"
-        >
-          <LinkedInIcon
-            class="fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600"
-          />
-        </a>
+        <CustomTooltip client:load content="LinkedIn">
+          <a
+            href="https://www.linkedin.com/in/internetdrew/"
+            class="transition-colors duration-150 group-hover:text-pink-600"
+          >
+            <LinkedInIcon
+              class="dark:fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600"
+            />
+          </a>
+        </CustomTooltip>
       </div>
       <div class="relative flex items-center text-muted-foreground gap-1 group">
-        <a
-          href="https://github.com/internetdrew"
-          class="transition-colors duration-150 group-hover:text-pink-600"
-        >
-          <GithubIcon
-            class="fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600"
-          />
-        </a>
+        <CustomTooltip client:load content="GitHub">
+          <a
+            href="https://github.com/internetdrew"
+            class="transition-colors duration-150 group-hover:text-pink-600"
+          >
+            <GithubIcon
+              class="dark:fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600"
+            />
+          </a>
+        </CustomTooltip>
       </div>
       <div class="relative flex items-center text-muted-foreground gap-1 group">
-        <a
-          href="https://x.com/_internetdrew"
-          class="transition-colors duration-150 group-hover:text-pink-600"
-        >
-          <TwitterIcon
-            class="fill-muted-foreground size-4 transition-colors duration-150 group-hover:fill-pink-600"
-          />
-        </a>
+        <CustomTooltip client:load content="X/Twitter">
+          <a
+            href="https://x.com/_internetdrew"
+            class="transition-colors duration-150 group-hover:text-pink-600"
+          >
+            <TwitterIcon
+              class="dark:fill-muted-foreground size-4 transition-colors duration-150 group-hover:fill-pink-600"
+            />
+          </a>
+        </CustomTooltip>
       </div>
       <div
         id="email-icon"
-        class="relative flex items-center text-muted-foreground gap-1 group"
+        class="relative flex items-center dark:text-muted-foreground gap-1 group"
       >
-        <EmailIcon
-          class="cursor-pointer size-5 transition-colors duration-150 group-hover:text-pink-600"
-        />
+        <CustomTooltip client:load content="Email">
+          <EmailIcon
+            class="cursor-pointer size-5 transition-colors duration-150 group-hover:text-pink-600"
+          />
+        </CustomTooltip>
       </div>
     </div>
   </div>
@@ -72,9 +81,8 @@ import { siteDescription } from "../constants";
 
 <script is:inline>
   const copyEmailToClipboard = async () => {
-    console.log("Copying email to clipboard");
     try {
-      await navigator.clipboard.writeText("andrew.rowley@example.com");
+      await navigator.clipboard.writeText("andrew@internetdrew.com");
     } catch (err) {
       console.error("Failed to copy email: ", err);
     }
