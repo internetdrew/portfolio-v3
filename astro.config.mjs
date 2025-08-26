@@ -1,15 +1,22 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import remarkToc from "remark-toc";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.internetdrew.com/",
-  integrations: [tailwind(), react(), sitemap()],
+  integrations: [react(), sitemap()],
+  vite: { plugins: [tailwindcss()] },
   markdown: {
-    remarkPlugins: [remarkToc],
+    remarkPlugins: [[remarkToc, { tight: true, maxDepth: 3 }]],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: "append" }],
+    ],
     shikiConfig: {
       wrap: true,
       langs: ["tsx", "typescript", "javascript", "json", "css", "html"],

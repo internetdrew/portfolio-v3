@@ -1,6 +1,8 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import "@fontsource-variable/geist-mono";
+import '../styles/global.css';
+
 const { frontmatter } = Astro.props;
 const url = Astro.url.pathname;
 ---
@@ -46,10 +48,10 @@ const url = Astro.url.pathname;
   <body class="bg-neutral-900 text-neutral-300 pb-10">
     <Navbar />
     <main
-      class="max-w-screen-md mx-auto px-4 divide-y divide-neutral-800 sm:px-0"
+      class="max-w-screen-md mx-auto px-4 divide-y divide-neutral-800 md:px-0"
     >
-      <header class="mt-14 rounded-lg">
-        <h1 class="text-2xl font-semibold text-neutral-200">
+      <header class="mt-14 rounded-lg ring-1 ring-neutral-800 p-4 sm:p-8">
+        <h1 class="text-lg sm:text-2xl font-semibold text-neutral-200">
           {frontmatter.title}
         </h1>
         <p class="mt-4 max-w-screen-sm text-neutral-500">
