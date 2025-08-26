@@ -1,13 +1,36 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import "@fontsource-variable/geist-mono";
-import '../styles/global.css';
+import "../styles/global.css";
 
 const { frontmatter } = Astro.props;
 const url = Astro.url.pathname;
 ---
 
-<!doctype html>
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+</script>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -45,21 +68,21 @@ const url = Astro.url.pathname;
 
     <title>{`${frontmatter.title} - Internet Drew`}</title>
   </head>
-  <body class="bg-neutral-900 text-neutral-300 pb-10">
+  <body class="pb-10">
     <Navbar />
-    <main
-      class="max-w-screen-md mx-auto px-4 divide-y divide-neutral-800 md:px-0"
-    >
-      <header class="mt-14 rounded-lg ring-1 ring-neutral-800 p-4 sm:p-8">
-        <h1 class="text-lg sm:text-2xl font-semibold text-neutral-200">
+    <main class="max-w-screen-md mx-auto px-4 md:px-0">
+      <header
+        class="mt-14 rounded-lg ring-1 ring-muted-foreground p-4 sm:p-8 dark:ring-muted"
+      >
+        <h1 class="text-lg sm:text-2xl font-semibold">
           {frontmatter.title}
         </h1>
-        <p class="mt-4 max-w-screen-sm text-neutral-500">
+        <p class="mt-4 max-w-screen-sm text-muted-foreground">
           {frontmatter.description}
         </p>
         {
           frontmatter.updatedDate ? (
-            <p class="text-sm text-neutral-500">
+            <p class="text-sm text-muted-foreground">
               Last updated on{" "}
               {new Date(frontmatter.updatedDate).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -69,7 +92,7 @@ const url = Astro.url.pathname;
               })}
             </p>
           ) : (
-            <p class="mt-4 text-sm text-neutral-500">
+            <p class="mt-4 text-sm text-muted-foreground">
               Published on{" "}
               {new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -83,7 +106,7 @@ const url = Astro.url.pathname;
       </header>
 
       <div
-        class="my-10 pt-10 prose max-w-none prose-h2:text-xl prose-h3:text-lg prose-invert prose-headings:text-neutral-500 prose-a:text-pink-600"
+        class="my-10 pt-10 prose max-w-none prose-h2:text-xl prose-h3:text-lg prose-headings:text-muted-foreground prose-a:text-pink-600 dark:prose-invert"
       >
         <slot />
       </div>

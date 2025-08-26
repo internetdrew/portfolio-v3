@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar.astro";
 // Supports weights 100-900
 import "@fontsource-variable/geist-mono";
 import "@fontsource-variable/geist";
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -14,7 +14,30 @@ const { title, description } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
-<!doctype html>
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+</script>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -53,9 +76,9 @@ const currentPath = Astro.url.pathname;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body class="bg-neutral-900 text-neutral-300 pb-10">
+  <body class="pb-10">
     <Navbar />
-    <main class="max-w-screen-md mx-auto px-4 sm:px-0">
+    <main class="max-w-screen-md mx-auto px-4 md:px-0">
       <slot />
     </main>
   </body>
