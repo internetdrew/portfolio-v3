@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import LinkedInIcon from "../icons/linkedin.astro";
 import GithubIcon from "../icons/github.astro";
 import TwitterIcon from "../icons/twitter.astro";
+import EmailIcon from "../icons/email.astro";
 import Me from "../images/me.webp";
 import { siteDescription } from "../constants";
 ---
@@ -12,51 +13,55 @@ import { siteDescription } from "../constants";
 >
   <div class="flex-1 max-w-md">
     <h1 class="font-semibold">Andrew Rowley</h1>
-    <p class="font-medium text-neutral-500">
-      Content Strategist. Software Engineer.
+    <p class="font-medium text-muted-foreground">
+      Software Engineer. Creative Strategist.
     </p>
     <p class="my-4">{siteDescription}</p>
     <div class="flex gap-3 text-sm">
-      <div class="relative flex items-center text-neutral-500 gap-1 group">
-        <LinkedInIcon
-          class="fill-neutral-500 size-4 transition-colors duration-150 group-hover:fill-pink-600"
-        />
+      <div
+        class="relative flex items-center text-muted-foreground gap-1 group text-xs sm:text-sm"
+      >
         <a
           href="https://www.linkedin.com/in/internetdrew/"
           class="transition-colors duration-150 group-hover:text-pink-600"
         >
-          <span class="absolute inset-0"></span>
-          LinkedIn
+          <LinkedInIcon
+            class="fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600"
+          />
         </a>
       </div>
-      <div class="relative flex items-center text-neutral-500 gap-1 group">
-        <GithubIcon
-          class="fill-neutral-500 size-4 transition-colors duration-150 group-hover:fill-pink-600"
-        />
+      <div class="relative flex items-center text-muted-foreground gap-1 group">
         <a
           href="https://github.com/internetdrew"
           class="transition-colors duration-150 group-hover:text-pink-600"
         >
-          <span class="absolute inset-0"></span>
-          GitHub
+          <GithubIcon
+            class="fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600"
+          />
         </a>
       </div>
-      <div class="relative flex items-center text-neutral-500 gap-1 group">
-        <TwitterIcon
-          class="fill-neutral-500 size-4 transition-colors duration-150 group-hover:fill-pink-600"
-        />
+      <div class="relative flex items-center text-muted-foreground gap-1 group">
         <a
           href="https://x.com/_internetdrew"
           class="transition-colors duration-150 group-hover:text-pink-600"
         >
-          <span class="absolute inset-0"></span>
-          Twitter
+          <TwitterIcon
+            class="fill-muted-foreground size-4 transition-colors duration-150 group-hover:fill-pink-600"
+          />
         </a>
+      </div>
+      <div
+        id="email-icon"
+        class="relative flex items-center text-muted-foreground gap-1 group"
+      >
+        <EmailIcon
+          class="cursor-pointer size-5 transition-colors duration-150 group-hover:text-pink-600"
+        />
       </div>
     </div>
   </div>
   <div
-    class="rounded-full w-16 h-16 self-start overflow-hidden bg-gradient-to-b from-pink-600 to bg-pink-600 to sm:w-36 sm:h-36 sm:self-center"
+    class="rounded-full w-16 h-16 self-start overflow-hidden bg-pink-600 to sm:w-36 sm:h-36 sm:self-center"
   >
     <Image
       src={Me}
@@ -64,3 +69,19 @@ import { siteDescription } from "../constants";
     />
   </div>
 </header>
+
+<script is:inline>
+  const copyEmailToClipboard = async () => {
+    console.log("Copying email to clipboard");
+    try {
+      await navigator.clipboard.writeText("andrew.rowley@example.com");
+    } catch (err) {
+      console.error("Failed to copy email: ", err);
+    }
+  };
+
+  const emailIcon = document.getElementById("email-icon");
+  if (emailIcon) {
+    emailIcon.addEventListener("click", copyEmailToClipboard);
+  }
+</script>

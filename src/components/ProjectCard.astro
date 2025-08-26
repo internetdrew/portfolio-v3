@@ -1,6 +1,14 @@
 ---
 import { type Project } from "./Projects.astro";
 
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 interface Props {
   project: Project;
 }
@@ -8,19 +16,14 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<li class="flex flex-col list-none border p-4 border-neutral-800 rounded-md">
-  <h3 class="font-semibold text-neutral-500">{project.title}</h3>
-  <p class="text-sm mt-1 mb-8">{project.description}</p>
-  <div class="mt-auto transition duration-300">
-    <div class="flex gap-2 items-center justify-end">
-      <a
-        href={project.siteUrl}
-        target="_blank"
-        rel="noreferrer"
-        class="py-2 text-sm px-4 rounded-md border border-neutral-800 hover:bg-neutral-800"
-      >
-        Check it out
+<Card className="bg-transparent">
+  <CardHeader>
+    <CardTitle>{project.title}</CardTitle>
+    <CardDescription>{project.description}</CardDescription>
+  </CardHeader>
+  <CardFooter className="mt-auto relative">
+      <a href={project.siteUrl} target="_blank" rel="noreferrer" class="text-sm underline-offset-4 hover:text-pink-600 hover:underline">
+        View Project
       </a>
-    </div>
-  </div>
-</li>
+  </CardFooter>
+</Card>
