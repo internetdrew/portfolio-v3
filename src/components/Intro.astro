@@ -3,10 +3,10 @@ import { Image } from "astro:assets";
 import LinkedInIcon from "../icons/linkedin.astro";
 import GithubIcon from "../icons/github.astro";
 import TwitterIcon from "../icons/twitter.astro";
-import EmailIcon from "../icons/email.astro";
-import Me from "../images/me.webp";
 import { siteDescription } from "../constants";
 import CustomTooltip from "./CustomTooltip";
+import EmailSonner from "./EmailSonner";
+import Me from "../images/me.webp";
 ---
 
 <header
@@ -28,7 +28,7 @@ import CustomTooltip from "./CustomTooltip";
             class="transition-colors duration-150 group-hover:text-pink-600"
           >
             <LinkedInIcon
-              class="dark:fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600"
+              class="dark:fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600 dark:group-hover:fill-pink-600"
             />
           </a>
         </CustomTooltip>
@@ -40,7 +40,7 @@ import CustomTooltip from "./CustomTooltip";
             class="transition-colors duration-150 group-hover:text-pink-600"
           >
             <GithubIcon
-              class="dark:fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600"
+              class="dark:fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600 dark:group-hover:fill-pink-600"
             />
           </a>
         </CustomTooltip>
@@ -52,25 +52,16 @@ import CustomTooltip from "./CustomTooltip";
             class="transition-colors duration-150 group-hover:text-pink-600"
           >
             <TwitterIcon
-              class="dark:fill-muted-foreground size-4 transition-colors duration-150 group-hover:fill-pink-600"
+              class="dark:fill-muted-foreground size-4 transition-colors duration-150 group-hover:fill-pink-600 dark:group-hover:fill-pink-600"
             />
           </a>
         </CustomTooltip>
       </div>
-      <div
-        id="email-icon"
-        class="relative flex items-center dark:text-muted-foreground gap-1 group"
-      >
-        <CustomTooltip client:load content="Email">
-          <EmailIcon
-            class="cursor-pointer size-5 transition-colors duration-150 group-hover:text-pink-600"
-          />
-        </CustomTooltip>
-      </div>
+      <EmailSonner client:load />
     </div>
   </div>
   <div
-    class="rounded-full w-16 h-16 self-start overflow-hidden bg-pink-600 to sm:w-36 sm:h-36 sm:self-center"
+    class="select-none rounded-full w-16 h-16 self-start overflow-hidden bg-pink-600 to sm:w-36 sm:h-36 sm:self-center"
   >
     <Image
       src={Me}
@@ -78,18 +69,3 @@ import CustomTooltip from "./CustomTooltip";
     />
   </div>
 </header>
-
-<script is:inline>
-  const copyEmailToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText("andrew@internetdrew.com");
-    } catch (err) {
-      console.error("Failed to copy email: ", err);
-    }
-  };
-
-  const emailIcon = document.getElementById("email-icon");
-  if (emailIcon) {
-    emailIcon.addEventListener("click", copyEmailToClipboard);
-  }
-</script>

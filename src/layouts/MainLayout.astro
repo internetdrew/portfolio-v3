@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.astro";
 import "@fontsource-variable/geist-mono";
 import "@fontsource-variable/geist";
 import "../styles/global.css";
+import ToasterWrapper from "@/components/ToasterWrapper";
 
 interface Props {
   title: string;
@@ -81,6 +82,7 @@ const currentPath = Astro.url.pathname;
     <main class="max-w-screen-md mx-auto px-4 md:px-0">
       <slot />
     </main>
+    <ToasterWrapper client:load />
   </body>
 </html>
 
