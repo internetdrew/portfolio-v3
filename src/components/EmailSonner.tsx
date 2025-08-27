@@ -9,10 +9,12 @@ const EmailSonner = () => {
   const copyEmailToClipboard = async () => {
     try {
       await navigator.clipboard.writeText("andrew@internetdrew.com");
-      toast.success("Email copied to clipboard!");
+      toast.success("Email copied to clipboard!", { position: "top-right" });
     } catch (err) {
       console.error("Failed to copy email: ", err);
-      toast.error("Failed to copy email. Please try again.");
+      toast.error("Failed to copy email. Please try again.", {
+        position: "top-right",
+      });
     }
   };
 
