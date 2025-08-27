@@ -5,6 +5,7 @@ export interface Project {
   title: string;
   description: string;
   siteUrl: string;
+  cta: string;
 }
 
 const projects: Project[] = [
@@ -13,32 +14,36 @@ const projects: Project[] = [
     description:
       "Kitchen inventory made simple. Know what you have, know what you need.",
     siteUrl: "https://www.wheresthegarlic.com/",
+    cta: "Visit the app",
   },
   {
     title: "Vite-Express-Vercel Starter Kit",
     description:
-      "A starter kit to help developers quickly deploy a Vite-based React frontend and an Express backend on Vercel.",
+      "A starter kit to quickly deploy a Vite-based React frontend and an Express backend on Vercel.",
     siteUrl: "https://github.com/internetdrew/vite-express-vercel",
+    cta: "View on GitHub",
   },
   {
     title: "React, Express, tRPC, Vercel Starter Kit",
     description:
       "Quickly deploy a Vite-based React frontend, Express backend, and tRPC on Vercel.",
     siteUrl: "https://github.com/internetdrew/vite-react-express-trpc-vercel",
+    cta: "View on GitHub",
   },
   {
     title: "The HYBRD Launch Video",
     description:
-      "I filmed and edited the launch video for YC-backed fitness startup, HYBRD, an app for hybrid athletes.",
+      "I filmed and edited the launch video for YC-backed fitness startup, HYBRD.",
     siteUrl:
       "https://www.linkedin.com/posts/hybrd-do-hard-things_today-is-the-day-hybrd-is-officially-live-activity-7320812769795072000-fvRV",
+    cta: "Watch on LinkedIn",
   },
 ];
 ---
 
-<section class="my-14">
-  <h2 class="font-semibold text-neutral-500">Things I've Made</h2>
-  <ul class="mt-2 grid gap-4 sm:grid-cols-2">
+<section class="mt-14 mb-6">
+  <h2 class="font-semibold text-muted-foreground">Things I've Made</h2>
+  <ul class="mt-4 grid gap-4 sm:grid-cols-2">
     {projects.map((project) => <ProjectCard project={project} />)}
   </ul>
 </section>
