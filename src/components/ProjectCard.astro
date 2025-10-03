@@ -16,17 +16,19 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<Card className="bg-transparent">
+<Card className="bg-transparent border-accent-foreground">
   <CardHeader>
-    <CardTitle>{project.title}</CardTitle>
-    <CardDescription>{project.description}</CardDescription>
+    <CardTitle className="text-neutral-200">{project.title}</CardTitle>
+    <CardDescription className="text-neutral-400"
+      >{project.description}</CardDescription
+    >
   </CardHeader>
   <CardFooter className="mt-auto relative">
     <a
       href={project.siteUrl}
       target="_blank"
       rel="noreferrer"
-      class="text-sm underline-offset-4 hover:text-pink-600 hover:underline"
+      class="text-sm underline-offset-4 text-neutral-200 ml-auto hover:text-pink-600 hover:underline"
     >
       {project.cta}
     </a>

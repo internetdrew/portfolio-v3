@@ -28,8 +28,14 @@ const projects: Project[] = [
 ---
 
 <section class="mt-14 mb-6">
-  <h2 class="font-semibold text-muted-foreground">Things I've Made</h2>
+  <h2 class="font-semibold text-neutral-500">Projects</h2>
   <ul class="mt-4 grid gap-4 sm:grid-cols-2">
-    {projects.map((project) => <ProjectCard project={project} />)}
+    {
+      projects.map((project) => (
+        <li>
+          <ProjectCard project={project} />
+        </li>
+      ))
+    }
   </ul>
 </section>
