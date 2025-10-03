@@ -48,12 +48,12 @@ const url = Astro.url.pathname;
     <Navbar />
     <main class="max-w-screen-md mx-auto px-3 md:px-4">
       <header
-        class="mt-14 rounded-lg ring-1 ring-accent-foreground text-neutral-200 p-4 sm:p-8"
+        class="mt-14 rounded-lg text-center ring-1 ring-accent-foreground text-neutral-200 p-4 sm:p-8"
       >
-        <h1 class="text-lg sm:text-xl font-semibold">
+        <h1 class="text-lg sm:text-2xl md:text-3xl font-semibold">
           {frontmatter.title}
         </h1>
-        <p class="mt-1 max-w-screen-sm text-muted-foreground">
+        <p class="mt-1 max-w-screen-sm text-neutral-400 mx-auto">
           {frontmatter.description}
         </p>
       </header>
