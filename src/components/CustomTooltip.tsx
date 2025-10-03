@@ -12,7 +12,7 @@ const CustomTooltip = ({
   content: React.ReactNode;
 }) => {
   return (
-    <Tooltip>
+    <Tooltip aria-label={`Tooltip: ${content}`}>
       <TooltipTrigger>
         {children}
         <TooltipContent>{content}</TooltipContent>
