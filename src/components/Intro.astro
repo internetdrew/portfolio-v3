@@ -4,7 +4,6 @@ import LinkedInIcon from "../icons/linkedin.astro";
 import GithubIcon from "../icons/github.astro";
 import TwitterIcon from "../icons/twitter.astro";
 import { siteDescription } from "../constants";
-import CustomTooltip from "./CustomTooltip";
 import EmailSonner from "./EmailSonner";
 import Me from "../images/me.webp";
 ---
@@ -20,40 +19,34 @@ import Me from "../images/me.webp";
     <p class="my-4">{siteDescription}</p>
     <div class="flex gap-3 text-sm fill-neutral-400">
       <div class="relative flex items-center gap-1 group text-xs sm:text-sm">
-        <CustomTooltip client:load content="LinkedIn">
-          <a
-            href="https://www.linkedin.com/in/internetdrew/"
-            class="transition-colors duration-150 group-hover:text-pink-600"
-          >
-            <LinkedInIcon
-              class="size-5 transition-colors duration-150 group-hover:fill-pink-600"
-            />
-          </a>
-        </CustomTooltip>
+        <a
+          href="https://www.linkedin.com/in/internetdrew/"
+          class="transition-colors duration-150 group-hover:text-pink-600"
+        >
+          <LinkedInIcon
+            class="size-5 transition-colors duration-150 group-hover:fill-pink-600"
+          />
+        </a>
       </div>
       <div class="relative flex items-center gap-1 group">
-        <CustomTooltip client:load content="GitHub">
-          <a
-            href="https://github.com/internetdrew"
-            class="transition-colors duration-150 group-hover:text-pink-600"
-          >
-            <GithubIcon
-              class="dark:fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600 dark:group-hover:fill-pink-600"
-            />
-          </a>
-        </CustomTooltip>
+        <a
+          href="https://github.com/internetdrew"
+          class="transition-colors duration-150 group-hover:text-pink-600"
+        >
+          <GithubIcon
+            class="dark:fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600 dark:group-hover:fill-pink-600"
+          />
+        </a>
       </div>
       <div class="relative flex items-center text-muted-foreground gap-1 group">
-        <CustomTooltip client:load content="X/Twitter">
-          <a
-            href="https://x.com/_internetdrew"
-            class="transition-colors duration-150 group-hover:text-pink-600"
-          >
-            <TwitterIcon
-              class="dark:fill-muted-foreground size-4 transition-colors duration-150 group-hover:fill-pink-600 dark:group-hover:fill-pink-600"
-            />
-          </a>
-        </CustomTooltip>
+        <a
+          href="https://x.com/_internetdrew"
+          class="transition-colors duration-150 group-hover:text-pink-600"
+        >
+          <TwitterIcon
+            class="dark:fill-muted-foreground size-4 transition-colors duration-150 group-hover:fill-pink-600 dark:group-hover:fill-pink-600"
+          />
+        </a>
       </div>
       <EmailSonner client:load />
     </div>
