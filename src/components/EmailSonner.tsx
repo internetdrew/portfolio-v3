@@ -21,7 +21,7 @@ const EmailSonner = () => {
   return (
     <div
       onClick={copyEmailToClipboard}
-      className="relative flex items-center dark:text-muted-foreground gap-1 group"
+      className="relative flex items-center text-muted-foreground gap-1 group"
     >
       <Tooltip>
         <TooltipTrigger>

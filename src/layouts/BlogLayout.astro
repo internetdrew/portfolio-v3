@@ -44,45 +44,22 @@ const url = Astro.url.pathname;
 
     <title>{`${frontmatter.title} - Internet Drew`}</title>
   </head>
-  <body class="pb-10">
+  <body class="pb-10 bg-neutral-950 text-neutral-200">
     <Navbar />
-    <main class="max-w-screen-md mx-auto px-4 md:px-0">
+    <main class="max-w-screen-md mx-auto px-3 md:px-4">
       <header
-        class="mt-14 rounded-lg ring-1 ring-muted-foreground p-4 sm:p-8 dark:ring-muted"
+        class="mt-14 rounded-lg ring-1 ring-accent-foreground text-neutral-200 p-4 sm:p-8"
       >
-        <h1 class="text-lg sm:text-2xl font-semibold">
+        <h1 class="text-lg sm:text-xl font-semibold">
           {frontmatter.title}
         </h1>
-        <p class="mt-4 max-w-screen-sm text-muted-foreground">
+        <p class="mt-1 max-w-screen-sm text-muted-foreground">
           {frontmatter.description}
         </p>
-        {
-          frontmatter.updatedDate ? (
-            <p class="text-sm text-muted-foreground">
-              Last updated on{" "}
-              {new Date(frontmatter.updatedDate).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                timeZone: "UTC",
-              })}
-            </p>
-          ) : (
-            <p class="mt-4 text-sm text-muted-foreground">
-              Published on{" "}
-              {new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                timeZone: "UTC",
-              })}
-            </p>
-          )
-        }
       </header>
 
       <div
-        class="my-10 prose max-w-none prose-h2:text-xl prose-h3:text-lg prose-headings:text-muted-foreground prose-a:text-pink-600 dark:prose-invert"
+        class="my-10 prose prose-invert prose-p:text-neutral-200 max-w-none prose-h2:text-xl prose-h3:text-lg prose-headings:text-muted-foreground prose-a:text-pink-600"
       >
         <slot />
       </div>

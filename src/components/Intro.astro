@@ -10,30 +10,28 @@ import Me from "../images/me.webp";
 ---
 
 <header
-  class="flex flex-col-reverse justify-between items-center mt-10 mx-auto sm:gap-8 sm:flex-row"
+  class="flex flex-col-reverse justify-between mt-10 mx-auto sm:gap-8 sm:flex-row sm:items-center"
 >
   <div class="flex-1 max-w-md">
     <h1 class="font-semibold">Andrew Rowley</h1>
-    <p class="font-medium text-muted-foreground">
-      Software Engineer. Brand Storyteller.
+    <p class="font-medium text-neutral-400">
+      Software Engineer & Technical Storyteller
     </p>
     <p class="my-4">{siteDescription}</p>
-    <div class="flex gap-3 text-sm">
-      <div
-        class="relative flex items-center text-muted-foreground gap-1 group text-xs sm:text-sm"
-      >
+    <div class="flex gap-3 text-sm fill-neutral-400">
+      <div class="relative flex items-center gap-1 group text-xs sm:text-sm">
         <CustomTooltip client:load content="LinkedIn">
           <a
             href="https://www.linkedin.com/in/internetdrew/"
             class="transition-colors duration-150 group-hover:text-pink-600"
           >
             <LinkedInIcon
-              class="dark:fill-muted-foreground size-5 transition-colors duration-150 group-hover:fill-pink-600 dark:group-hover:fill-pink-600"
+              class="size-5 transition-colors duration-150 group-hover:fill-pink-600"
             />
           </a>
         </CustomTooltip>
       </div>
-      <div class="relative flex items-center text-muted-foreground gap-1 group">
+      <div class="relative flex items-center gap-1 group">
         <CustomTooltip client:load content="GitHub">
           <a
             href="https://github.com/internetdrew"
