@@ -1,2 +1,2 @@
 export const siteDescription =
-  "I build tools and craft stories that make products clear, useful, and memorable.";
+  "I build web apps and make technical products easier to understand.";
