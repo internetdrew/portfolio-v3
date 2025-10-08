@@ -6,6 +6,7 @@ import TwitterIcon from "../icons/twitter.astro";
 import { siteDescription } from "../constants";
 import EmailSonner from "./EmailSonner";
 import Me from "../images/me.webp";
+import YoutubeIcon from "../icons/youtube.astro";
 ---
 
 <header
@@ -17,7 +18,7 @@ import Me from "../images/me.webp";
       Software Engineer. Technical Storyteller.
     </p>
     <p class="my-4">{siteDescription}</p>
-    <div class="flex gap-3 text-sm fill-neutral-400">
+    <div class="flex items-center gap-3 text-sm fill-neutral-400">
       <div class="relative flex items-center gap-1 group text-xs sm:text-sm">
         <a
           href="https://www.linkedin.com/in/internetdrew/"
@@ -48,6 +49,17 @@ import Me from "../images/me.webp";
         >
           <TwitterIcon
             class="size-4 transition-colors duration-150 group-hover:fill-pink-600"
+          />
+        </a>
+      </div>
+      <div class="relative flex items-center text-muted-foreground gap-1 group">
+        <a
+          href="https://www.youtube.com/@internetdrew"
+          aria-label="YouTube"
+          class="transition-colors duration-150 group-hover:text-pink-600"
+        >
+          <YoutubeIcon
+            class="size-5 transition-colors duration-150 group-hover:fill-pink-600"
           />
         </a>
       </div>
