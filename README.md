@@ -10,9 +10,8 @@ Hi. I'm Andrew. This is my portfolio. I built this to be fast, light, and perfor
 
 ## Screenshots
 
-![Screenshot 1](public/screenshot1.png)
-![Screenshot 2](public/screenshot2.png)
-![Screenshot 2](public/screenshot3.png)
+![Screenshot 1](public/screenshot-0.png)
+![Screenshot 2](public/screenshot-1.png)
 
 ## Installation
 
