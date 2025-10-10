@@ -12,8 +12,8 @@ const insights = defineCollection({
   }),
 });
 
-const guides = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/collections/guides" }),
+const tutorials = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/collections/tutorials" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -25,5 +25,5 @@ const guides = defineCollection({
 
 export const collections = {
   insights,
-  guides,
+  tutorials,
 };
