@@ -1,18 +1,15 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { toast } from "sonner";
 
 const EmailSonner = () => {
   const copyEmailToClipboard = async () => {
     try {
       await navigator.clipboard.writeText("andrew@internetdrew.com");
-      toast.success("Email copied to clipboard!", { position: "top-right" });
+      toast.success("Email address copied to clipboard!", {
+        position: "top-right",
+      });
     } catch (err) {
-      console.error("Failed to copy email: ", err);
-      toast.error("Failed to copy email. Please try again.", {
+      console.error("Failed to copy email address: ", err);
+      toast.error("Failed to copy email address. Please try again.", {
         position: "top-right",
       });
     }
