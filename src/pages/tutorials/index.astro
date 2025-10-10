@@ -2,6 +2,8 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 import { slugify } from "../../utils";
+import ContentListItem from "@/components/ContentListItem.astro";
+
 const tutorials = await getCollection("tutorials");
 ---
 
@@ -21,19 +23,14 @@ const tutorials = await getCollection("tutorials");
 
   {
     tutorials.length > 0 ? (
-      <ul class="flex flex-col divide-y divide-accent-foreground max-w-xl mx-auto mt-16">
+      <ul class="flex flex-col max-w-screen-sm mx-auto mt-16 gap-4">
         {tutorials.map((tutorial) => (
-          <li>
-            <a
-              href={`/tutorials/${slugify(tutorial.data.title)}`}
-              class="block p-6 border border-neutral-800 rounded-lg hover:border-pink-600 transition-colors"
-            >
-              <h2 class="font-medium text-lg">{tutorial.data.title}</h2>
-              <p class="mt-2 text-sm text-neutral-400">
-                {tutorial.data.description}
-              </p>
-            </a>
-          </li>
+          <ContentListItem
+            title={tutorial.data.title}
+            description={tutorial.data.description}
+            pubDate={tutorial.data.pubDate}
+            href={`/tutorials/${slugify(tutorial.data.title)}`}
+          />
         ))}
       </ul>
     ) : (

@@ -1,35 +1,24 @@
 ---
+import { slugify } from "@/utils";
 import { getCollection } from "astro:content";
-import { slugify } from "../utils";
+import ContentListItem from "./ContentListItem.astro";
 const insights = await getCollection("insights");
 ---
 
 {
   insights.length > 0 && (
-    <section id="insights" class="mt-14 mb-4">
+    <section id="insights" class="mt-14 mb-4 space-y-2">
       <h2 class="font-semibold text-neutral-400">Insights</h2>
       <ul class="flex flex-col divide-y divide-accent-foreground">
         {insights
           .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-          .map((post) => (
-            <li>
-              <article class="relative group transition-all duration-300 py-4 flex items-start justify-between">
-                <h3 class="font-semibold text-neutral-200 group-hover:text-pink-600">
-                  <a href={`/insights/${slugify(post.data.title)}`}>
-                    <span class="absolute inset-0" />
-                    {post.data.title}
-                  </a>
-                </h3>
-                <time class="text-xs text-muted-foreground shrink-0 group-hover:text-pink-600">
-                  {new Date(post.data.pubDate).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                    timeZone: "UTC",
-                  })}
-                </time>
-              </article>
-            </li>
+          .map((insight) => (
+            <ContentListItem
+              title={insight.data.title}
+              description={insight.data.description}
+              pubDate={insight.data.pubDate}
+              href={`/insights/${slugify(insight.data.title)}`}
+            />
           ))}
       </ul>
     </section>
