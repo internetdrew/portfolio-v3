@@ -1,20 +1,20 @@
 ---
 import { getCollection } from "astro:content";
 import { slugify } from "../utils";
-const blogPosts = await getCollection("blog");
+const insights = await getCollection("insights");
 ---
 
 {
-  blogPosts.length > 0 && (
-    <section class="mt-14 mb-4">
-      <h2 class="font-semibold text-neutral-400">Thoughts I've Shared</h2>
+  insights.length > 0 && (
+    <section id="insights" class="mt-14 mb-4">
+      <h2 class="font-semibold text-neutral-400">Insights</h2>
       <div class="flex flex-col divide-y divide-accent-foreground">
-        {blogPosts
+        {insights
           .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
           .map((post) => (
             <article class="relative group transition-all duration-300 py-4 flex items-start justify-between">
               <h3 class="font-semibold text-neutral-200 group-hover:text-pink-600">
-                <a href={`/blog/${slugify(post.data.title)}`}>
+                <a href={`/insights/${slugify(post.data.title)}`}>
                   <span class="absolute inset-0" />
                   {post.data.title}
                 </a>
