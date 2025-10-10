@@ -1,7 +1,5 @@
 ---
 import Navbar from "../components/Navbar.astro";
-// Supports weights 100-900
-import "@fontsource-variable/geist-mono";
 import "@fontsource-variable/geist";
 import "../styles/global.css";
 import ToasterWrapper from "@/components/ToasterWrapper";
@@ -49,7 +47,7 @@ const currentPath = Astro.url.pathname;
   </head>
   <body class="pb-10 bg-neutral-950 text-neutral-50">
     <Navbar />
-    <main class="max-w-screen-md mx-auto px-4">
+    <main class="max-w-screen-sm mx-auto px-4">
       <slot />
     </main>
     <ToasterWrapper client:load />
