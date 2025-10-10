@@ -1,6 +1,6 @@
 ---
 import Navbar from "../components/Navbar.astro";
-import "@fontsource-variable/geist-mono";
+import "@fontsource-variable/geist";
 import "../styles/global.css";
 
 interface Props {
@@ -52,9 +52,10 @@ const url = Astro.url.pathname;
 
     <title>{`${frontmatter.title} - Internet Drew`}</title>
   </head>
+
   <body class="pb-10 bg-neutral-950 text-neutral-50">
     <Navbar />
-    <main class="max-w-screen-md mx-auto px-4">
+    <main class="max-w-screen-sm mx-auto px-4">
       <header class="mt-14 rounded-lg text-center text-neutral-200 p-4 sm:p-8">
         <a
           href={listLink.href}
@@ -93,10 +94,6 @@ const url = Astro.url.pathname;
 </html>
 
 <style>
-  html {
-    scroll-padding-top: 6rem;
-  }
-
   body {
     font-family: "Geist Variable", sans-serif;
   }
