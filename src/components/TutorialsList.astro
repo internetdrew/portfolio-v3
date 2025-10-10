@@ -8,28 +8,30 @@ const tutorials = await getCollection("tutorials");
   tutorials.length > 0 && (
     <section id="guides" class="mt-14 mb-4">
       <h2 class="font-semibold text-neutral-400">Tutorials</h2>
-      <div class="flex flex-col divide-y divide-accent-foreground">
+      <ul class="flex flex-col divide-y divide-accent-foreground">
         {tutorials
           .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
           .map((post) => (
-            <article class="relative group transition-all duration-300 py-4 flex items-start justify-between">
-              <h3 class="font-semibold text-neutral-200 group-hover:text-pink-600">
-                <a href={`/guides/${slugify(post.data.title)}`}>
-                  <span class="absolute inset-0" />
-                  {post.data.title}
-                </a>
-              </h3>
-              <time class="text-xs text-muted-foreground shrink-0 group-hover:text-pink-600">
-                {new Date(post.data.pubDate).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                  timeZone: "UTC",
-                })}
-              </time>
-            </article>
+            <li>
+              <article class="relative group transition-all duration-300 py-4 flex items-start justify-between">
+                <h3 class="font-semibold text-neutral-200 group-hover:text-pink-600">
+                  <a href={`/guides/${slugify(post.data.title)}`}>
+                    <span class="absolute inset-0" />
+                    {post.data.title}
+                  </a>
+                </h3>
+                <time class="text-xs text-muted-foreground shrink-0 group-hover:text-pink-600">
+                  {new Date(post.data.pubDate).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                    timeZone: "UTC",
+                  })}
+                </time>
+              </article>
+            </li>
           ))}
-      </div>
+      </ul>
     </section>
   )
 }
