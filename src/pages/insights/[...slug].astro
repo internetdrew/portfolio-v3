@@ -1,0 +1,20 @@
+---
+import { getCollection, render } from "astro:content";
+import InsightLayout from "../../layouts/InsightLayout.astro";
+import { slugify } from "../../utils";
+
+export async function getStaticPaths() {
+  const insights = await getCollection("insights");
+  return insights.map((entry) => ({
+    params: { slug: slugify(entry.data.title) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<InsightLayout frontmatter={entry.data}>
+  <Content />
+</InsightLayout>
