@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from "astro:content";
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import { slugify } from "../../utils";
+
+export async function getStaticPaths() {
+  const tutorials = await getCollection("tutorials");
+  return tutorials.map((entry) => ({
+    params: { slug: slugify(entry.data.title) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ContentLayout
+  frontmatter={entry.data}
+  listLink={{ title: "TUTORIALS", href: "/tutorials" }}
+>
+  <Content />
+</ContentLayout>
