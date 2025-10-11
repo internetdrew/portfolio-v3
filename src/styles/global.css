@@ -122,3 +122,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@custom-variant prose-inline-code {
+  &.prose :where(:not(pre) > code):not(:where([class~="not-prose"] *)) {
+    @slot;
+  }
+}
