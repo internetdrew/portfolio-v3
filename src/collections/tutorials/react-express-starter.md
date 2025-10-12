@@ -27,7 +27,7 @@ That doesn’t make meta-frameworks bad. They just do more of the driving for yo
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/en/download) (at the time of writing this, the Long Term Support(LTS) version of Node.js is v22.20.0)
+- [Node.js](https://nodejs.org/en/download) (at the time of writing this, the Long Term Support (LTS) version of Node.js is v22.20.0)
 
 ## Scaffolding the Codebase
 
@@ -45,7 +45,7 @@ Now we can change our current directory and make the client and server directori
 cd react-express && mkdir client server
 ```
 
-Once we have this, we can create out application with clear separation. First, we'll create the React-based front-end of our application.
+Once we have this, we can create our application with clear separation. First, we'll create the React-based front-end of our application.
 
 ## Creating the Client
 
@@ -67,7 +67,7 @@ Doing so should install everything you need. You should now be able to visit [ht
 
 ## Creating the Server
 
-To build out our server, we will be using a handul of tools:
+To build out our server, we will be using a handful of tools:
 
 - [Express.js](https://expressjs.com/) (server framework)
 - [nodemon](https://www.npmjs.com/package/nodemon) (for hot refreshes when we make changes to our server code)
@@ -229,7 +229,11 @@ import cors from "cors";
 const app = express();
 const port = 3000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  }),
+);
 
 app.get("/hello", (req, res) => {
   res.json({ message: "Hello World!" });
@@ -240,7 +244,7 @@ app.listen(port, () => {
 });
 ```
 
-The most import thing here with using `cors` is to make sure you use it before your first route.
+The most important thing here with using `cors` is to make sure you use it before your first route.
 
 If you look back in your browser console, you should now see your JSON object with your message.
 
