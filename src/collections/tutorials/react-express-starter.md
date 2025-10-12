@@ -147,6 +147,148 @@ This script in a nutshell:
 1. Use nodemon to watch for changes to TypeScript (.ts) files throughout the `src` directory.
 2. Whenever changes are made, run `ts-node` to execute the code in `src/index.ts`
 
-By doing this, we make sure our server automatically restarts when we make changes. Without this, every time we make a change to the code, we would have to manually kill the server and bring it back up again.
+By doing this, we make sure our server automatically restarts when we make changes. Without this, every time we make a change to the code, we would have to manually kill the server and bring it back up again for the changes to take effect.
 
 You don't want those problems.
+
+Before we can run that script, we need one last file, our TypeScript config file. Without this, you'll get a message about `.ts` being an unknown file type:
+
+```bash
+touch tsconfig.json
+```
+
+Once we have the file, we can paste in a simple config:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
+```
+
+With that, we should now be able to run `npm run dev` and get our server running on [http://localhost:3000](http://localhost:3000/). If you open it in your browser, you should see `Hello World!`.
+
+## Allowing Cross Origin Resource Sharing
+
+Let's update our server code so that we have a `/hello` endpoint. In `/server/src/index.ts` we can update our original endpoint to return a JSON object with our message:
+
+```typescript
+app.get("/hello", (req, res) => {
+  res.json({ message: "Hello World!" });
+});
+```
+
+Typically, to get your data from this endpoint, you might reach for your backend like this (feel free to navigate and add this to your `/client/src/App.tsx` file):
+
+```typescript
+useEffect(() => {
+  (async () => {
+    const response = await fetch("http://localhost:3000/hello");
+    const data = await response.json();
+    console.log(data);
+  })();
+}, []);
+```
+
+If you look in your browser's console (right-click, hit inspect, go to console) you _might_ see this message:
+
+```bash
+Access to fetch at 'http://localhost:3000/hello' from origin 'http://localhost:5173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+```
+
+We get this message as a result of [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS#what_requests_use_cors), which you might want to take a look at if you're not familiar.
+
+In short, it means we are trying to get resources from one site from another, which can be a major vulnerability. To enable us to reach this, we'll need to allow that origin. That's where the `cors` package comes in.
+
+In the `server` directory:
+
+```bash
+npm i cors
+```
+
+```bash
+npm i --save-dev @types/cors
+```
+
+Then in our `src/index.ts` file we can update our code with the import and usage:
+
+```typescript
+import express from "express";
+import cors from "cors";
+
+const app = express();
+const port = 3000;
+
+app.use(cors());
+
+app.get("/hello", (req, res) => {
+  res.json({ message: "Hello World!" });
+});
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+```
+
+The most import thing here with using `cors` is to make sure you use it before your first route.
+
+If you look back in your browser console, you should now see your JSON object with your message.
+
+## Adding a Server Proxy
+
+This is not a necessary piece, but I do find that it adds a nice little touch to my apps and makes my API routes a bit cleaner.
+
+Right now, we are calling our backend by listing out the entire port address:
+
+```typescript
+const response = await fetch("http://localhost:3000/hello");
+```
+
+But I love being able to just do this, instead:
+
+```typescript
+const response = await fetch("/api/hello");
+```
+
+That way, when I write `/api`, my fetches automatically get routed to the server. Here's how we do that with Vite.
+
+In our `vite.config.ts` file, we can add a server proxy like this:
+
+```typescript
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
+});
+```
+
+Here's what each part does:
+
+- **target**: Where to send the request (our Express server on port 3000)
+- **changeOrigin**: Tells the proxy to pretend the request is coming from the target server instead of your React app. This prevents CORS issues and makes the Express server think the request originated from `localhost:3000` rather than `localhost:5173`.
+- **rewrite**: Removes `/api` from the URL before sending it to the Express server. So when you call `/api/hello` from React, it gets rewritten to just `/hello` when it reaches Express (which matches our actual route).
+
+Think of it like a forwarding service: when your React app says "send this to `/api/hello`", the proxy says "I'll forward this to the Express server, but I'll change the address to just `/hello` and make it look like it came from the right place."
+
+And just like that, we've now set up a basic full-stack React + Express application. From here, the sky's the limit, and I'll be following with more tutorials to get you from 0 to 1 with some popular tools you'll love.
