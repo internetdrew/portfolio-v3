@@ -1,11 +1,11 @@
 ---
 import { getCollection, render } from "astro:content";
-import BlogLayout from "../../layouts/BlogLayout.astro";
+import ContentLayout from "../../layouts/ContentLayout.astro";
 import { slugify } from "../../utils";
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("blog");
-  return blogEntries.map((entry) => ({
+  const tutorials = await getCollection("tutorials");
+  return tutorials.map((entry) => ({
     params: { slug: slugify(entry.data.title) },
     props: { entry },
   }));
@@ -15,6 +15,9 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<BlogLayout frontmatter={entry.data}>
+<ContentLayout
+  frontmatter={entry.data}
+  listLink={{ title: "TUTORIALS", href: "/tutorials" }}
+>
   <Content />
-</BlogLayout>
+</ContentLayout>

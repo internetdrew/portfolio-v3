@@ -1,9 +1,17 @@
 ---
 import Navbar from "../components/Navbar.astro";
-import "@fontsource-variable/geist-mono";
+import "@fontsource-variable/geist";
 import "../styles/global.css";
 
-const { frontmatter } = Astro.props;
+interface Props {
+  frontmatter: any;
+  listLink: {
+    title: string;
+    href: string;
+  };
+}
+
+const { frontmatter, listLink } = Astro.props;
 const url = Astro.url.pathname;
 ---
 
@@ -44,22 +52,40 @@ const url = Astro.url.pathname;
 
     <title>{`${frontmatter.title} - Internet Drew`}</title>
   </head>
-  <body class="pb-10 bg-neutral-950 text-neutral-200">
+
+  <body class="pb-10 bg-neutral-950 text-neutral-50">
     <Navbar />
-    <main class="max-w-screen-md mx-auto px-3 md:px-4">
-      <header
-        class="mt-14 rounded-lg text-center ring-1 ring-accent-foreground text-neutral-200 p-4 sm:p-8"
-      >
-        <h1 class="text-lg sm:text-2xl md:text-3xl font-semibold">
+    <main class="max-w-screen-sm mx-auto px-4">
+      <header class="mt-14 rounded-lg text-center p-4 sm:p-8">
+        <a
+          href={listLink.href}
+          class="text-xs text-pink-600 font-semibold p-2.5 ring ring-pink-600/50 rounded-md bg-pink-900/10 mb-4 inline-block leading-none"
+          >{listLink.title}</a
+        >
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold">
           {frontmatter.title}
         </h1>
-        <p class="mt-1 max-w-screen-sm text-neutral-400 mx-auto">
+        <p class="mt-4 max-w-screen-sm text-neutral-400 mx-auto text-lg">
           {frontmatter.description}
         </p>
+
+        <time
+          datetime={frontmatter.pubDate}
+          class="mt-4 block text-pink-600/90 text-sm"
+        >
+          {
+            new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              timeZone: "UTC",
+            })
+          }
+        </time>
       </header>
 
       <div
-        class="my-10 prose prose-invert prose-p:text-neutral-200 max-w-none prose-h2:text-xl prose-h3:text-lg prose-headings:text-muted-foreground prose-a:text-pink-600"
+        class="my-10 prose prose-invert max-w-none prose-h2:text-xl prose-h3:text-lg prose-headings:text-muted-foreground prose-a:text-pink-600 prose-p:text-neutral-200 prose-inline-code:text-pink-600 prose-inline-code:bg-neutral-800 prose-inline-code:px-1.5 prose-inline-code:py-0.5 prose-inline-code:rounded-sm prose-inline-code:before:content-none prose-inline-code:after:content-none"
       >
         <slot />
       </div>

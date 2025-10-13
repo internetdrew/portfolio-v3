@@ -1,0 +1,53 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+import { slugify } from "../../utils";
+const insights = await getCollection("insights");
+---
+
+<MainLayout
+  title="Insights | Internet Drew"
+  description="Thoughts on software development and the human side of technology."
+>
+  <header class="text-center mt-24">
+    <h1 class="text-2xl font-medium">Insights</h1>
+    <p class="max-w-lg mx-auto font-light mt-6 md:text-lg text-neutral-400">
+      Thoughts on software development and the human side of technology.
+    </p>
+  </header>
+
+  {
+    insights.length > 0 ? (
+      <ul class="flex flex-col max-w-screen-sm mx-auto mt-16 gap-4">
+        {insights
+          .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+          .map((insight) => (
+            <li>
+              <article class="relative group transition-all duration-300 p-4 hover:bg-neutral-900 rounded-lg">
+                <h3 class="font-semibold">
+                  <a href={`/insights/${slugify(insight.data.title)}`}>
+                    <span class="absolute inset-0" />
+                    {insight.data.title}
+                  </a>
+                </h3>
+                <p class="mt-1 text-sm text-neutral-400">
+                  {insight.data.description}
+                </p>
+
+                <time class="text-xs text-muted-foreground shrink-0">
+                  {new Date(insight.data.pubDate).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                    timeZone: "UTC",
+                  })}
+                </time>
+              </article>
+            </li>
+          ))}
+      </ul>
+    ) : (
+      <p class="text-center mt-16">No tutorials found.</p>
+    )
+  }
+</MainLayout>

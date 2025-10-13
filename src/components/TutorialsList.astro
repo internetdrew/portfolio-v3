@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import { slugify } from "../utils";
+import ContentListItem from "./ContentListItem.astro";
+const tutorials = await getCollection("tutorials");
+---
+
+{
+  tutorials.length > 0 && (
+    <section id="guides" class="mt-14 mb-4 space-y-2">
+      <h2 class="font-semibold text-neutral-400">Tutorials</h2>
+      <ul class="flex flex-col gap-4">
+        {tutorials
+          .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+          .map((tutorial) => (
+            <ContentListItem
+              title={tutorial.data.title}
+              description={tutorial.data.description}
+              pubDate={tutorial.data.pubDate}
+              href={`/tutorials/${slugify(tutorial.data.title)}`}
+            />
+          ))}
+      </ul>
+    </section>
+  )
+}

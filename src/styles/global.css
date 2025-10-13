@@ -115,7 +115,16 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scrollbar-gutter: stable both-edges;
+  }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@custom-variant prose-inline-code {
+  &.prose :where(:not(pre) > code):not(:where([class~="not-prose"] *)) {
+    @slot;
   }
 }
