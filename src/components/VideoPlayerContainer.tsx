@@ -9,6 +9,7 @@ export const VideoPlayerContainer = ({ videoUrl }: { videoUrl: string }) => {
     controls: true,
     responsive: true,
     fluid: true,
+    techOrder: ["youtube"],
     sources: [
       {
         src: videoUrl,
