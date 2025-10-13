@@ -87,11 +87,7 @@ const url = Astro.url.pathname;
 
       {
         frontmatter.videoUrl && (
-          <VideoPlayerContainer
-            client:load
-            videoUrl={frontmatter.videoUrl}
-            posterSrc={`https://internetdrew.com/${frontmatter.ogImageSrc}`}
-          />
+          <VideoPlayerContainer client:load videoUrl={frontmatter.videoUrl} />
         )
       }
 
