@@ -1,8 +1,8 @@
 ---
-title: "Build a Fast, Lean Full-Stack Application with React and Express"
+title: "Building a Fast, Lean Stack with React and Express"
 description: "Quickly go from 0 to 1 building a lightweight stack that provides speed, great tooling, and eliminates the black-box nature of meta-frameworks."
-pubDate: 2025-10-11
-ogImageSrc: "001.png"
+pubDate: 2025-10-12
+ogImageSrc: "react-express-og.png"
 isDraft: true
 ---
 
