@@ -2,17 +2,10 @@ import { useRef } from "react";
 import { Video } from "./Video";
 import type Player from "video.js/dist/types/player";
 
-export const VideoPlayerContainer = ({
-  videoUrl,
-  posterSrc,
-}: {
-  videoUrl: string;
-  posterSrc: string;
-}) => {
+export const VideoPlayerContainer = ({ videoUrl }: { videoUrl: string }) => {
   const playerRef = useRef<Player | null>(null);
 
   const videoJsOptions = {
-    poster: posterSrc,
     controls: true,
     responsive: true,
     fluid: true,
