@@ -20,6 +20,7 @@ const tutorials = defineCollection({
     pubDate: z.coerce.date(),
     ogImageSrc: z.string(),
     isDraft: z.boolean(),
+    videoUrl: z.string().optional(),
   }),
 });
 
