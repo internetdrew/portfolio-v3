@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar.astro";
 import "@fontsource-variable/geist";
 import "../styles/global.css";
+import { VideoPlayerContainer } from "@/components/VideoPlayerContainer";
 
 interface Props {
   frontmatter: any;
@@ -83,6 +84,16 @@ const url = Astro.url.pathname;
           }
         </time>
       </header>
+
+      {
+        frontmatter.videoUrl && (
+          <VideoPlayerContainer
+            client:load
+            videoUrl={frontmatter.videoUrl}
+            posterSrc={`https://internetdrew.com/${frontmatter.ogImageSrc}`}
+          />
+        )
+      }
 
       <div
         class="my-10 prose prose-invert max-w-none prose-h2:text-xl prose-h3:text-lg prose-headings:text-muted-foreground prose-a:text-pink-600 prose-p:text-neutral-200 prose-inline-code:text-pink-600 prose-inline-code:bg-neutral-800 prose-inline-code:px-1.5 prose-inline-code:py-0.5 prose-inline-code:rounded-sm prose-inline-code:before:content-none prose-inline-code:after:content-none"
