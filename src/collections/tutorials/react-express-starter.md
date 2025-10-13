@@ -4,6 +4,7 @@ description: "Quickly go from 0 to 1 building a lightweight stack that provides 
 pubDate: 2025-10-12
 ogImageSrc: "react-express-og.png"
 isDraft: true
+videoUrl: "https://www.youtube.com/watch?v=xgopQxHIs0o"
 ---
 
 ## Table of Contents
